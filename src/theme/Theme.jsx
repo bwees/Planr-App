@@ -29,11 +29,11 @@ export const DarkMode = {
         text: "#dfdfdf",
         gray: "#bdbdbd",
         background: "#121212",
-        headerColor: "#202020",
+        headerColor: "#121212",
         primary: "#47b0fe",
         primaryRGB: "71, 176, 254",
         tabBarColor: "#202020",
-        tileColor: "#191919",
+        tileColor: "#222222",
     },
 };
 

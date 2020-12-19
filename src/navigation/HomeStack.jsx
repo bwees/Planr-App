@@ -21,26 +21,9 @@ const HomeStack = (props) => {
                     cardOverlayEnabled: true,
                     ...TransitionPresets.ModalPresentationIOS
                 }
-            }}>
-            <Stack.Screen
-                name="Home"
-                component={Home}
-
-                options={{
-                    title: null,
-
-
-                    headerRight: () => (
-                        <TouchableOpacity style={{ paddingRight: SIZES.padding }} activeOpacity={0.5} >
-                            <Ionicons name="ios-add" size={30} color={colors.primary} />
-                        </TouchableOpacity>
-                    ),
-                    headerLeft: () => (
-                        <TouchableOpacity style={{ paddingLeft: SIZES.padding }} activeOpacity={0.5} >
-                            <Ionicons name="ios-person" size={22} color={colors.primary} />
-                        </TouchableOpacity>
-                    ),
-                }} />
+            }}
+            headerMode="none">
+            <Stack.Screen name="Home" component={Home} />
 
         </Stack.Navigator >
     );

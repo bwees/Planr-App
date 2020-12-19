@@ -9,9 +9,23 @@ import TimeChart from "../components/TimeChart";
 import { StackedBarChart } from "react-native-chart-kit";
 import { ScrollView } from "react-native-gesture-handler";
 import MoreButton from "../components/MoreButton";
-import { Header } from "react-native/Libraries/NewAppScreen";
+import LinearGradient from 'react-native-linear-gradient';
 
 const { height } = Dimensions.get('window')
+
+const Header = (props) => {
+    return (
+        < View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 8 }} >
+            <TouchableOpacity activeOpacity={0.5} >
+                <Ionicons name="ios-person" size={22} color={"white"} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.5} >
+                <Ionicons name="ios-add" size={30} color={"white"} />
+            </TouchableOpacity>
+        </View >
+    )
+}
+
 
 const Home = (props) => {
     const { colors } = useTheme();
@@ -21,10 +35,7 @@ const Home = (props) => {
     var [scrollPos, setScrollPos] = useState(0);
 
     const styles = StyleSheet.create({
-        container: {
-            paddingHorizontal: 20,
-            backgroundColor: colors.background,
-        },
+
         largeButton: {
             backgroundColor: colors.primary,
             height: 40,
@@ -58,53 +69,37 @@ const Home = (props) => {
     const scrollEnabled = screenHeight > height
 
     return (
-        <SafeAreaView>
-            <ScrollView
-                style={styles.container}
-                onContentSizeChange={this.onContentSizeChange}
-                scrollEnabled={scrollEnabled}
-            >
+        <View>
 
-                <TimeChart progress={progress}
-                    title={"Homework Time"}
-                    time={"30-45 Minutes"}
-                    subtitle={"Schedule is 75% full"}
-                    barColor={colors.primary}
-                    textColor={colors.text}
-                    subtitleColor={colors.gray}
-                    style={{ paddingTop: 8 }}
-                />
+            <LinearGradient colors={["#4AD8FF", "#31A2F9"]} style={{
+                height: 175,
+                paddingLeft: 15,
+                paddingRight: 15
+            }} />
 
-                <View style={[SHADOW, { backgroundColor: colors.tileColor, borderRadius: 8, padding: 8, marginVertical: 8 }]}>
-                    <StackedBarChart
-                        data={{
-                            labels: ['MON    ', 'TUE   ', 'WED  ', 'THU ', 'FRI'],
-                            legend: [],
-                            data: [[60], [30], [60], [30], [60]],
-                            barColors: [colors.primary],
-                        }}
-                        width={Dimensions.get("window").width - 56}
-                        height={175}
-                        yAxisSuffix="m"
-                        yAxisInterval={1} // optional, defaults to 1
-                        decimalPlaces={0}
-                        showLegend={false}
-                        chartConfig={{
-                            backgroundColor: colors.tileColor,
-                            backgroundGradientFrom: colors.tileColor,
-                            backgroundGradientTo: colors.tileColor,
-                            color: (opacity = 1) => `rgba(${colors.primaryRGB}, ${opacity})`,
-                            barRadius: 8
-                        }}
+
+            <SafeAreaView style={{ marginTop: -150, marginHorizontal: 16 }}>
+
+
+                <Header />
+
+                <View style={[SHADOW, {
+                    height: 135,
+                    marginHorizontal: 4,
+                    marginTop: 24,
+                    borderRadius: 16,
+                    padding: 16,
+                    backgroundColor: colors.tileColor
+                }]}>
+                    <TimeChart progress={progress}
+                        title={"Homework Time"}
+                        time={"30-45 Minutes"}
+                        subtitle={"Schedule is 75% full"}
+                        barColor={colors.primary}
+                        textColor={colors.text}
+                        subtitleColor={colors.gray}
                     />
                 </View>
-
-                <TouchableOpacity activeOpacity={0.6} style={[styles.largeButton, SHADOW, { height: 45, marginTop: 8 }]} onPress={() => props.navigation.navigate("HomeworkSchedule")}>
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Ionicons name="ios-time" size={22} color={"white"} />
-                        <Text style={[FONTS.h3, FONTS.bold, { color: "white", paddingLeft: 8 }]}>Homework Schedule</Text>
-                    </View>
-                </TouchableOpacity>
 
 
                 <View>
@@ -127,29 +122,8 @@ const Home = (props) => {
                         style={{ width: "100%", overflow: "visible" }}
                     />
                 </View>
-                <View style={{ marginBottom: 16 }}>
-                    <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingTop: 16, paddingBottom: 8 }]}>Tonight's Work</Text>
-
-                    <FlatList
-                        data={assignments}
-                        renderItem={({ item }) => (
-                            <AssignmentMini
-                                navigation={props.navigation}
-                                assignment={item}
-                                color={colors.tileColor}
-                                titleColor={colors.primary}
-                                bodyTextColor={colors.text} />
-                        )}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        ListFooterComponent={MoreButton}
-                        style={{ width: "100%", overflow: "visible" }}
-                    />
-                </View>
-
-            </ScrollView >
-        </SafeAreaView>
+            </SafeAreaView>
+        </View >
     );
 };
 
