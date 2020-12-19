@@ -7,7 +7,7 @@ import { FONTS } from "../theme/Theme";
 const TimeChart = (props) => {
 
     return (
-        <View style={[props.style, { flexDirection: "column", alignItems: "flex-start" }]}>
+        <View style={[props.style, { flexDirection: "column", alignItems: "center" }]}>
             <Text style={[FONTS.h4, FONTS.bold, { color: props.subtitleColor }]}>{props.title}</Text>
             <Text style={[FONTS.h1, FONTS.bold, { color: props.textColor }]}>{props.time}</Text>
 

@@ -13,13 +13,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const { height } = Dimensions.get('window')
 
-const Header = (props) => {
+const ButtonHeader = (props) => {
     return (
-        < View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 8 }} >
+        < View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 24, marginTop: 8 }} >
             <TouchableOpacity activeOpacity={0.5} >
                 <Ionicons name="ios-person" size={22} color={"white"} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5} >
+            <TouchableOpacity activeOpacity={0.5} style={{ marginRight: -8 }}>
                 <Ionicons name="ios-add" size={30} color={"white"} />
             </TouchableOpacity>
         </View >
@@ -31,19 +31,6 @@ const Home = (props) => {
     const { colors } = useTheme();
 
     var [progress, setProgress] = useState(0);
-    var [screenHeight, setScreenHeight] = useState(0);
-    var [scrollPos, setScrollPos] = useState(0);
-
-    const styles = StyleSheet.create({
-
-        largeButton: {
-            backgroundColor: colors.primary,
-            height: 40,
-            borderRadius: 8,
-            justifyContent: "center",
-            alignItems: "center",
-        }
-    });
 
     var assignment = {
         name: "Example Assignment sdfasdasd",
@@ -60,36 +47,24 @@ const Home = (props) => {
         id: "2"
     }
 
-    onContentSizeChange = (contentWidth, contentHeight) => {
-        setScreenHeight(contentHeight);
-    }
-
     var assignments = [assignment, assignment2]
 
-    const scrollEnabled = screenHeight > height
-
     return (
-        <View>
 
-            <LinearGradient colors={["#4AD8FF", "#31A2F9"]} style={{
-                height: 175,
-                paddingLeft: 15,
-                paddingRight: 15
-            }} />
+        <LinearGradient colors={[colors.primary, "#31A2F9"]} style={{ flex: 1 }}>
 
 
-            <SafeAreaView style={{ marginTop: -150, marginHorizontal: 16 }}>
+            <SafeAreaView>
 
+                <ButtonHeader />
 
-                <Header />
-
-                <View style={[SHADOW, {
-                    height: 135,
-                    marginHorizontal: 4,
+                <View height={135} style={[SHADOW, {
+                    marginHorizontal: 32,
                     marginTop: 24,
                     borderRadius: 16,
                     padding: 16,
-                    backgroundColor: colors.tileColor
+                    backgroundColor: colors.tileColor,
+                    zIndex: 1
                 }]}>
                     <TimeChart progress={progress}
                         title={"Homework Time"}
@@ -101,8 +76,16 @@ const Home = (props) => {
                     />
                 </View>
 
-
-                <View>
+                <View
+                    height={Dimensions.get("window").height * .9}
+                    style={[SHADOW, {
+                        backgroundColor: colors.background,
+                        marginVertical: -48,
+                        paddingTop: 42,
+                        paddingHorizontal: 20,
+                        borderTopLeftRadius: 24,
+                        borderTopRightRadius: 24
+                    }]}>
                     <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingTop: 16, paddingBottom: 8 }]}>Due Today</Text>
 
                     <FlatList
@@ -122,8 +105,11 @@ const Home = (props) => {
                         style={{ width: "100%", overflow: "visible" }}
                     />
                 </View>
+
+
+
             </SafeAreaView>
-        </View >
+        </LinearGradient >
     );
 };
 

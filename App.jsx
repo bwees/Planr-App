@@ -8,11 +8,11 @@ import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import TabNavigator from './src/navigation/TabNavigator';
 import { DarkMode, LightMode } from './src/theme/Theme';
 import HomeworkSchedule from './src/views/HomeworkSchedule';
-
+import { StatusBar } from 'react-native';
 const MainStack = createStackNavigator();
 
 function App() {
-
+    StatusBar.setBarStyle('light-content', true);
     return (
         <AppearanceProvider>
             <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>
