@@ -1,17 +1,13 @@
-// You can import Ionicons from @expo/vector-icons/Ionicons if you use Expo or
-// react-native-vector-icons/Ionicons otherwise.
+
 import Ionicons from "react-native-vector-icons/Ionicons";
 import React from "react";
-import { NavigationContainer, useTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useColorScheme } from "react-native-appearance";
 
 import HomeStack from "./HomeStack";
 import { DarkMode, LightMode } from "../theme/Theme";
-import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
-
 
 function TabNavigator() {
 
@@ -74,10 +70,5 @@ function TabNavigator() {
     );
 }
 
-const styles = StyleSheet.create({
-    tabBar: {
-
-    }
-});
 
 export default TabNavigator;

@@ -30,6 +30,17 @@ const ButtonHeader = (props) => {
 const Home = (props) => {
     const { colors } = useTheme();
 
+
+    const bgShadow = {
+        shadowColor: colors.background,
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 15,
+    }
+
     var [progress, setProgress] = useState(0);
 
     var assignment = {
@@ -51,9 +62,7 @@ const Home = (props) => {
 
     return (
 
-        <LinearGradient colors={[colors.primary, "#31A2F9"]} style={{ flex: 1 }}>
-
-
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 0.3 }} colors={["#4287f5", "#40d6ff",]} useAngle={false} angle={0} style={{ flex: 1 }}>
             <SafeAreaView>
 
                 <ButtonHeader />
@@ -69,41 +78,37 @@ const Home = (props) => {
                     <TimeChart progress={progress}
                         title={"Homework Time"}
                         time={"30-45 Minutes"}
-                        subtitle={"Schedule is 75% full"}
+                        subtitle={"Light workload expected."}
                         barColor={colors.primary}
                         textColor={colors.text}
                         subtitleColor={colors.gray}
                     />
                 </View>
 
-                <View
-                    height={Dimensions.get("window").height * .9}
-                    style={[SHADOW, {
-                        backgroundColor: colors.background,
-                        marginVertical: -48,
-                        paddingTop: 42,
-                        paddingHorizontal: 20,
-                        borderTopLeftRadius: 24,
-                        borderTopRightRadius: 24
-                    }]}>
-                    <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingTop: 16, paddingBottom: 8 }]}>Due Today</Text>
+                <View height={"100%"} style={[SHADOW, {
+                    backgroundColor: colors.background,
+                    marginVertical: -48,
+                    paddingTop: 58,
+                    paddingHorizontal: 20,
+                    borderTopLeftRadius: 24,
+                    borderTopRightRadius: 24,
+                }]}>
+                    <Text style={[FONTS.h1, FONTS.bold, bgShadow, { color: colors.text, backgroundColor: colors.gray, zIndex: 5 }]}>Schedule</Text>
 
-                    <FlatList
-                        data={assignments}
-                        renderItem={({ item }) => (
-                            <AssignmentMini
-                                navigation={props.navigation}
-                                assignment={item}
-                                color={colors.tileColor}
-                                titleColor={colors.primary}
-                                bodyTextColor={colors.text} />
-                        )}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        ListFooterComponent={MoreButton}
-                        style={{ width: "100%", overflow: "visible" }}
-                    />
+                    <ScrollView>
+
+                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+
+
+
+                    </ScrollView>
+
+
                 </View>
 
 
