@@ -30,6 +30,18 @@ const ButtonHeader = (props) => {
 const Home = (props) => {
     const { colors } = useTheme();
 
+    const renderContent = () => (
+        <View
+            style={{
+                backgroundColor: 'white',
+                padding: 16,
+                height: 450,
+            }}
+        >
+            <Text>Swipe down to close</Text>
+        </View>
+    );
+
 
     const bgShadow = {
         shadowColor: colors.background,
@@ -38,7 +50,7 @@ const Home = (props) => {
             height: 0,
         },
         shadowOpacity: 1,
-        shadowRadius: 15,
+        shadowRadius: 1,
     }
 
     var [progress, setProgress] = useState(0);
@@ -67,42 +79,46 @@ const Home = (props) => {
 
                 <ButtonHeader />
 
-                <View height={135} style={[SHADOW, {
-                    marginHorizontal: 32,
-                    marginTop: 24,
-                    borderRadius: 16,
-                    padding: 16,
-                    backgroundColor: colors.tileColor,
-                    zIndex: 1
-                }]}>
-                    <TimeChart progress={progress}
-                        title={"Homework Time"}
-                        time={"30-45 Minutes"}
-                        subtitle={"Light workload expected."}
-                        barColor={colors.primary}
-                        textColor={colors.text}
-                        subtitleColor={colors.gray}
-                    />
-                </View>
+
+                <TimeChart progress={0.32}
+                    title={"Homework Time"}
+                    time={"30-45 Minutes"}
+                    subtitle={"Light workload expected."}
+                    barColor={"white"}
+                    textColor={"white"}
+                    subtitleColor={"white"}
+                    style={{ paddingVertical: 24, paddingHorizontal: 20 }}
+                />
 
                 <View height={"100%"} style={[SHADOW, {
                     backgroundColor: colors.background,
-                    marginVertical: -48,
-                    paddingTop: 58,
+                    paddingTop: 8,
                     paddingHorizontal: 20,
-                    borderTopLeftRadius: 24,
-                    borderTopRightRadius: 24,
+                    borderTopLeftRadius: 20,
+                    borderTopRightRadius: 20,
                 }]}>
-                    <Text style={[FONTS.h1, FONTS.bold, bgShadow, { color: colors.text, backgroundColor: colors.gray, zIndex: 5 }]}>Schedule</Text>
+                    <Text style={[FONTS.h1, FONTS.bold, bgShadow, { paddingTop: 12, color: colors.text }]}>Schedule</Text>
 
-                    <ScrollView>
+                    <View
+                        style={{
+                            borderBottomColor: colors.gray,
+                            borderBottomWidth: 1,
+                            borderRadius: 16,
+                            paddingHorizontal: -20
+                        }}
+                    />
 
-                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
-                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
-                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
-                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
-                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
-                        <Text style={[FONTS.h1, FONTS.bold, { color: colors.text, backgroundColor: colors.background }]}>Schedule</Text>
+
+                    <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{ paddingVertical: 8 }}>
+
+
+                        <View style={[SHADOW, {
+                            backgroundColor: colors.gray
+                        }]}>
+
+                            <Text> Hello </Text>
+
+                        </View>
 
 
 
