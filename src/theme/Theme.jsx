@@ -17,6 +17,8 @@ export const LightMode = {
         primaryRGB: "71, 176, 254",
         tabBarColor: "white",
         tileColor: "white",
+        sheet: "white",
+        lightGray: "#dfdfdf"
     },
 };
 
@@ -32,8 +34,11 @@ export const DarkMode = {
         headerColor: "#121212",
         primary: "#47b0fe",
         primaryRGB: "71, 176, 254",
-        tabBarColor: "#202020",
+        tabBarColor: "#232323",
         tileColor: "#222222",
+        sheet: "#191919",
+        lightGray: "#444444"
+
     },
 };
 

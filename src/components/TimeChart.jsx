@@ -15,7 +15,7 @@ const TimeChart = (props) => {
             <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 8 }}>
                 <ProgressBar progress={props.progress} color={props.barColor} flex={1} flexDirection={"column"} width={null} />
             </View>
-            <Text style={[FONTS.h4, FONTS.bold, { color: props.subtitleColor, paddingTop: 8 }]}>{props.subtitle}</Text>
+            <Text style={[FONTS.h4, { color: props.subtitleColor, paddingTop: 8 }]}>{props.subtitle}</Text>
 
 
 
