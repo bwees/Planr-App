@@ -12,11 +12,14 @@ import MoreButton from "../components/MoreButton";
 import LinearGradient from 'react-native-linear-gradient';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
+
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 const { height } = Dimensions.get('window')
 
 const ButtonHeader = (props) => {
     return (
-        < View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 24, marginTop: 8 }} >
+        < View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 24, marginTop: 8, marginBottom: -16 }} >
             <TouchableOpacity activeOpacity={0.5} >
                 <Ionicons name="ios-person" size={22} color={"white"} />
             </TouchableOpacity>
@@ -116,24 +119,51 @@ const Home = (props) => {
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 0.5 }} colors={["#4287f5", "#40d6ff",]} useAngle={false} angle={0} style={{ flex: 1 }}>
             <SafeAreaView>
                 <ButtonHeader />
-                <TimeChart progress={0.32}
-                    title={"Homework Time"}
-                    time={"30-45 Minutes"}
-                    subtitle={"Light workload expected."}
-                    barColor={"white"}
-                    textColor={"white"}
-                    subtitleColor={"white"}
-                    style={{ paddingVertical: 24, paddingHorizontal: 20 }}
-                />
+                <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
+                    <TimeChart progress={0.32}
+                        title={"Homework Time"}
+                        time={"30-45 Minutes"}
+                        subtitle={"Light workload expected."}
+                        barColor={"white"}
+                        textColor={"white"}
+                        subtitleColor={"white"}
+                    />
+                    <View style={[SHADOW, { backgroundColor: colors.tileColor, borderRadius: 16, padding: 8, marginTop: 16 }]}>
+                        <StackedBarChart
+                            data={{
+                                labels: ['MON    ', 'TUE   ', 'WED  ', 'THU ', 'FRI'],
+                                legend: [],
+                                data: [[60], [30], [60], [30], [60]],
+                                barColors: [colors.primary],
+                            }}
+                            width={Dimensions.get("window").width - 60}
+                            height={Dimensions.get("window").height * .25}
+                            yAxisSuffix="m"
+                            yAxisInterval={1} // optional, defaults to 1
+                            decimalPlaces={0}
+                            showLegend={false}
+                            chartConfig={{
+                                backgroundColor: colors.tileColor,
+                                backgroundGradientFrom: colors.tileColor,
+                                backgroundGradientTo: colors.tileColor,
+                                color: (opacity = 1) => `rgba(${colors.primaryRGB}, ${opacity})`,
+                                barRadius: 8
+                            }}
+                        />
+                    </View>
+                </View>
             </SafeAreaView>
+
 
             <BottomSheet
                 ref={sheetRef}
-                snapPoints={["80%", "35%"]}
+                snapPoints={[Dimensions.get("window").height - getStatusBarHeight() - 92, "35%"]}
                 initialSnap={1}
+                enabledBottomClamp={true}
                 renderContent={scheduleSheet}
                 renderHeader={scheduleSheetHeader}
             />
+
         </LinearGradient >
     );
 };
