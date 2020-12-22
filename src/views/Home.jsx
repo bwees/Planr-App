@@ -157,7 +157,7 @@ const Home = (props) => {
 
             <BottomSheet
                 ref={sheetRef}
-                snapPoints={[Dimensions.get("window").height - getStatusBarHeight() - 92, "35%"]}
+                snapPoints={[Dimensions.get("window").height - getStatusBarHeight() - 95, "35%"]}
                 initialSnap={1}
                 enabledBottomClamp={true}
                 renderContent={scheduleSheet}
