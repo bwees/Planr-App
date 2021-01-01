@@ -30,15 +30,14 @@ export const DarkMode = {
 
         text: "#dfdfdf",
         gray: "#bdbdbd",
-        background: "#121212",
+        background: "#0f0f0f",
         headerColor: "#121212",
         primary: "#47b0fe",
         primaryRGB: "71, 176, 254",
         tabBarColor: "#232323",
-        tileColor: "#222222",
-        sheet: "#191919",
+        tileColor: "#1d1d1d",
+        sheet: "#1d1d1d",
         lightGray: "#444444"
-
     },
 };
 
@@ -88,10 +87,15 @@ export const SHADOW = {
         height: 3,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowRadius: 4,
+
 }
 
 
 const appTheme = { FONTS, SHADOW };
 
 export default appTheme;
+
+
+
+

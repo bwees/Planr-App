@@ -23,10 +23,15 @@ const HomeStack = (props) => {
                 }
             }}
             headerMode="none">
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Home" component={HomeView} />
 
         </Stack.Navigator >
     );
+}
+
+HomeView = (props) => {
+    const theme = useTheme();
+    return <Home {...props} theme={theme} />
 }
 
 export default HomeStack;
