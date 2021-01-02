@@ -7,8 +7,9 @@ import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 //import { TabNavigator } from './src/navigation/TabNavigator';
 import TabNavigator from './src/navigation/TabNavigator';
 import { DarkMode, LightMode } from './src/theme/Theme';
-import HomeworkSchedule from './src/views/HomeworkSchedule';
+import HomeworkSchedule from './src/views/TimeManagement';
 import { StatusBar } from 'react-native';
+import TimeManagement from './src/views/TimeManagement';
 const MainStack = createStackNavigator();
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
                     mode="modal"
                     headerMode="none">
                     <MainStack.Screen name="Tabs" component={TabNavigator} />
-                    <MainStack.Screen name="HomeworkSchedule" component={HomeworkSchedule} />
+                    <MainStack.Screen name="TimeManagement" component={TimeManagement} />
 
                 </MainStack.Navigator>
             </NavigationContainer>

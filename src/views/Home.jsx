@@ -17,19 +17,6 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const { height } = Dimensions.get('window')
 
-const ButtonHeader = (props) => {
-    return (
-        < View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 24, marginTop: 8, marginBottom: -16 }} >
-            <TouchableOpacity activeOpacity={0.5} >
-                <Ionicons name="ios-person" size={22} color={"white"} />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5} style={{ marginRight: -8 }}>
-                <Ionicons name="ios-add" size={30} color={"white"} />
-            </TouchableOpacity>
-        </View >
-    )
-}
-
 const Home = (props) => {
     const { colors } = useTheme();
 
@@ -90,10 +77,9 @@ const Home = (props) => {
     return (
         <View style={{ flex: 1 }}>
             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: .1 }} colors={["#4287f5", "#40d6ff",]} useAngle={true} angle={120} style={{ flex: 1 }}>
-                <SafeAreaView style={{ flex: 1 }}>
-                    <View style={{ flex: 1, flexDirection: "column" }}>
-                        <ButtonHeader style={{ flex: 1 }} />
-                        <View style={{ height: 125, paddingHorizontal: 20, justifyContent: "center" }}>
+                <SafeAreaView style={{ flex: 1, }}>
+                    <View style={{ flex: 1, flexDirection: "column", marginTop: 48 }}>
+                        <View style={{ height: 100, paddingHorizontal: 20, justifyContent: "center" }}>
 
                             <TimeChart progress={0.32}
                                 title={"Homework Time"}
@@ -104,6 +90,25 @@ const Home = (props) => {
                                 subtitleColor={"white"}
                             />
                         </View>
+
+                        <TouchableOpacity
+                            style={[SHADOW, {
+                                height: 40,
+                                marginHorizontal: 20,
+                                backgroundColor: colors.tabBarColor,
+                                borderRadius: 8,
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                marginVertical: 16
+                            }]}
+                            onPress={() => {
+                                props.navigation.navigate("TimeManagement")
+                            }}
+                        >
+                            <Ionicons name={"time"} size={22} color={colors.primary} />
+                            <Text style={[FONTS.bold, FONTS.h3, { paddingLeft: 8, color: colors.primary }]}>Time Management</Text>
+                        </TouchableOpacity>
 
                         {/* Info Card */}
                         <View
@@ -120,62 +125,20 @@ const Home = (props) => {
                                 }
                             ]}
                         >
-                            <TouchableOpacity
-                                style={{
-                                    height: "8%",
-                                    backgroundColor: colors.primary,
-                                    borderRadius: 8,
-                                    flexDirection: "row",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    marginBottom: 8
-                                }}
-                                onPress={() => {
-                                    props.navigation.navigate("HomeworkSchedule")
-                                }}
-                            >
-                                <Ionicons name={"time"} size={22} color={"white"} />
-                                <Text style={[FONTS.bold, FONTS.h4, { paddingLeft: 8, color: "white" }]}>Homework Schedule</Text>
-                            </TouchableOpacity>
 
-                            {/* Graph Widget */}
-                            <View style={{ flexGrow: 1 }}>
-                                <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingBottom: 8 }]}>This Week</Text>
 
-                                <View
-                                    style={[SHADOW,
-                                        {
-                                            flex: 1,
-                                            backgroundColor: colors.tileColor,
-                                            borderRadius: 16,
-                                            justifyContent: "center",
-                                            alignItems: "center",
-
-                                        }]}
-                                    onLayout={this.onGraphLayout}
-                                >
-                                    {this.graphWidget(width, height)}
-                                </View>
-                            </View>
-
-                            {/* Important Assignments */}
-                            <View style={{ height: 200, paddingVertical: 16 }}>
-                                <Text style={[FONTS.h2, FONTS.bold, { marginBottom: 8, color: colors.text }]}>Important Assignments</Text>
-                                <FlatList
-                                    data={assignments}
-                                    renderItem={({ item }) => (
-                                        <AssignmentMini
-                                            navigation={props.navigation}
-                                            assignment={item}
-                                            color={colors.tileColor}
-                                            titleColor={colors.primary}
-                                            bodyTextColor={colors.text} />
-                                    )}
-                                    keyExtractor={item => item.id}
-                                    horizontal={true}
-                                    showsHorizontalScrollIndicator={false}
-                                    ListFooterComponent={MoreButton}
-                                    style={{ width: "100%", overflow: "visible", marginBottom: 16 }}
+                            {/* Homework Schedule */}
+                            <View style={{ height: 200 }}>
+                                <Text style={[FONTS.h2, FONTS.bold, { color: colors.text }]}>Homework Schedule</Text>
+                                <Text style={[FONTS.h4, { color: colors.gray }]}>8 Assignments</Text>
+                                <View width={"200%"}
+                                    style={{
+                                        height: 1,
+                                        borderRadius: 4,
+                                        backgroundColor: colors.lightGray,
+                                        marginTop: 10,
+                                        marginLeft: -20
+                                    }}
                                 />
                             </View>
 

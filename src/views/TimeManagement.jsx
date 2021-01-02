@@ -3,7 +3,7 @@ import React from "react";
 import { View, ScrollView, Text, Button } from "react-native";
 import { FONTS } from "../theme/Theme";
 
-const HomeworkSchedule = (props) => {
+const TimeManagement = (props) => {
     const { colors } = useTheme();
 
     return (
@@ -27,14 +27,6 @@ const HomeworkSchedule = (props) => {
                 </View>
                 <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingHorizontal: 16, }]}>Homework Schedule</Text>
                 <Text style={[FONTS.h4, { color: colors.gray, paddingHorizontal: 16 }]}>8 Assignments</Text>
-                <View width={"100%"}
-                    style={{
-                        height: 1,
-                        borderRadius: 4,
-                        backgroundColor: colors.lightGray,
-                        marginTop: 10,
-                    }}
-                />
 
             </View>
             <View style={{ backgroundColor: colors.sheet }}>
@@ -48,4 +40,4 @@ const HomeworkSchedule = (props) => {
     );
 };
 
-export default HomeworkSchedule;
+export default TimeManagement;

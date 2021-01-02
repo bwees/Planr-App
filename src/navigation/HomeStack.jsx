@@ -19,19 +19,33 @@ const HomeStack = (props) => {
                 return {
                     gestureEnabled: true,
                     cardOverlayEnabled: true,
+                    headerShown: true,
+                    headerTransparent: true,
                     ...TransitionPresets.ModalPresentationIOS
                 }
             }}
-            headerMode="none">
-            <Stack.Screen name="Home" component={HomeView} />
+        >
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{
+
+                    headerTitle: null,
+                    headerLeft: () => (
+                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} >
+                            <Ionicons name="ios-person" size={22} color={"white"} />
+                        </TouchableOpacity>
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }}>
+                            <Ionicons name="ios-add" size={30} color={"white"} />
+                        </TouchableOpacity>
+                    ),
+                }} />
 
         </Stack.Navigator >
     );
 }
 
-HomeView = (props) => {
-    const theme = useTheme();
-    return <Home {...props} theme={theme} />
-}
 
 export default HomeStack;

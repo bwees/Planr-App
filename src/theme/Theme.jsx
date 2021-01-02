@@ -9,7 +9,7 @@ export const LightMode = {
     colors: {
         ...DefaultTheme.colors,
 
-        text: "#292929",
+        text: "white",
         gray: "#ababab",
         background: "white",
         headerColor: "white",
@@ -34,7 +34,7 @@ export const DarkMode = {
         headerColor: "#121212",
         primary: "#47b0fe",
         primaryRGB: "71, 176, 254",
-        tabBarColor: "#232323",
+        tabBarColor: "#202020",
         tileColor: "#1d1d1d",
         sheet: "#1d1d1d",
         lightGray: "#444444"
