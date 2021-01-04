@@ -1,9 +1,7 @@
-
 import Ionicons from "react-native-vector-icons/Ionicons";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useColorScheme } from "react-native-appearance";
-
 import HomeStack from "./HomeStack";
 import { DarkMode, LightMode } from "../theme/Theme";
 

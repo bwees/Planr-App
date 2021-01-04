@@ -9,16 +9,17 @@ export const LightMode = {
     colors: {
         ...DefaultTheme.colors,
 
-        text: "white",
-        gray: "#ababab",
+        text: "black",
+        gray: "#888888",
         background: "white",
         headerColor: "white",
         primary: "#47b0fe",
-        primaryRGB: "71, 176, 254",
         tabBarColor: "white",
-        tileColor: "white",
         sheet: "white",
-        lightGray: "#dfdfdf"
+        lightGray: "#dfdfdf",
+        cellColor: "white",
+        chevron: "red",
+        assignmentCellText: "#888888"
     },
 };
 
@@ -29,15 +30,16 @@ export const DarkMode = {
         ...DarkTheme.colors,
 
         text: "#dfdfdf",
-        gray: "#bdbdbd",
+        gray: "#888888",
         background: "#0f0f0f",
         headerColor: "#121212",
         primary: "#47b0fe",
-        primaryRGB: "71, 176, 254",
         tabBarColor: "#202020",
-        tileColor: "#1d1d1d",
-        sheet: "#1d1d1d",
-        lightGray: "#444444"
+        sheet: "#0F0F0F",
+        lightGray: "#444444",
+        cellColor: "#191919",
+        chevron: "#96969C",
+        assignmentCellText: "#dfdfdf"
     },
 };
 
