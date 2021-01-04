@@ -85,14 +85,33 @@ const Home = (props) => {
                                 <View style={{ height: 1, borderRadius: 4, backgroundColor: colors.lightGray, marginTop: 10, }} />
 
                             </View>
+                            <View style={{ flex: 1 }}>
 
-                            <ScrollView showsVerticalScrollIndicator={true} style={{ marginBottom: 235 }} contentContainerStyle={{ justifyContent: 'space-between', marginHorizontal: 20, paddingBottom: 32, overflow: false }}>
-                                <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
-                                <AssignmentCell />
-                                <AssignmentCell />
-                                <AssignmentCell />
+                                <ScrollView showsVerticalScrollIndicator={true} style={{ flex: 1 }} contentContainerStyle={{ justifyContent: 'space-between', marginHorizontal: 20, overflow: false }}>
+                                    <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
 
-                            </ScrollView>
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
+
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+                                    <AssignmentCell />
+
+                                </ScrollView>
+
+                            </View>
+
                         </View>
                     </View>
 
