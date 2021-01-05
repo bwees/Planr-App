@@ -9,7 +9,7 @@ export const LightMode = {
     colors: {
         ...DefaultTheme.colors,
 
-        text: "black",
+        text: "#444444",
         gray: "#888888",
         background: "white",
         headerColor: "white",

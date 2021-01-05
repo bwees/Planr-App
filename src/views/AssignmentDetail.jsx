@@ -5,11 +5,15 @@ import LinearGradient from "react-native-linear-gradient";
 import { FONTS, SHADOW } from "../theme/Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommuniyIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import SegmentedControl from '@react-native-community/segmented-control';
+import { useState } from "react";
 
 const AssignmentDetail = ({ route, navigation }) => {
 
     const { assignment } = route.params;
     const { colors } = useTheme();
+
+    var [assignmentStatus, setStatus] = useState(assignment.status);
 
     return (
         <View style={{ flex: 1, marginBottom: 0 }}>
@@ -35,8 +39,8 @@ const AssignmentDetail = ({ route, navigation }) => {
                                     borderTopRightRadius: 24,
                                     flexGrow: 1,
                                     marginTop: 16
-                                }
-                            ]}>
+                                }]}
+                        >
                             <View>
                                 <View style={{ paddingHorizontal: 20, paddingTop: 12, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                     <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary }]}>Details</Text>
@@ -47,23 +51,33 @@ const AssignmentDetail = ({ route, navigation }) => {
 
                             <View style={{ paddingHorizontal: 20, paddingVertical: 16 }}>
                                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                    <Ionicons name="calendar" size={20} color={colors.gray} />
-                                    <Text style={[FONTS.h3, { color: colors.gray, paddingLeft: 4 }]}>{assignment.dueDate}</Text>
+                                    <Ionicons name="calendar" size={20} color={colors.text} />
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.dueDate}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
-                                    <Ionicons name="time" size={20} color={colors.gray} />
-                                    <Text style={[FONTS.h3, { color: colors.gray, paddingLeft: 4 }]}>{assignment.time}</Text>
+                                    <Ionicons name="time" size={20} color={colors.text} />
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
-                                    <Ionicons name="person" size={20} color={colors.gray} />
-                                    <Text style={[FONTS.h3, { color: colors.gray, paddingLeft: 4 }]}>{assignment.class}</Text>
+                                    <Ionicons name="person" size={20} color={colors.text} />
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.class}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
-                                    <Ionicons name="pencil" size={20} color={colors.gray} />
-                                    <Text style={[FONTS.h3, { color: colors.gray, paddingLeft: 4 }]}>{assignment.type}</Text>
+                                    <Ionicons name="pencil" size={20} color={colors.text} />
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.type}</Text>
+                                </View>
+
+                                <View style={{ paddingVertical: 12 }}>
+                                    <SegmentedControl
+                                        values={["Not Started", "In Progress", "Done"]}
+                                        selectedIndex={assignmentStatus}
+                                        onChange={(event) => {
+                                            setStatus(event.nativeEvent.selectedSegmentIndex);
+                                        }}
+                                    />
                                 </View>
 
                             </View>
