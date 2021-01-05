@@ -4,7 +4,6 @@ import Home from '../views/Home';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
-import { SIZES } from '../theme/Theme';
 
 const Stack = createStackNavigator();
 
@@ -24,12 +23,12 @@ const HomeStack = (props) => {
                     ...TransitionPresets.ModalPresentationIOS
                 }
             }}
+
         >
             <Stack.Screen
                 name="Home"
                 component={Home}
                 options={{
-
                     headerTitle: null,
                     headerLeft: () => (
                         <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} >

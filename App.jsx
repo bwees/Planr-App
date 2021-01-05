@@ -7,6 +7,7 @@ import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 //import { TabNavigator } from './src/navigation/TabNavigator';
 import TabNavigator from './src/navigation/TabNavigator';
 import { DarkMode, LightMode } from './src/theme/Theme';
+import AssignmentDetail from './src/views/AssignmentDetail'
 import HomeworkSchedule from './src/views/TimeManagement';
 import { StatusBar } from 'react-native';
 import TimeManagement from './src/views/TimeManagement';
@@ -22,6 +23,7 @@ function App() {
                     screenOptions={({ route }) => {
                         return {
                             gestureEnabled: true,
+                            headerShown: true,
                             cardOverlayEnabled: true,
                             ...TransitionPresets.ModalPresentationIOS
                         };
@@ -30,7 +32,7 @@ function App() {
                     headerMode="none">
                     <MainStack.Screen name="Tabs" component={TabNavigator} />
                     <MainStack.Screen name="TimeManagement" component={TimeManagement} />
-
+                    <MainStack.Screen name="AssignmentDetail" component={AssignmentDetail} />
                 </MainStack.Navigator>
             </NavigationContainer>
         </AppearanceProvider>

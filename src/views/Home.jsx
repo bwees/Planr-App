@@ -34,7 +34,7 @@ const Home = (props) => {
     return (
         <View style={{ flex: 1, marginBottom: 0 }}>
             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: .1 }} colors={["#4287f5", "#40d6ff",]} useAngle={true} angle={120} style={{ flex: 1 }}>
-                <SafeAreaView style={{ flex: 1, }}>
+                <View style={{ flex: 1, paddingTop: 36 }}>
                     <View style={{ flex: 1, flexDirection: "column", marginTop: 48 }}>
                         <View style={{ height: 100, paddingHorizontal: 20, justifyContent: "center" }}>
 
@@ -89,24 +89,24 @@ const Home = (props) => {
 
                                 <ScrollView showsVerticalScrollIndicator={true} style={{ flex: 1 }} contentContainerStyle={{ justifyContent: 'space-between', marginHorizontal: 20, overflow: false }}>
                                     <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                                     <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
 
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                                     <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
 
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
-                                    <AssignmentCell />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
+                                    <AssignmentCell navigation={props.navigation} assignment={assignment2} />
 
                                 </ScrollView>
 
@@ -115,7 +115,7 @@ const Home = (props) => {
                         </View>
                     </View>
 
-                </SafeAreaView>
+                </View>
             </LinearGradient >
         </View >
     );
