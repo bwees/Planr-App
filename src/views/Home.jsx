@@ -26,6 +26,7 @@ const Home = (props) => {
         class: "English",
         dueDate: "11-11-20",
         type: "Homework",
+        time: "15-20 Minutes",
         id: "2"
     }
 
