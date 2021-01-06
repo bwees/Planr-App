@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommuniyIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
+import FileCell from "../components/FileCell";
 
 const AssignmentDetail = ({ route, navigation }) => {
 
@@ -44,7 +45,9 @@ const AssignmentDetail = ({ route, navigation }) => {
                             <View>
                                 <View style={{ paddingHorizontal: 20, paddingTop: 12, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                     <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary }]}>Details</Text>
-                                    <MaterialCommuniyIcons name="pencil-circle" size={24} color={colors.primary} />
+                                    <TouchableOpacity>
+                                        <MaterialCommuniyIcons name="pencil-circle" size={24} color={colors.primary} />
+                                    </TouchableOpacity>
                                 </View>
                                 <View style={{ height: 1, borderRadius: 4, backgroundColor: colors.lightGray, marginTop: 10, }} />
                             </View>
@@ -98,7 +101,9 @@ const AssignmentDetail = ({ route, navigation }) => {
                                             <MaterialCommuniyIcons name="paperclip" size={20} color={colors.primary} />
                                         </View>
 
-                                        <Text style={[{ color: colors.text }]}>{assignment.notes}</Text>
+                                        <FileCell file={{ name: "Assignment.pdf", type: "document", filePath: "./sdfsfd.jpg" }} />
+                                        <FileCell file={{ name: "Picture.jpg", type: "picture", filePath: "./sdfsfd.jpg" }} />
+                                        <FileCell file={{ name: "Other.jpg", type: "picture", filePath: "./sdfsfd.jpg" }} />
                                     </View>
                                 }
 
