@@ -19,7 +19,8 @@ export const LightMode = {
         lightGray: "#dfdfdf",
         cellColor: "white",
         chevron: "#c4c4c6",
-        assignmentCellText: "#888888"
+        assignmentCellText: "#888888",
+
     },
 };
 
@@ -32,14 +33,15 @@ export const DarkMode = {
         text: "#dfdfdf",
         gray: "#888888",
         background: "#0f0f0f",
-        headerColor: "#121212",
+        headerColor: "#171717",
         primary: "#47b0fe",
         tabBarColor: "#202020",
         sheet: "#0F0F0F",
-        lightGray: "#444444",
+        lightGray: "#2d2d2d",
         cellColor: "#191919",
         chevron: "#96969C",
-        assignmentCellText: "#dfdfdf"
+        assignmentCellText: "#dfdfdf",
+        headerBorder: "#2a2a2a"
     },
 };
 

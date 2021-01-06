@@ -14,7 +14,6 @@ import TimeManagement from './src/views/TimeManagement';
 const MainStack = createStackNavigator();
 
 function App() {
-    StatusBar.setBarStyle('light-content', true);
     return (
         <AppearanceProvider>
             <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>

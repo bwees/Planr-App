@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useColorScheme } from "react-native-appearance";
 import HomeStack from "./HomeStack";
 import { DarkMode, LightMode } from "../theme/Theme";
+import AssignmentListStack from "./AssignmentListStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +60,7 @@ function TabNavigator() {
         >
 
             <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="AssignmentList" component={HomeStack} />
+            <Tab.Screen name="AssignmentList" component={AssignmentListStack} />
             <Tab.Screen name="Calendar" component={HomeStack} />
             <Tab.Screen name="Activities" component={HomeStack} />
 
