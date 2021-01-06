@@ -27,6 +27,7 @@ const Home = (props) => {
         dueDate: "11-11-20",
         type: "Homework",
         time: "15-20 Minutes",
+        notes: "asfdsadsadasdfasdfdfjklshalsifuawheif;awelifuhakweufhaewilufhaleisufhaleiwufhwleifhlaeiufhaileufhilausefhlaiseuhflaiseufhasieufheaslifhesiuf",
         status: 1,
         id: "2"
     }

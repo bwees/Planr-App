@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { FONTS, SHADOW } from "../theme/Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -38,7 +38,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                     borderTopLeftRadius: 24,
                                     borderTopRightRadius: 24,
                                     flexGrow: 1,
-                                    marginTop: 16
+                                    marginTop: 24
                                 }]}
                         >
                             <View>
@@ -49,7 +49,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                 <View style={{ height: 1, borderRadius: 4, backgroundColor: colors.lightGray, marginTop: 10, }} />
                             </View>
 
-                            <View style={{ paddingHorizontal: 20, paddingVertical: 16 }}>
+                            <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 16 }}>
                                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                                     <Ionicons name="calendar" size={20} color={colors.text} />
                                     <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.dueDate}</Text>
@@ -80,7 +80,29 @@ const AssignmentDetail = ({ route, navigation }) => {
                                     />
                                 </View>
 
-                            </View>
+                                {assignment.notes != "" &&
+                                    <View style={{ paddingBottom: 16 }}>
+                                        <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
+                                            <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Notes</Text>
+                                            <Ionicons name="chatbubble-ellipses" size={20} color={colors.primary} />
+                                        </View>
+
+                                        <Text style={[{ color: colors.text }]}>{assignment.notes}</Text>
+                                    </View>
+                                }
+
+                                {assignment.attachments != [] &&
+                                    <View>
+                                        <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
+                                            <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Attachments</Text>
+                                            <MaterialCommuniyIcons name="paperclip" size={20} color={colors.primary} />
+                                        </View>
+
+                                        <Text style={[{ color: colors.text }]}>{assignment.notes}</Text>
+                                    </View>
+                                }
+
+                            </ScrollView>
 
                         </View>
                     </View>

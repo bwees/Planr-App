@@ -18,7 +18,7 @@ export const LightMode = {
         sheet: "white",
         lightGray: "#dfdfdf",
         cellColor: "white",
-        chevron: "#2a2a2e",
+        chevron: "#c4c4c6",
         assignmentCellText: "#888888"
     },
 };
