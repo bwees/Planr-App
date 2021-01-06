@@ -49,13 +49,13 @@ const AssignmentList = (props) => {
 
             </View>
             <View style={{ flex: 1 }}>
-                <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20 }}>
-                    <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
+                <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20 }} onScroll={() => { Keyboard.dismiss() }}>
+                    <ListSeperator icon={"file-tray-full"} label={"English"} color={colors.primary} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
-                    <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
+                    <ListSeperator icon={"file-tray-full"} label={"Math"} color={colors.primary} />
 
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
@@ -63,7 +63,7 @@ const AssignmentList = (props) => {
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
-                    <ListSeperator icon={"time"} label={"3:00 PM"} color={colors.gray} />
+                    <ListSeperator icon={"file-tray-full"} label={"Science"} color={colors.primary} />
 
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
