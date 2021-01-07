@@ -36,7 +36,7 @@ const HomeStack = (props) => {
                         </TouchableOpacity>
                     ),
                     headerRight: () => (
-                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }}>
+                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { props.navigation.navigate("CreateAssignment") }}>
                             <Ionicons name="ios-add" size={30} color={"white"} />
                         </TouchableOpacity>
                     ),

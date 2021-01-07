@@ -31,7 +31,7 @@ export const DarkMode = {
         ...DarkTheme.colors,
 
         text: "#dfdfdf",
-        gray: "#888888",
+        gray: "#8a8a8a",
         background: "#0f0f0f",
         headerColor: "#171717",
         primary: "#47b0fe",
@@ -41,7 +41,9 @@ export const DarkMode = {
         cellColor: "#191919",
         chevron: "#96969C",
         assignmentCellText: "#dfdfdf",
-        headerBorder: "#2a2a2a"
+        headerBorder: "#2a2a2a",
+        textField: "#1c1c1c",
+        stepperOutline: "#404040"
     },
 };
 
