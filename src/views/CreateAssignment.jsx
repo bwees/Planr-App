@@ -30,7 +30,7 @@ const CreateAssignment = (props) => {
                     <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary }]}>Done</Text>
                 </TouchableOpacity>
             </View>
-            <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder, }} />
+            <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
 
             <ScrollView style={{ paddingVertical: 16, paddingHorizontal: 20, flex: 1 }}>
                 <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, paddingBottom: 16 }]}>New Assignment</Text>

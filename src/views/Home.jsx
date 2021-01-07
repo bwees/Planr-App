@@ -8,6 +8,7 @@ import TimeChart from "../components/TimeChart";
 import LinearGradient from 'react-native-linear-gradient';
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Home = (props) => {
     const { colors } = useTheme();
@@ -34,10 +35,13 @@ const Home = (props) => {
 
     var assignments = [assignment, assignment2]
 
+    const insets = useSafeAreaInsets();
+
+
     return (
         <View style={{ flex: 1, marginBottom: 0 }}>
             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: .1 }} colors={["#4287f5", "#40d6ff",]} useAngle={true} angle={120} style={{ flex: 1 }}>
-                <View style={{ flex: 1, paddingTop: 36 }}>
+                <View style={{ flex: 1, paddingTop: insets.top - 8 }}>
                     <View style={{ flex: 1, flexDirection: "column", marginTop: 48 }}>
                         <View style={{ height: 100, paddingHorizontal: 20, justifyContent: "center" }}>
 
