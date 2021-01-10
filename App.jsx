@@ -8,6 +8,7 @@ import TabNavigator from './src/navigation/TabNavigator';
 import AssignmentDetail from './src/views/AssignmentDetail'
 import TimeManagement from './src/views/TimeManagement';
 import CreateAssignment from './src/views/CreateAssignment';
+import CreateAssignmentStack from './src/navigation/CreateAssignmentStack';
 
 const MainStack = createStackNavigator();
 
@@ -30,7 +31,7 @@ function App() {
                     <MainStack.Screen name="Tabs" component={TabNavigator} />
                     <MainStack.Screen name="TimeManagement" component={TimeManagement} />
                     <MainStack.Screen name="AssignmentDetail" component={AssignmentDetail} />
-                    <MainStack.Screen name="CreateAssignment" component={CreateAssignment} />
+                    <MainStack.Screen name="CreateAssignment" component={CreateAssignmentStack} />
                 </MainStack.Navigator>
             </NavigationContainer>
         </AppearanceProvider>
