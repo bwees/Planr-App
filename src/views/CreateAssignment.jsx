@@ -1,10 +1,11 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet, Keyboard } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet, Keyboard, KeyboardAvoidingView } from "react-native";
 import { FONTS } from "../theme/Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import UIStepper from 'react-native-ui-stepper';
 import { useState } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const CreateAssignment = (props) => {
 
@@ -15,6 +16,7 @@ const CreateAssignment = (props) => {
     const [typeSelection, setTypeSelection] = useState("Choose");
     const [dueDate, setDueDate] = useState(null);
     const [timeLength, setTimeLength] = useState(15);
+    const [notes, setNotes] = useState("");
 
     props.navigation.addListener('focus', () => {
         if (props.route.params?.selection) {
@@ -40,6 +42,8 @@ const CreateAssignment = (props) => {
 
     return (
         <View style={{ flex: 1 }}>
+
+            {/* Header */}
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", height: 55, backgroundColor: colors.headerColor }}>
                 <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { props.navigation.goBack() }}>
                     <Text style={{ color: colors.primary, fontSize: 18 }}>Cancel</Text>
@@ -51,7 +55,9 @@ const CreateAssignment = (props) => {
             </View>
             <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
 
-            <ScrollView style={{ paddingHorizontal: 20, paddingTop: 16, flex: 1 }} onScroll={() => { Keyboard.dismiss() }} scrollEventThrottle={1}>
+
+
+            <KeyboardAwareScrollView style={{ paddingHorizontal: 20, paddingTop: 16, flex: 1 }} extraHeight={150}>
                 <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, paddingBottom: 16 }]}>New Assignment</Text>
 
                 {/* Assignement Name */}
@@ -90,7 +96,7 @@ const CreateAssignment = (props) => {
 
 
                 {/* Time Stepper */}
-                <View height={44} style={[styles.textField, { marginBottom: 8, justifyContent: "space-between" }]}>
+                <View height={44} style={[styles.textField, { marginBottom: 24, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.text }]}>{timeLength}-{timeLength + 5} Minutes</Text>
                     <View style={{ paddingRight: 8 }}>
                         <UIStepper
@@ -106,7 +112,27 @@ const CreateAssignment = (props) => {
                     </View>
                 </View>
 
-            </ScrollView>
+                {/* Notes */}
+                <TextInput style={
+                    [FONTS.h3, styles.textField,
+                    {
+                        flex: 1,
+                        color: colors.text,
+                        marginBottom: 24,
+                        height: 150,
+                        paddingTop: 8,
+                        paddingHorizontal: 16,
+                        alignItems: "flex-start"
+                    }]}
+                    multiline
+                    textAlignVertical={"top"}
+                    selectionColor={colors.primary}
+                    placeholder={"Notes"}
+                    placeholderTextColor={colors.gray}
+                    onTextInput={text => setNotes(text)}
+                />
+
+            </KeyboardAwareScrollView>
         </View>
     );
 };
