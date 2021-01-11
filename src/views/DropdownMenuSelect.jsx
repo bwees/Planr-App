@@ -12,17 +12,6 @@ const DropdownMenuSelect = ({ navigation, route }) => {
 
     const [selectedItem, changeSelected] = useState(selected)
 
-    React.useLayoutEffect(() => {
-        navigation.setOptions({
-            headerLeft: () => (
-                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 8, marginTop: -45, flexDirection: "row", alignItems: "center" }} onPress={() => { navigation.goBack() }}>
-                    <Ionicons name={"ios-chevron-back"} size={30} color={colors.primary} />
-                    <Text style={{ color: colors.primary, fontSize: 18 }}>Back</Text>
-                </TouchableOpacity>
-            ),
-        });
-    }, [navigation]);
-
     const styles = StyleSheet.create({
         textField: {
             backgroundColor: colors.textField,
@@ -46,11 +35,20 @@ const DropdownMenuSelect = ({ navigation, route }) => {
     }
 
     return (
-        <View style={{ flex: 1, paddingTop: 16, paddingHorizontal: 20 }}>
+        <View style={{ flex: 1 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", height: 55, backgroundColor: colors.headerColor }}>
+                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 8, flexDirection: "row", alignItems: "center" }} onPress={() => { navigation.goBack() }}>
+                    <Ionicons name={"ios-chevron-back"} size={30} color={colors.primary} />
+                    <Text style={{ color: colors.primary, fontSize: 18 }}>Back</Text>
+                </TouchableOpacity>
+            </View>
+            <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
+
             <FlatList
                 data={options}
                 renderItem={listItem}
-                keyExtractor={item => item.name}
+                keyExtractor={item => item}
+                style={{ paddingTop: 16, paddingHorizontal: 20 }}
             />
         </View>
     );
