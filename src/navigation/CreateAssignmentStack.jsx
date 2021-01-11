@@ -36,7 +36,8 @@ const CreateAssignmentStack = (props) => {
                     headerStyle: { height: 55, backgroundColor: colors.headerColor },
                     headerTitle: null,
                     headerRight: null
-                }} />
+                }}
+            />
 
         </Stack.Navigator >
     );

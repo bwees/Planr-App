@@ -4,10 +4,30 @@ import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet } from 
 import { FONTS } from "../theme/Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import UIStepper from 'react-native-ui-stepper';
+import { useState } from "react";
 
 const CreateAssignment = (props) => {
 
     const { colors } = useTheme();
+
+    const [assignmentName, setAssignmentName] = useState("");
+    const [classSelection, setClassSelection] = useState("Choose");
+    const [typeSelection, setTypeSelection] = useState("Choose");
+    const [dueDate, setDueDate] = useState(null);
+    const [timeLength, setTimeLength] = useState(15);
+
+    props.navigation.addListener('focus', () => {
+        if (props.route.params?.selection) {
+            if (props.route.params?.fieldName === "Class") {
+                setClassSelection(props.route.params.selection)
+            }
+            else if (props.route.params?.fieldName === "Type") {
+                setTypeSelection(props.route.params.selection)
+            }
+        }
+    });
+
+
 
     const styles = StyleSheet.create({
         textField: {
@@ -35,8 +55,8 @@ const CreateAssignment = (props) => {
                 {/* Class Selector */}
                 <View height={44} style={[styles.textField, { marginBottom: 8, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.gray }]}>Class</Text>
-                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { props.navigation.navigate("DropdownMenu", { options: ["English", "Math", "Science"] }) }}>
-                        <Text style={[FONTS.h3, { color: colors.gray }]}>Choose</Text>
+                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { props.navigation.navigate("DropdownMenu", { options: ["English", "Math", "Science"], selected: classSelection, fieldName: "Class" }) }}>
+                        <Text style={[FONTS.h3, { color: colors.gray }]}>{classSelection}</Text>
                         <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingTop: 2 }} />
                     </TouchableOpacity>
                 </View>
@@ -45,8 +65,8 @@ const CreateAssignment = (props) => {
                 {/* Type Selector */}
                 <View height={44} style={[styles.textField, { marginBottom: 8, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.gray }]}>Assignment Type</Text>
-                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { props.navigation.navigate("DropdownMenu", { options: ["Homework", "Test", "Other"] }) }}>
-                        <Text style={[FONTS.h3, { color: colors.gray }]}>Choose</Text>
+                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { props.navigation.navigate("DropdownMenu", { options: ["Homework", "Test", "Other"], selected: typeSelection, fieldName: "Type" }) }}>
+                        <Text style={[FONTS.h3, { color: colors.gray }]}>{typeSelection}</Text>
                         <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingTop: 2 }} />
                     </TouchableOpacity>
                 </View>
@@ -63,14 +83,16 @@ const CreateAssignment = (props) => {
 
                 {/* Time Stepper */}
                 <View height={44} style={[styles.textField, { marginBottom: 8, justifyContent: "space-between" }]}>
-                    <Text style={[FONTS.h3, { color: colors.text }]}>15-20 Minutes</Text>
+                    <Text style={[FONTS.h3, { color: colors.text }]}>{timeLength}-{timeLength + 5} Minutes</Text>
                     <View style={{ paddingRight: 8 }}>
                         <UIStepper
-                            onValueChange={(value) => { this.setValue(value) }}
+                            onValueChange={(value) => { setTimeLength(value) }}
                             tintColor={colors.primary}
                             backgroundColor={colors.lightGray}
                             borderColor={colors.stepperOutline}
                             borderRadius={8}
+                            initialValue={15}
+                            steps={5}
                         />
                     </View>
                 </View>

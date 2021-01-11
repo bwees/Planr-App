@@ -1,12 +1,16 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
+import { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { FONTS } from "../theme/Theme";
 
 const DropdownMenuSelect = ({ navigation, route }) => {
 
     const { colors } = useTheme();
-    const { options } = route.params;
+    const { options, selected, fieldName } = route.params;
+
+    const [selectedItem, changeSelected] = useState(selected)
 
     React.useLayoutEffect(() => {
         navigation.setOptions({
@@ -22,9 +26,9 @@ const DropdownMenuSelect = ({ navigation, route }) => {
     const styles = StyleSheet.create({
         textField: {
             backgroundColor: colors.textField,
-            borderRadius: 12,
+            borderRadius: 8,
             paddingHorizontal: 12,
-            paddingRight: 4,
+            paddingRight: 8,
             alignItems: "center",
             flexDirection: "row",
         }
@@ -32,14 +36,14 @@ const DropdownMenuSelect = ({ navigation, route }) => {
 
     const listItem = ({ item }) => {
         return (
-
-            <View height={44} style={[styles.textField, { marginBottom: 8, justifyContent: "space-between" }]}>
-                <Text style={{ color: colors.text }}>{item}</Text>
-            </View>
+            <TouchableOpacity style={[styles.textField, { marginBottom: 8, height: 44, justifyContent: "space-between" }]} onPress={() => { changeSelected(item); navigation.navigate('CreateAssignment', { selection: item, fieldName: fieldName }); }}>
+                <Text style={[FONTS.h3, { color: colors.text }]}>{item}</Text>
+                {item === selectedItem &&
+                    <Ionicons name={"checkmark"} size={26} color={colors.primary} />
+                }
+            </TouchableOpacity>
         )
     }
-
-    console.log(route.params.options)
 
     return (
         <View style={{ flex: 1, paddingTop: 16, paddingHorizontal: 20 }}>
