@@ -11,24 +11,11 @@ const CreateAssignmentStack = (props) => {
     const { colors } = useTheme();
 
     return (
-        <Stack.Navigator initialRouteName={"CreateAssignment"}>
+        <Stack.Navigator initialRouteName={"CreateAssignment"} headerMode="none">
             <Stack.Screen
                 name="CreateAssignment"
                 component={CreateAssignment}
-                options={{
-                    headerStyle: { height: 55, backgroundColor: colors.headerColor },
-                    headerTitle: null,
-                    headerLeft: () => (
-                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20, marginTop: -45 }} onPress={() => { props.navigation.goBack() }}>
-                            <Text style={{ color: colors.primary, fontSize: 18 }}>Cancel</Text>
-                        </TouchableOpacity>
-                    ),
-                    headerRight: () => (
-                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20, marginTop: -45 }} onPress={() => { props.navigation.goBack() }}>
-                            <Text style={{ color: colors.primary, fontSize: 18, fontWeight: "bold" }}>Done</Text>
-                        </TouchableOpacity>
-                    ),
-                }} />
+            />
             <Stack.Screen
                 name="DropdownMenu"
                 component={DropdownMenuSelect}
