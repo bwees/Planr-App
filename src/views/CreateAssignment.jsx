@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import UIStepper from 'react-native-ui-stepper';
 import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import FileCell from "../components/FileCell";
 
 const CreateAssignment = (props) => {
 
@@ -89,9 +90,9 @@ const CreateAssignment = (props) => {
                 {/* Due Date */}
                 <View height={44} style={[styles.textField, { marginBottom: 8, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.gray }]}>Due Date</Text>
-                    <View style={{ flexDirection: "row", alignItems: "center", padding: 4, paddingHorizontal: 6, borderRadius: 8, backgroundColor: colors.lightGray, marginRight: 8 }}>
+                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center", padding: 4, paddingHorizontal: 6, borderRadius: 8, backgroundColor: colors.lightGray, marginRight: 8 }}>
                         <Text style={[FONTS.h3, { color: colors.primary }]}>January 11, 2021</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
 
 
@@ -112,13 +113,14 @@ const CreateAssignment = (props) => {
                     </View>
                 </View>
 
+
                 {/* Notes */}
-                <TextInput style={
-                    [FONTS.h3, styles.textField,
+                <TextInput
+                    style={[FONTS.h3, styles.textField,
                     {
                         flex: 1,
                         color: colors.text,
-                        marginBottom: 24,
+                        marginBottom: 12,
                         height: 150,
                         paddingTop: 8,
                         paddingHorizontal: 16,
@@ -131,6 +133,24 @@ const CreateAssignment = (props) => {
                     placeholderTextColor={colors.gray}
                     onTextInput={text => setNotes(text)}
                 />
+
+                {/* Attachments */}
+                <View height={44} style={[{ backgroundColor: colors.textField, borderRadius: 12, height: 225, padding: 8, paddingHorizontal: 0, marginBottom: 8 }]}>
+                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: 8, paddingHorizontal: 16 }}>
+                        <Text style={[FONTS.h3, { color: colors.gray }]}>Attachments</Text>
+                        <TouchableOpacity >
+                            <Ionicons name={"add-circle"} size={24} color={colors.primary} style={{ paddingTop: 2 }} />
+                        </TouchableOpacity>
+                    </View>
+                    <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
+                    <View style={{ flex: 1 }}>
+                        <ScrollView style={{ paddingHorizontal: 8, paddingTop: 8 }}>
+
+                        </ScrollView>
+                    </View>
+                </View>
+
+
 
             </KeyboardAwareScrollView>
         </View>

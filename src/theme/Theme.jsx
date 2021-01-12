@@ -38,7 +38,7 @@ export const DarkMode = {
         tabBarColor: "#202020",
         sheet: "#0F0F0F",
         lightGray: "#2d2d2d",
-        cellColor: "#191919",
+        cellColor: "#222222",
         chevron: "#96969C",
         assignmentCellText: "#dfdfdf",
         headerBorder: "#2a2a2a",
