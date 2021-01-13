@@ -11,7 +11,7 @@ export const LightMode = {
 
         text: "#444444",
         gray: "#888888",
-        background: "white",
+        background: "#fefefe",
         headerColor: "white",
         primary: "#47b0fe",
         tabBarColor: "white",
@@ -19,8 +19,11 @@ export const LightMode = {
         lightGray: "#dfdfdf",
         cellColor: "white",
         chevron: "#c4c4c6",
+        textField: "white",
+        headerBorder: "#e3e3e3",
         assignmentCellText: "#888888",
-
+        stepperOutline: "white",
+        stepperDateFill: "#eaeaea"
     },
 };
 
@@ -43,7 +46,8 @@ export const DarkMode = {
         assignmentCellText: "#dfdfdf",
         headerBorder: "#2a2a2a",
         textField: "#1c1c1c",
-        stepperOutline: "#404040"
+        stepperOutline: "#3d3d3d",
+        stepperDateFill: "#2d2d2d"
     },
 };
 
@@ -92,8 +96,8 @@ export const SHADOW = {
         width: 0,
         height: 3,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
 
 }
 
