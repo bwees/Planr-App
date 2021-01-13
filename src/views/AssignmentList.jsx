@@ -37,7 +37,7 @@ const AssignmentList = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View height={38} style={{ marginTop: 8, backgroundColor: colors.lightGray, padding: 8, marginHorizontal: 16, borderRadius: 8, flexDirection: "row", alignItems: "center" }}>
+                <View height={38} style={{ marginTop: 8, backgroundColor: colors.searchBar, padding: 8, marginHorizontal: 16, borderRadius: 8, flexDirection: "row", alignItems: "center" }}>
                     <Ionicons name="search" size={18} color={colors.gray} style={{ paddingRight: 4, paddingTop: 2 }} />
                     <TextInput placeholder={"Search"} value={searchText} selectionColor={colors.primary} onChangeText={text => changeSearchText(text)} style={[FONTS.h3, { lineHeight: 20, color: colors.text, flex: 1 }]} />
                     <TouchableOpacity onPress={() => { changeSearchText("") }}>
@@ -49,7 +49,7 @@ const AssignmentList = (props) => {
 
             </View>
             <View style={{ flex: 1 }}>
-                <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20 }} onScroll={() => { Keyboard.dismiss() }}>
+                <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20 }} onScroll={() => { Keyboard.dismiss() }} scrollEventThrottle={3}>
                     <ListSeperator icon={"file-tray-full"} label={"English"} color={colors.primary} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />
                     <AssignmentCell navigation={props.navigation} assignment={assignment2} />

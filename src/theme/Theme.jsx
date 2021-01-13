@@ -23,7 +23,8 @@ export const LightMode = {
         headerBorder: "#e3e3e3",
         assignmentCellText: "#888888",
         stepperOutline: "white",
-        stepperDateFill: "#eaeaea"
+        stepperDateFill: "#eaeaea",
+        searchBar: "#eaeaea"
     },
 };
 
@@ -47,17 +48,13 @@ export const DarkMode = {
         headerBorder: "#2a2a2a",
         textField: "#1c1c1c",
         stepperOutline: "#3d3d3d",
-        stepperDateFill: "#2d2d2d"
+        stepperDateFill: "#2d2d2d",
+        searchBar: "#2d2d2d"
     },
 };
 
 
 export const SIZES = {
-    // global sizes
-    base: 8,
-    font: 14,
-    radius: 12,
-    padding: 24,
 
     // font sizes
     largeTitle: 40,
@@ -69,8 +66,6 @@ export const SIZES = {
     body2: 22,
     body3: 16,
     body4: 14,
-
-    hPad: { paddingStart: 20 },
 
     // app dimensions
     width,
