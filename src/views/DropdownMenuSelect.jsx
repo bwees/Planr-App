@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { FONTS } from "../theme/Theme";
+import { FONTS, SHADOW } from "../theme/Theme";
 
 const DropdownMenuSelect = ({ navigation, route }) => {
 
@@ -25,7 +25,7 @@ const DropdownMenuSelect = ({ navigation, route }) => {
 
     const listItem = ({ item }) => {
         return (
-            <TouchableOpacity style={[styles.textField, { marginBottom: 8, height: 44, justifyContent: "space-between" }]} onPress={() => { changeSelected(item); navigation.navigate('CreateAssignment', { selection: item, fieldName: fieldName }); }}>
+            <TouchableOpacity style={[styles.textField, SHADOW, { marginBottom: 8, height: 44, justifyContent: "space-between" }]} onPress={() => { changeSelected(item); navigation.navigate('CreateAssignment', { selection: item, fieldName: fieldName }); }}>
                 <Text style={[FONTS.h3, { color: colors.text }]}>{item}</Text>
                 {item === selectedItem &&
                     <Ionicons name={"checkmark"} size={26} color={colors.primary} />
