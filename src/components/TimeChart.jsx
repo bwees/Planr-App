@@ -2,7 +2,7 @@
 import ProgressBar from 'react-native-progress/Bar';
 import React from "react";
 import { View, Text } from "react-native";
-import { FONTS } from "../theme/Theme";
+import { FONTS } from "../Theme";
 
 const TimeChart = (props) => {
 

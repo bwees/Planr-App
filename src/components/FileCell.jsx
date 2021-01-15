@@ -3,7 +3,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { FONTS, SHADOW } from "../theme/Theme";
+import { FONTS, SHADOW } from "../Theme";
 
 const FileCell = (props) => {
 
@@ -29,9 +29,9 @@ const FileCell = (props) => {
                     <Ionicons name="document-text" size={24} color={colors.primary} />
                 }
 
-                <Text style={[FONTS.h3, FONTS.bold, { color: colors.text, paddingLeft: 8 }]}>{props.file.name}</Text>
+                <Text numberOfLines={1} style={[FONTS.h3, FONTS.bold, { color: colors.text, paddingLeft: 8, flex: 1 }]}>{props.file.name}</Text>
+                <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingRight: 8 }} />
             </View>
-            <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingRight: 8 }} />
 
         </TouchableOpacity>
     );

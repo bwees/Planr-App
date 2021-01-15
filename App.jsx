@@ -2,17 +2,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import * as React from 'react';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
-import { DarkMode, LightMode } from './src/theme/Theme';
+import { DarkMode, LightMode } from './src/Theme';
 
 import TabNavigator from './src/navigation/TabNavigator';
 import AssignmentDetail from './src/views/AssignmentDetail'
 import TimeManagement from './src/views/TimeManagement';
-import CreateAssignment from './src/views/CreateAssignment';
 import CreateAssignmentStack from './src/navigation/CreateAssignmentStack';
+import { LogBox } from 'react-native';
 
 const MainStack = createStackNavigator();
 
 function App() {
+    LogBox.ignoreLogs(["Warning: componentWillReceiveProps has been renamed"]);
     return (
         <AppearanceProvider>
             <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>

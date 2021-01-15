@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, TouchableOpacity, Dimensions, SafeAreaView, StatusBar, Button } from "react-native";
 import { useTheme } from '@react-navigation/native';
-import { FONTS, SHADOW, SIZES } from "../theme/Theme";
+import { FONTS, SHADOW, SIZES } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState } from 'react';
 import TimeChart from "../components/TimeChart";

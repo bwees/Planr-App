@@ -3,7 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useColorScheme } from "react-native-appearance";
 import HomeStack from "./HomeStack";
-import { DarkMode, LightMode } from "../theme/Theme";
+import { DarkMode, LightMode } from "../Theme";
 import AssignmentListStack from "./AssignmentListStack";
 
 const Tab = createBottomTabNavigator();

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { FONTS } from "../theme/Theme";
+import { FONTS } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ListSeperator = (props) => {

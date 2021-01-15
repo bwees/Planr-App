@@ -2,7 +2,7 @@ import { useTheme } from "@react-navigation/native";
 import React from "react";
 import { View, Text } from "react-native";
 import { TextInput, TouchableOpacity, ScrollView } from "react-native-gesture-handler";
-import { FONTS, SHADOW } from "../theme/Theme";
+import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

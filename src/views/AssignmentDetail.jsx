@@ -2,7 +2,7 @@ import { useTheme } from "@react-navigation/native";
 import React from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { FONTS, SHADOW } from "../theme/Theme";
+import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommuniyIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SegmentedControl from '@react-native-community/segmented-control';

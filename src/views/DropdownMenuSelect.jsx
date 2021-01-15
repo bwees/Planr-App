@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { FONTS, SHADOW } from "../theme/Theme";
+import { FONTS, SHADOW } from "../Theme";
 
 const DropdownMenuSelect = ({ navigation, route }) => {
 

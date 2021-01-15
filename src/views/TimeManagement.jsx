@@ -1,7 +1,7 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
 import { View, ScrollView, Text, Button } from "react-native";
-import { FONTS } from "../theme/Theme";
+import { FONTS } from "../Theme";
 
 const TimeManagement = (props) => {
     const { colors } = useTheme();

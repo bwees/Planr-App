@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { SHADOW, FONTS } from "../theme/Theme";
+import { SHADOW, FONTS } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
 const AssignmentCell = (props) => {
