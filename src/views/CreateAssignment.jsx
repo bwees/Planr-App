@@ -27,7 +27,6 @@ const CreateAssignment = (props) => {
 
     const [imageCount, setImageCount] = useState(1);
 
-
     // Handle returning with parameters
     props.navigation.addListener('focus', () => {
         if (props.route.params?.selection) {
@@ -86,20 +85,9 @@ const CreateAssignment = (props) => {
             path: res.uri,
             id: uuid()
         }
-        console.log(res.uri)
         setImageCount(imageCount + 1);
         setFiles([...files, fileObj]);
     }
-
-    showActionSheet = () => {
-        this.ActionSheet.show()
-    }
-
-    save = () => {
-        console.log(notes)
-        saveAssignment(assignmentName, typeSelection, classSelection, dueDate, timeLength, notes, files);
-    }
-
 
     return (
         <View style={{ flex: 1 }}>
@@ -110,7 +98,21 @@ const CreateAssignment = (props) => {
                     <Text style={{ color: colors.primary, fontSize: 18 }}>Cancel</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { save(); props.navigation.goBack(); }}>
+                <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={{ marginHorizontal: 20 }}
+                    onPress={() => {
+                        saveAssignment(
+                            assignmentName,
+                            typeSelection,
+                            classSelection,
+                            dueDate,
+                            timeLength,
+                            notes,
+                            files
+                        );
+                        props.navigation.goBack();
+                    }}>
                     <Text style={{ color: colors.primary, fontSize: 18, fontWeight: "bold" }}>Done</Text>
                 </TouchableOpacity>
             </View>
@@ -197,7 +199,7 @@ const CreateAssignment = (props) => {
                 <View style={[SHADOW, { backgroundColor: colors.textField, borderRadius: 12, paddingTop: 8, paddingBottom: 8, marginBottom: 32 }]}>
                     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: 8, paddingHorizontal: 16 }}>
                         <Text style={[FONTS.h3, { color: colors.gray }]}>Attachments</Text>
-                        <TouchableOpacity onPress={showActionSheet}>
+                        <TouchableOpacity onPress={() => this.ActionSheet.show()}>
                             <Ionicons name={"add-circle"} size={24} color={colors.primary} style={{ paddingTop: 2 }} />
                         </TouchableOpacity>
                     </View>
