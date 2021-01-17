@@ -9,6 +9,7 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
 import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
+import { updateStatus } from "../storage/StorageAPI";
 
 const AssignmentDetail = ({ route, navigation }) => {
 
@@ -81,6 +82,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                         selectedIndex={assignmentStatus}
                                         onChange={(event) => {
                                             setStatus(event.nativeEvent.selectedSegmentIndex);
+                                            updateStatus(assignment.id, event.nativeEvent.selectedSegmentIndex);
                                         }}
                                     />
                                 </View>
@@ -96,7 +98,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                     </View>
                                 }
 
-                                {assignment.attachments != [] &&
+                                {assignment.attachments.length != 0 &&
                                     <View>
                                         <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
                                             <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Attachments</Text>

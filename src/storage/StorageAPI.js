@@ -2,9 +2,9 @@ import uuid from 'react-native-uuid';
 import { schema } from './StorageSchema'
 import Realm from 'realm'
 
-export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
-    const realm = new Realm({ schema: schema });
+const realm = new Realm({ schema: schema });
 
+export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
     realm.write(() => {
         const newAssignment = realm.create('Assignment', {
             name: name,
@@ -21,7 +21,6 @@ export function saveAssignment(name, type, className, dueDate, time, notes, atta
 }
 
 export function getAssignments(filter) {
-    const realm = new Realm({ schema: schema });
     var objects = [];
     if (filter) {
         objects = realm.objects('Assignment').filtered("name CONTAINS[c] $0", filter);
@@ -30,4 +29,11 @@ export function getAssignments(filter) {
     }
 
     return objects
+}
+
+export function updateStatus(id, newStatus) {
+    realm.write(() => {
+        // Update book with new price keyed off the id
+        realm.create('Assignment', { id: id, status: newStatus }, 'modified');
+    });
 }

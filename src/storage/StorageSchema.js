@@ -2,6 +2,7 @@
 // Define your models and their properties
 const AssignmentSchema = {
     name: 'Assignment',
+    primaryKey: 'id',
     properties: {
         name: 'string',
         className: 'string',
@@ -17,6 +18,7 @@ const AssignmentSchema = {
 
 const FileSchema = {
     name: 'File',
+    primaryKey: 'id',
     properties: {
         name: 'string',
         type: "string",
