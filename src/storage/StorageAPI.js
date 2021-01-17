@@ -2,7 +2,7 @@ import uuid from 'react-native-uuid';
 import { schema } from './StorageSchema'
 import Realm from 'realm'
 
-export function saveAssignment(name, type, className, dueDate, time, notes, files, status) {
+export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
     const realm = new Realm({ schema: schema });
 
     realm.write(() => {
@@ -14,7 +14,7 @@ export function saveAssignment(name, type, className, dueDate, time, notes, file
             status: 0,
             time: time,
             notes: notes,
-            files: files,
+            attachments: attachments,
             id: uuid()
         });
     });

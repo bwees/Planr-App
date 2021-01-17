@@ -10,7 +10,7 @@ const AssignmentSchema = {
         time: { type: 'int', default: 15 },
         status: { type: 'int', default: 0 },
         notes: 'string',
-        files: 'File[]',
+        attachments: 'File[]',
         id: "string"
     }
 };

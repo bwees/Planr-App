@@ -8,6 +8,7 @@ import MaterialCommuniyIcons from 'react-native-vector-icons/MaterialCommunityIc
 import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
 import FileCell from "../components/FileCell";
+import { FlatList } from "react-native-gesture-handler";
 
 const AssignmentDetail = ({ route, navigation }) => {
 
@@ -15,6 +16,7 @@ const AssignmentDetail = ({ route, navigation }) => {
     const { colors } = useTheme();
 
     var [assignmentStatus, setStatus] = useState(assignment.status);
+
 
     return (
         <View style={{ flex: 1, marginBottom: 0 }}>
@@ -101,9 +103,16 @@ const AssignmentDetail = ({ route, navigation }) => {
                                             <MaterialCommuniyIcons name="paperclip" size={20} color={colors.primary} />
                                         </View>
 
-                                        <FileCell file={{ name: "Assignment.pdf", type: "document", filePath: "./sdfsfd.jpg" }} />
-                                        <FileCell file={{ name: "Picture.jpg", type: "picture", filePath: "./sdfsfd.jpg" }} />
-                                        <FileCell file={{ name: "Other.jpg", type: "picture", filePath: "./sdfsfd.jpg" }} />
+                                        <FlatList
+                                            scrollEnabled={false}
+                                            data={assignment.attachments}
+                                            renderItem={({ item }) => {
+                                                return (
+                                                    <FileCell file={item} />
+                                                )
+                                            }}
+                                            keyExtractor={item => item.id}
+                                        />
                                     </View>
                                 }
 

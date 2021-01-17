@@ -13,7 +13,7 @@ import { LogBox } from 'react-native';
 const MainStack = createStackNavigator();
 
 function App() {
-    LogBox.ignoreLogs(["Warning: componentWillReceiveProps has been renamed"]);
+    LogBox.ignoreLogs(["Warning: componentWillReceiveProps has been renamed", "VirtualizedLists"]);
     return (
         <AppearanceProvider>
             <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>
@@ -28,7 +28,8 @@ function App() {
                         };
                     }}
                     mode="modal"
-                    headerMode="none">
+                    headerMode="none"
+                >
                     <MainStack.Screen name="Tabs" component={TabNavigator} />
                     <MainStack.Screen name="TimeManagement" component={TimeManagement} />
                     <MainStack.Screen name="AssignmentDetail" component={AssignmentDetail} />

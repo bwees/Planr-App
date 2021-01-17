@@ -86,7 +86,7 @@ const CreateAssignment = (props) => {
             path: res.uri,
             id: uuid()
         }
-
+        console.log(res.uri)
         setImageCount(imageCount + 1);
         setFiles([...files, fileObj]);
     }
