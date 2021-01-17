@@ -55,17 +55,17 @@ const AssignmentDetail = ({ route, navigation }) => {
                             <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 16 }}>
                                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                                     <Ionicons name="calendar" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.dueDate}</Text>
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{new Date(assignment.dueDate).toLocaleDateString()}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
                                     <Ionicons name="time" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time}</Text>
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + " Minutes"}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
                                     <Ionicons name="person" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.class}</Text>
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.className}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>

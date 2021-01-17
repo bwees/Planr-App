@@ -32,11 +32,11 @@ const AssignmentCell = (props) => {
                 <View style={{ flexDirection: "row", marginTop: 2 }}>
                     <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 12 }}>
                         <Ionicons name={"time"} size={14} color={colors.assignmentCellText} />
-                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>{props.assignment.time}</Text>
+                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>{props.assignment.time + "-" + (props.assignment.time + 5) + " Minutes"}</Text>
                     </View>
                     <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 12 }}>
                         <Ionicons name={"calendar"} size={14} color={colors.assignmentCellText} />
-                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>Due {props.assignment.dueDate}</Text>
+                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>Due {new Date(props.assignment.dueDate).toLocaleDateString()}</Text>
                     </View>
                 </View>
             </View>

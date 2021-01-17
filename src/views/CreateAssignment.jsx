@@ -10,6 +10,7 @@ import FileCell from "../components/FileCell";
 import DocumentPicker from 'react-native-document-picker';
 import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { saveAssignment } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
 
 const CreateAssignment = (props) => {
@@ -19,13 +20,15 @@ const CreateAssignment = (props) => {
     const [assignmentName, setAssignmentName] = useState("");
     const [classSelection, setClassSelection] = useState("Choose");
     const [typeSelection, setTypeSelection] = useState("Choose");
-    const [dueDate, setDueDate] = useState(null);
+    const [dueDate, setDueDate] = useState(Date('December 17, 1995 03:24:00'));
     const [timeLength, setTimeLength] = useState(15);
     const [notes, setNotes] = useState("");
     const [files, setFiles] = useState([]);
 
     const [imageCount, setImageCount] = useState(1);
 
+
+    // Handle returning with parameters
     props.navigation.addListener('focus', () => {
         if (props.route.params?.selection) {
             if (props.route.params?.fieldName === "Class") {
@@ -50,7 +53,7 @@ const CreateAssignment = (props) => {
     });
 
 
-    const attachFiles = async () => {
+    attachFiles = async () => {
         //Opening Document Picker for selection of multiple file
         try {
             const results = await DocumentPicker.pickMultiple({
@@ -76,7 +79,7 @@ const CreateAssignment = (props) => {
         }
     };
 
-    function attachPhotos(res) {
+    attachPhotos = (res) => {
         fileObj = {
             name: "Image" + imageCount + ".jpg",
             type: "picture",
@@ -92,6 +95,12 @@ const CreateAssignment = (props) => {
         this.ActionSheet.show()
     }
 
+    save = () => {
+        console.log(notes)
+        saveAssignment(assignmentName, typeSelection, classSelection, dueDate, timeLength, notes, files);
+    }
+
+
     return (
         <View style={{ flex: 1 }}>
 
@@ -101,10 +110,11 @@ const CreateAssignment = (props) => {
                     <Text style={{ color: colors.primary, fontSize: 18 }}>Cancel</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { props.navigation.goBack() }}>
+                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { save(); props.navigation.goBack(); }}>
                     <Text style={{ color: colors.primary, fontSize: 18, fontWeight: "bold" }}>Done</Text>
                 </TouchableOpacity>
             </View>
+
             <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
 
             <KeyboardAwareScrollView style={{ paddingHorizontal: 20, paddingTop: 16, flex: 1 }} extraHeight={150}>
@@ -112,7 +122,7 @@ const CreateAssignment = (props) => {
 
                 {/* Assignement Name */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 24 }]}>
-                    <TextInput style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]} selectionColor={colors.primary} placeholder={"Assignment Name"} />
+                    <TextInput style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]} selectionColor={colors.primary} placeholder={"Assignment Name"} onChangeText={text => setAssignmentName(text)} />
                 </View>
 
 
@@ -180,7 +190,7 @@ const CreateAssignment = (props) => {
                     selectionColor={colors.primary}
                     placeholder={"Notes"}
                     placeholderTextColor={colors.gray}
-                    onTextInput={text => setNotes(text)}
+                    onChangeText={text => setNotes(text)}
                 />
 
                 {/* Attachments */}
