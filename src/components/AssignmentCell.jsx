@@ -3,8 +3,12 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { SHADOW, FONTS } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
+import { getAssignmentByID } from "../storage/StorageAPI";
 const AssignmentCell = (props) => {
     const { colors } = useTheme();
+
+    //console.log(props.assignment.dueDate)
+
     return (
         <TouchableOpacity style={[SHADOW,
             {

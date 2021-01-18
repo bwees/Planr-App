@@ -60,6 +60,6 @@ export function getAssignmentByID(id) {
 }
 
 export function groupAssignmentsBy(assignments, key) {
-    return groupedToSectionList(_.mapValues(_.groupBy(assignments, 'dueDate'), clist => clist.map(assignment => _.omit(assignment, 'dueDate'))));
+    return groupedToSectionList(_.mapValues(_.groupBy(assignments, 'dueDate'), clist => clist.map(assignment => assignment)));
 }
 
