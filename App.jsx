@@ -14,7 +14,12 @@ import { LogBox } from 'react-native';
 const MainStack = createStackNavigator();
 
 function App() {
-    LogBox.ignoreLogs(["Warning: componentWillReceiveProps has been renamed", "VirtualizedLists", "Sending `onAnimatedValueUpdate` with no listeners registered."]);
+    LogBox.ignoreLogs([
+        "Warning: componentWillReceiveProps has been renamed",
+        "VirtualizedLists",
+        "Sending `onAnimatedValueUpdate` with no listeners registered.",
+        "Non-serializable values were found in the navigation state."
+    ]);
     return (
         <AppearanceProvider>
             <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>

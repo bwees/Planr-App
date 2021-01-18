@@ -4,6 +4,7 @@ import { TouchableOpacity, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import CreateAssignment from '../views/CreateAssignment';
 import DropdownMenuSelect from '../views/DropdownMenuSelect';
+import CalendarPicker from '../views/CalendarPicker';
 const Stack = createStackNavigator();
 
 const CreateAssignmentStack = (props) => {
@@ -19,6 +20,15 @@ const CreateAssignmentStack = (props) => {
             <Stack.Screen
                 name="DropdownMenu"
                 component={DropdownMenuSelect}
+                options={{
+                    headerStyle: { height: 55, backgroundColor: colors.headerColor },
+                    headerTitle: null,
+                    headerRight: null
+                }}
+            />
+            <Stack.Screen
+                name="CalendarPicker"
+                component={CalendarPicker}
                 options={{
                     headerStyle: { height: 55, backgroundColor: colors.headerColor },
                     headerTitle: null,

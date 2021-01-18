@@ -12,7 +12,7 @@ import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { saveAssignment } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
-import { stripTime } from "../Helpers";
+import { addDate, stripTime } from "../Helpers";
 
 const CreateAssignment = (props) => {
 
@@ -21,7 +21,7 @@ const CreateAssignment = (props) => {
     const [assignmentName, setAssignmentName] = useState("");
     const [classSelection, setClassSelection] = useState("Choose");
     const [typeSelection, setTypeSelection] = useState("Choose");
-    const [dueDate, setDueDate] = useState(stripTime(new Date()));
+    const [dueDate, setDueDate] = useState(stripTime(addDate(new Date(), 1)));
     const [timeLength, setTimeLength] = useState(15);
     const [notes, setNotes] = useState("");
     const [files, setFiles] = useState([]);
@@ -36,6 +36,9 @@ const CreateAssignment = (props) => {
             }
             else if (props.route.params?.fieldName === "Type") {
                 setTypeSelection(props.route.params.selection)
+            }
+            else if (props.route.params?.fieldName === "Calendar") {
+                setDueDate(props.route.params.selection)
             }
         }
     });
@@ -152,8 +155,19 @@ const CreateAssignment = (props) => {
                 {/* Due Date */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 8, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.gray }]}>Due Date</Text>
-                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center", padding: 4, paddingHorizontal: 6, borderRadius: 8, backgroundColor: colors.stepperDateFill, marginRight: 8 }}>
-                        <Text style={[FONTS.h3, { color: colors.primary }]}>January 11, 2021</Text>
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            padding: 4,
+                            paddingHorizontal: 6,
+                            borderRadius: 8,
+                            backgroundColor: colors.stepperDateFill,
+                            marginRight: 8
+                        }}
+                        onPress={() => props.navigation.navigate("CalendarPicker", { selected: dueDate })}
+                    >
+                        <Text style={[FONTS.h3, { color: colors.primary }]}>{new Date(dueDate).toLocaleString('default', { month: 'long', day: "numeric", year: "numeric" })}</Text>
                     </TouchableOpacity>
                 </View>
 

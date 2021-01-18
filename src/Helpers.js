@@ -1,6 +1,9 @@
+
+
 export function stripTime(input) {
     return new Date(input.getFullYear(), input.getMonth(), input.getDate())
 }
+
 
 export function groupedToSectionList(input) {
     var returnList = [];
@@ -13,6 +16,15 @@ export function groupedToSectionList(input) {
             })
         });
 
-
     return returnList
+}
+
+
+export function addDate(date, i) {
+    date.setDate(date.getDate() + 1);
+    return date;
+}
+
+export function calDaytoDate(day) {
+    return new Date(day.year, day.month - 1, day.day)
 }

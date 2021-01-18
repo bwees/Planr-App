@@ -61,5 +61,5 @@ export function getAssignmentByID(id) {
 
 export function groupAssignmentsBy(key) {
     return grouped = _.mapValues(_.groupBy(getAssignments(), 'dueDate'), clist => clist.map(assignment => _.omit(assignment, 'make')));
-
 }
+
