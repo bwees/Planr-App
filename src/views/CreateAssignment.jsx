@@ -13,6 +13,9 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { saveAssignment } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
 import { addDate, stripTime } from "../Helpers";
+import RNFS from "react-native-fs";
+import mime from "mime";
+
 
 const CreateAssignment = (props) => {
 
@@ -64,16 +67,22 @@ const CreateAssignment = (props) => {
                 //There can me more options as well find above
             });
             for (const res of results) {
+                const id = uuid()
                 fileObj = {
+                    id: id,
                     name: res.name,
                     type: "document",
-                    path: res.uri,
-                    id: uuid()
+                    path: RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type),
                 }
+
+                RNFS.copyFile(res.uri, RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type))
+                    .catch((err) => {
+                        console.log(err.message, err.code);
+                    });
 
                 setFiles([...files, fileObj]);
             }
-            //Setting the state to show multiple file attributes
+
         } catch (err) {
             //Handling any exception (If any)
             if (!DocumentPicker.isCancel(err)) {
@@ -83,13 +92,22 @@ const CreateAssignment = (props) => {
     };
 
     attachPhotos = (res) => {
+        const id = uuid();
+
         fileObj = {
             name: "Image" + imageCount + ".jpg",
             type: "picture",
             path: res.uri,
-            id: uuid()
+            id: id
         }
+
         setImageCount(imageCount + 1);
+
+        RNFS.copyFile(res.uri, RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type))
+            .catch((err) => {
+                console.log(err.message, err.code);
+            });
+
         setFiles([...files, fileObj]);
     }
 
