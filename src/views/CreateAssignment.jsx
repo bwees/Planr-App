@@ -244,14 +244,14 @@ const CreateAssignment = (props) => {
 
                 {/* Attachments */}
                 <View style={[SHADOW, { backgroundColor: colors.textField, borderRadius: 12, paddingTop: 8, paddingBottom: 8, marginBottom: 32 }]}>
-                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: 8, paddingHorizontal: 16 }}>
+                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16 }}>
                         <Text style={[FONTS.h3, { color: colors.gray }]}>Attachments</Text>
                         <TouchableOpacity onPress={() => this.ActionSheet.show()}>
                             <Ionicons name={"add-circle"} size={24} color={colors.primary} style={{ paddingTop: 2 }} />
                         </TouchableOpacity>
                     </View>
                     {files.length != 0 &&
-                        <View>
+                        <View style={{ paddingTop: 8 }}>
                             <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
                             <View style={{ flex: 1, paddingTop: 16, paddingHorizontal: 16 }}>
                                 {files.map((item, key) => (
@@ -293,7 +293,7 @@ const CreateAssignment = (props) => {
                     }
                 }}
             />
-        </View>
+        </View >
     );
 };
 

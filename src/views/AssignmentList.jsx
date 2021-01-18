@@ -29,10 +29,14 @@ const AssignmentList = (props) => {
         const refreshList = props.navigation.addListener('focus', () => updateAssignmentList(""));
     }, [props.navigation]);
 
+    React.useEffect(() => {
+        updateAssignmentList(filterText)
+    }, [filterText])
+
     return (
         <View style={{ flex: 1 }}>
             <View style={[SHADOW, { backgroundColor: colors.headerColor, zIndex: 100 }]}>
-                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: insets.top + 6 }}>
+                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: insets.top }}>
                     <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, marginHorizontal: 20, marginVertical: 8 }]}>Assignments</Text>
                     <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => props.navigation.navigate("CreateAssignment")}>
                         <Ionicons name="ios-add" size={30} color={colors.primary} />
@@ -46,7 +50,6 @@ const AssignmentList = (props) => {
                         selectionColor={colors.primary}
                         onChangeText={text => {
                             setFilter(text);
-                            updateAssignmentList(text)
                         }}
                         style={[FONTS.h3, {
                             lineHeight: 20,
@@ -56,7 +59,7 @@ const AssignmentList = (props) => {
                     />
                     {filterText != "" &&
 
-                        <TouchableOpacity onPress={() => { setFilter(""); updateAssignmentList(""); }}>
+                        <TouchableOpacity onPress={() => { setFilter(""); }}>
                             <MaterialIcons name="cancel" size={18} color={colors.gray} style={{ paddingRight: 4, paddingTop: 2 }} />
                         </TouchableOpacity>
                     }

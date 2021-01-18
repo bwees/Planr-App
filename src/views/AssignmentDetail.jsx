@@ -67,111 +67,113 @@ const AssignmentDetail = ({ route, navigation }) => {
                                                         assignmentID: assignment.id
                                                     }
                                                 });
-                                            }} />
+                                            }} 
+                                        />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ height: 1, borderRadius: 4, backgroundColor: colors.lightGray, marginTop: 10, }} />
                             </View>
-
-                            <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 16 }}>
-                                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                    <Ionicons name="calendar" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{new Date(assignment.dueDate).toLocaleDateString()}</Text>
-                                </View>
-
-                                <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
-                                    <Ionicons name="time" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + "-" + (assignment.time + 5) + " Minutes"}</Text>
-                                </View>
-
-                                <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
-                                    <Ionicons name="person" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.className}</Text>
-                                </View>
-
-                                <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
-                                    <Ionicons name="pencil" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.type}</Text>
-                                </View>
-
-                                <View style={{ paddingVertical: 12 }}>
-                                    <SegmentedControl
-                                        values={["Not Started", "In Progress", "Done"]}
-                                        selectedIndex={assignmentStatus}
-                                        onChange={(event) => {
-                                            setStatus(event.nativeEvent.selectedSegmentIndex);
-                                            updateStatus(assignment.id, event.nativeEvent.selectedSegmentIndex);
-                                        }}
-                                    />
-                                </View>
-
-                                {assignment.notes != "" &&
-                                    <View style={{ paddingBottom: 16 }}>
-                                        <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
-                                            <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Notes</Text>
-                                            <Ionicons name="chatbubble-ellipses" size={20} color={colors.primary} />
-                                        </View>
-
-                                        <Text style={[{ color: colors.text }]}>{assignment.notes}</Text>
+                            <View style={{ flex: 1 }}>
+                                <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 16, }}>
+                                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                        <Ionicons name="calendar" size={20} color={colors.text} />
+                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{new Date(assignment.dueDate).toLocaleDateString()}</Text>
                                     </View>
-                                }
 
-                                {assignment.attachments.length != 0 &&
-                                    <View>
-                                        <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
-                                            <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Attachments</Text>
-                                            <MaterialCommuniyIcons name="paperclip" size={20} color={colors.primary} />
-                                        </View>
+                                    <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
+                                        <Ionicons name="time" size={20} color={colors.text} />
+                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + "-" + (assignment.time + 5) + " Minutes"}</Text>
+                                    </View>
 
-                                        <FlatList
-                                            scrollEnabled={false}
-                                            data={assignment.attachments}
-                                            renderItem={({ item }) => {
-                                                return (
-                                                    <FileCell file={item} />
-                                                )
+                                    <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
+                                        <Ionicons name="person" size={20} color={colors.text} />
+                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.className}</Text>
+                                    </View>
+
+                                    <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
+                                        <Ionicons name="pencil" size={20} color={colors.text} />
+                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.type}</Text>
+                                    </View>
+
+                                    <View style={{ paddingVertical: 12 }}>
+                                        <SegmentedControl
+                                            values={["Not Started", "In Progress", "Done"]}
+                                            selectedIndex={assignmentStatus}
+                                            onChange={(event) => {
+                                                setStatus(event.nativeEvent.selectedSegmentIndex);
+                                                updateStatus(assignment.id, event.nativeEvent.selectedSegmentIndex);
                                             }}
-                                            keyExtractor={item => item.id}
                                         />
                                     </View>
-                                }
 
-                                <TouchableOpacity
-                                    style={{ height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, alignItems: "center", justifyContent: "center", flexDirection: "row" }}
-                                    onPress={() => {
-                                        Alert.alert(
-                                            "Delete Assignment?",
-                                            "Are you sure you want to delete the assignment?",
-                                            [
-                                                {
-                                                    text: "Cancel",
-                                                    style: "cancel"
-                                                },
-                                                {
-                                                    text: "Delete",
-                                                    onPress: () => {
-                                                        for (const attachment of assignment.attachments) {
-                                                            RNFS.unlink(attachment.path)
-                                                                .catch((err) => {
-                                                                    console.log(err.message, err.code);
-                                                                });
-                                                        }
-                                                        deleteAssignmentWithID(assignmentID)
-                                                        navigation.goBack();
+                                    {assignment.notes != "" &&
+                                        <View style={{ paddingBottom: 16 }}>
+                                            <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
+                                                <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Notes</Text>
+                                                <Ionicons name="chatbubble-ellipses" size={20} color={colors.primary} />
+                                            </View>
+
+                                            <Text style={[{ color: colors.text }]}>{assignment.notes}</Text>
+                                        </View>
+                                    }
+
+                                    {assignment.attachments.length != 0 &&
+                                        <View>
+                                            <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 4 }}>
+                                                <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary, paddingRight: 6 }]}>Attachments</Text>
+                                                <MaterialCommuniyIcons name="paperclip" size={20} color={colors.primary} />
+                                            </View>
+
+                                            <FlatList
+                                                scrollEnabled={false}
+                                                data={assignment.attachments}
+                                                renderItem={({ item }) => {
+                                                    return (
+                                                        <FileCell file={item} />
+                                                    )
+                                                }}
+                                                keyExtractor={item => item.id}
+                                            />
+                                        </View>
+                                    }
+
+                                    <TouchableOpacity
+                                        style={{ height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, marginBottom: 32, alignItems: "center", justifyContent: "center", flexDirection: "row" }}
+                                        onPress={() => {
+                                            Alert.alert(
+                                                "Delete Assignment?",
+                                                "Are you sure you want to delete the assignment?",
+                                                [
+                                                    {
+                                                        text: "Cancel",
+                                                        style: "cancel"
                                                     },
-                                                    style: "destructive"
-                                                }
-                                            ],
-                                            { cancelable: false }
-                                        );
-                                    }}
-                                >
-                                    <Ionicons name="ios-trash" size={20} color={colors.primary} />
-                                    <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Delete Assignment</Text>
-                                </TouchableOpacity>
+                                                    {
+                                                        text: "Delete",
+                                                        onPress: () => {
+                                                            for (const attachment of assignment.attachments) {
+                                                                RNFS.unlink(attachment.path)
+                                                                    .catch((err) => {
+                                                                        console.log(err.message, err.code);
+                                                                    });
+                                                            }
+                                                            deleteAssignmentWithID(assignmentID)
+                                                            navigation.goBack();
+                                                        },
+                                                        style: "destructive"
+                                                    }
+                                                ],
+                                                { cancelable: false }
+                                            );
+                                        }}
+                                    >
+                                        <Ionicons name="ios-trash" size={20} color={colors.primary} />
+                                        <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Delete Assignment</Text>
+                                    </TouchableOpacity>
 
-                            </ScrollView>
+                                </ScrollView>
 
+                            </View>
                         </View>
                     </View>
                 </View>

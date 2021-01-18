@@ -25,8 +25,7 @@ const TimeManagement = (props) => {
                     }} />
 
                 </View>
-                <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingHorizontal: 16, }]}>Homework Schedule</Text>
-                <Text style={[FONTS.h4, { color: colors.gray, paddingHorizontal: 16 }]}>8 Assignments</Text>
+                <Text style={[FONTS.h2, FONTS.bold, { color: colors.text, paddingHorizontal: 16, }]}>Time Management</Text>
 
             </View>
             <View style={{ backgroundColor: colors.sheet }}>
