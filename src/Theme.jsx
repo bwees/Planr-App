@@ -49,7 +49,7 @@ export const DarkMode = {
         textField: "#1c1c1c",
         stepperOutline: "#3d3d3d",
         stepperDateFill: "#2d2d2d",
-        searchBar: "#2d2d2d"
+        searchBar: "#2d2d2d",
     },
 };
 

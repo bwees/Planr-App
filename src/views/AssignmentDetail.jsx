@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,7 +9,7 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
 import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
-import { getAssignmentByID, updateStatus } from "../storage/StorageAPI";
+import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../storage/StorageAPI";
 
 const AssignmentDetail = ({ route, navigation }) => {
 
@@ -133,6 +133,34 @@ const AssignmentDetail = ({ route, navigation }) => {
                                         />
                                     </View>
                                 }
+
+                                <TouchableOpacity
+                                    style={{ height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, alignItems: "center", justifyContent: "center", flexDirection: "row" }}
+                                    onPress={() => {
+                                        Alert.alert(
+                                            "Delete Assignment?",
+                                            "Are you sure you want to delete the assignment?",
+                                            [
+                                                {
+                                                    text: "Cancel",
+                                                    style: "cancel"
+                                                },
+                                                {
+                                                    text: "Delete",
+                                                    onPress: () => {
+                                                        deleteAssignmentWithID(assignmentID)
+                                                        navigation.goBack();
+                                                    },
+                                                    style: "destructive"
+                                                }
+                                            ],
+                                            { cancelable: false }
+                                        );
+                                    }}
+                                >
+                                    <Ionicons name="ios-trash" size={20} color={colors.primary} />
+                                    <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Delete Assignment</Text>
+                                </TouchableOpacity>
 
                             </ScrollView>
 
