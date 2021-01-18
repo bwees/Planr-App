@@ -25,6 +25,15 @@ export function addDate(date, i) {
     return date;
 }
 
+
 export function calDaytoDate(day) {
     return new Date(day.year, day.month - 1, day.day)
+}
+
+export function sortByDate(array, reverse = true) {
+    var returnArray = array.sort((a, b) => (new Date(b.title)) - (new Date(a.title)));
+    if (reverse) {
+        returnArray.reverse()
+    }
+    return returnArray
 }

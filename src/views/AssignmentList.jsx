@@ -11,7 +11,7 @@ import { Keyboard } from 'react-native'
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
 import { getAssignments, groupAssignmentsBy } from "../storage/StorageAPI";
-import { groupedToSectionList } from "../Helpers";
+import { groupedToSectionList, sortByDate } from "../Helpers";
 
 const AssignmentList = (props) => {
 
@@ -78,7 +78,7 @@ const AssignmentList = (props) => {
             <View style={{ flex: 1 }}>
                 <SectionList
                     style={{ paddingHorizontal: 20 }}
-                    sections={groupedAssignments}
+                    sections={sortByDate(groupedAssignments)}
                     keyExtractor={(item, index) => item + index}
                     renderItem={({ item }) => <AssignmentCell assignment={item} navigation={props.navigation} />}
                     renderSectionHeader={({ section: { title } }) => (
