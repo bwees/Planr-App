@@ -23,9 +23,13 @@ const DropdownMenuSelect = ({ navigation, route }) => {
         }
     });
 
+    const routes = navigation.dangerouslyGetState().routeNames
+    const prevScreen = routes[0]
+    // console.log(prevScreen)
+
     const listItem = ({ item }) => {
         return (
-            <TouchableOpacity style={[styles.textField, SHADOW, { marginBottom: 8, height: 44, justifyContent: "space-between" }]} onPress={() => { changeSelected(item); navigation.navigate('CreateAssignment', { selection: item, fieldName: fieldName }); }}>
+            <TouchableOpacity style={[styles.textField, SHADOW, { marginBottom: 8, height: 44, justifyContent: "space-between" }]} onPress={() => { changeSelected(item); navigation.navigate(prevScreen, { selection: item, fieldName: fieldName }); }}>
                 <Text style={[FONTS.h3, { color: colors.text }]}>{item}</Text>
                 {item === selectedItem &&
                     <Ionicons name={"checkmark"} size={26} color={colors.primary} />

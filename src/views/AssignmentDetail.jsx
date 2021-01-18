@@ -9,15 +9,20 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
 import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
-import { updateStatus } from "../storage/StorageAPI";
+import { getAssignmentByID, updateStatus } from "../storage/StorageAPI";
 
 const AssignmentDetail = ({ route, navigation }) => {
 
-    const { assignment } = route.params;
+    const { assignmentID } = route.params;
+    const [assignment, setAssignment] = useState(getAssignmentByID(assignmentID));
+    var [assignmentStatus, setStatus] = useState(getAssignmentByID(assignmentID).status);
+
+    navigation.addListener('focus', () => {
+        setAssignment(getAssignmentByID(assignmentID));
+        setStatus(getAssignmentByID(assignmentID).status)
+    });
+
     const { colors } = useTheme();
-
-    var [assignmentStatus, setStatus] = useState(assignment.status);
-
 
     return (
         <View style={{ flex: 1, marginBottom: 0 }}>
@@ -49,7 +54,18 @@ const AssignmentDetail = ({ route, navigation }) => {
                                 <View style={{ paddingHorizontal: 20, paddingTop: 12, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                     <Text style={[FONTS.h2, FONTS.bold, { color: colors.primary }]}>Details</Text>
                                     <TouchableOpacity>
-                                        <MaterialCommuniyIcons name="pencil-circle" size={24} color={colors.primary} />
+                                        <MaterialCommuniyIcons
+                                            name="pencil-circle"
+                                            size={24}
+                                            color={colors.primary}
+                                            onPress={() => {
+                                                navigation.navigate('EditAssignment', {
+                                                    screen: "EditAssignmentScreen",
+                                                    params: {
+                                                        assignmentID: assignment.id
+                                                    }
+                                                });
+                                            }} />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ height: 1, borderRadius: 4, backgroundColor: colors.lightGray, marginTop: 10, }} />
@@ -63,7 +79,7 @@ const AssignmentDetail = ({ route, navigation }) => {
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
                                     <Ionicons name="time" size={20} color={colors.text} />
-                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + " Minutes"}</Text>
+                                    <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + "-" + (assignment.time + 5) + " Minutes"}</Text>
                                 </View>
 
                                 <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>

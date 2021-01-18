@@ -8,12 +8,13 @@ import TabNavigator from './src/navigation/TabNavigator';
 import AssignmentDetail from './src/views/AssignmentDetail'
 import TimeManagement from './src/views/TimeManagement';
 import CreateAssignmentStack from './src/navigation/CreateAssignmentStack';
+import EditAssignmentStack from './src/navigation/EditAssignmentStack';
 import { LogBox } from 'react-native';
 
 const MainStack = createStackNavigator();
 
 function App() {
-    LogBox.ignoreLogs(["Warning: componentWillReceiveProps has been renamed", "VirtualizedLists"]);
+    LogBox.ignoreLogs(["Warning: componentWillReceiveProps has been renamed", "VirtualizedLists", "Sending `onAnimatedValueUpdate` with no listeners registered."]);
     return (
         <AppearanceProvider>
             <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>
@@ -34,6 +35,7 @@ function App() {
                     <MainStack.Screen name="TimeManagement" component={TimeManagement} />
                     <MainStack.Screen name="AssignmentDetail" component={AssignmentDetail} />
                     <MainStack.Screen name="CreateAssignment" component={CreateAssignmentStack} />
+                    <MainStack.Screen name="EditAssignment" component={EditAssignmentStack} />
                 </MainStack.Navigator>
             </NavigationContainer>
         </AppearanceProvider>

@@ -23,7 +23,7 @@ const AssignmentCell = (props) => {
 
             onPress={() => {
                 props.navigation.navigate('AssignmentDetail', {
-                    assignment: props.assignment
+                    assignmentID: props.assignment.id
                 });
             }}>
 
@@ -41,7 +41,6 @@ const AssignmentCell = (props) => {
                 </View>
             </View>
             <View>
-
                 <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingRight: 8 }} />
             </View>
 
