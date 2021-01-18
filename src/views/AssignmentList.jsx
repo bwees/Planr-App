@@ -54,9 +54,12 @@ const AssignmentList = (props) => {
                             flex: 1
                         }]}
                     />
-                    <TouchableOpacity onPress={() => { setFilter(""); updateAssignmentList(""); }}>
-                        <MaterialIcons name="cancel" size={18} color={colors.gray} style={{ paddingRight: 4, paddingTop: 2 }} />
-                    </TouchableOpacity>
+                    {filterText != "" &&
+
+                        <TouchableOpacity onPress={() => { setFilter(""); updateAssignmentList(""); }}>
+                            <MaterialIcons name="cancel" size={18} color={colors.gray} style={{ paddingRight: 4, paddingTop: 2 }} />
+                        </TouchableOpacity>
+                    }
                 </View>
 
                 <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder, marginTop: 10, }} />
