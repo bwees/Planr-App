@@ -10,6 +10,8 @@ import { useState } from "react";
 import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
 import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../storage/StorageAPI";
+import RNFS from "react-native-fs"
+
 
 const AssignmentDetail = ({ route, navigation }) => {
 
@@ -148,6 +150,12 @@ const AssignmentDetail = ({ route, navigation }) => {
                                                 {
                                                     text: "Delete",
                                                     onPress: () => {
+                                                        for (const attachment of assignment.attachments) {
+                                                            RNFS.unlink(attachment.path)
+                                                                .catch((err) => {
+                                                                    console.log(err.message, err.code);
+                                                                });
+                                                        }
                                                         deleteAssignmentWithID(assignmentID)
                                                         navigation.goBack();
                                                     },

@@ -97,18 +97,32 @@ const CreateAssignment = (props) => {
         fileObj = {
             name: "Image" + imageCount + ".jpg",
             type: "picture",
-            path: res.uri,
+            path: RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type === "image/jpg" ? "image/jpeg" : res.type),
             id: id
         }
 
-        setImageCount(imageCount + 1);
+        console.log(RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type === "image/jpg" ? "image/jpeg" : res.type))
 
-        RNFS.copyFile(res.uri, RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type))
+        if (res.type === "image/jpg") {
+
+        }
+
+        RNFS.copyFile(res.uri, RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type === "image/jpg" ? "image/jpeg" : res.type))
             .catch((err) => {
                 console.log(err.message, err.code);
             });
 
+        setImageCount(imageCount + 1);
         setFiles([...files, fileObj]);
+    }
+
+    deleteAttachments = () => {
+        for (const attachment of files) {
+            RNFS.unlink(attachment.path)
+                .catch((err) => {
+                    console.log(err.message, err.code);
+                });
+        }
     }
 
     return (
@@ -116,7 +130,7 @@ const CreateAssignment = (props) => {
 
             {/* Header */}
             <View style={[{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", height: 55, backgroundColor: colors.headerColor }]}>
-                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { props.navigation.goBack() }}>
+                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { props.navigation.goBack(); deleteAttachments(); }}>
                     <Text style={{ color: colors.primary, fontSize: 18 }}>Cancel</Text>
                 </TouchableOpacity>
 

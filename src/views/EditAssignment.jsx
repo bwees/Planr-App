@@ -12,6 +12,8 @@ import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { editAssignment, getAssignmentByID } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
+import RNFS from "react-native-fs";
+import mime from "mime"
 
 const EditAssignment = ({ route, navigation }) => {
 
@@ -28,6 +30,8 @@ const EditAssignment = ({ route, navigation }) => {
     const [files, setFiles] = useState(assignment.attachments);
 
     const [imageCount, setImageCount] = useState(assignment.attachments.length + 1);
+
+    const [sessionAttachments, setSessionAttachments] = useState([]);
 
     // Handle returning with parameters
     navigation.addListener('focus', () => {
@@ -65,16 +69,22 @@ const EditAssignment = ({ route, navigation }) => {
                 //There can me more options as well find above
             });
             for (const res of results) {
+                const id = uuid()
                 fileObj = {
+                    id: id,
                     name: res.name,
                     type: "document",
-                    path: res.uri,
-                    id: uuid()
+                    path: RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type),
                 }
+
+                RNFS.copyFile(res.uri, RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type))
+                    .catch((err) => {
+                        console.log(err.message, err.code);
+                    });
 
                 setFiles([...files, fileObj]);
             }
-            //Setting the state to show multiple file attributes
+
         } catch (err) {
             //Handling any exception (If any)
             if (!DocumentPicker.isCancel(err)) {
@@ -84,14 +94,32 @@ const EditAssignment = ({ route, navigation }) => {
     };
 
     attachPhotos = (res) => {
+        const id = uuid();
+
         fileObj = {
             name: "Image" + imageCount + ".jpg",
             type: "picture",
-            path: res.uri,
-            id: uuid()
+            path: RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type === "image/jpg" ? "image/jpeg" : res.type),
+            id: id
         }
+
+        RNFS.copyFile(res.uri, RNFS.DocumentDirectoryPath + "/" + id + "." + mime.getExtension(res.type === "image/jpg" ? "image/jpeg" : res.type))
+            .catch((err) => {
+                console.log(err.message, err.code);
+            });
+
         setImageCount(imageCount + 1);
+        setSessionAttachments([...sessionAttachments, fileObj]);
         setFiles([...files, fileObj]);
+    }
+
+    deleteSessionAttachments = () => {
+        for (const attachment of sessionAttachments) {
+            RNFS.unlink(attachment.path)
+                .catch((err) => {
+                    console.log(err.message, err.code);
+                });
+        }
     }
 
     return (
@@ -99,7 +127,7 @@ const EditAssignment = ({ route, navigation }) => {
 
             {/* Header */}
             <View style={[{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", height: 55, backgroundColor: colors.headerColor }]}>
-                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { navigation.goBack() }}>
+                <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { deleteSessionAttachments(); navigation.goBack(); }}>
                     <Text style={{ color: colors.primary, fontSize: 18 }}>Cancel</Text>
                 </TouchableOpacity>
 

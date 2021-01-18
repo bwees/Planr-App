@@ -55,7 +55,7 @@ const CalendarPicker = ({ navigation, route }) => {
                     monthTextColor: colors.primary,
                     textMonthFontWeight: "bold",
                     dayTextColor: colors.text,
-                    selectedDotColor: colors.primary
+                    selectedDotColor: colors.primary,
                 }}
             />
         </View>
