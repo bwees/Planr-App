@@ -2,6 +2,7 @@ import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
 import _, { assign } from "lodash"
+import { groupedToSectionList } from "../Helpers";
 
 
 const realm = new Realm({ schema: schema });
@@ -44,7 +45,6 @@ export function getAssignments(filter) {
     } else {
         objects = realm.objects("Assignment");
     }
-
     return objects
 }
 
@@ -59,7 +59,7 @@ export function getAssignmentByID(id) {
     return realm.objectForPrimaryKey('Assignment', id);
 }
 
-export function groupAssignmentsBy(key) {
-    return grouped = _.mapValues(_.groupBy(getAssignments(), 'dueDate'), clist => clist.map(assignment => _.omit(assignment, 'make')));
+export function groupAssignmentsBy(assignments, key) {
+    return groupedToSectionList(_.mapValues(_.groupBy(assignments, 'dueDate'), clist => clist.map(assignment => _.omit(assignment, 'dueDate'))));
 }
 

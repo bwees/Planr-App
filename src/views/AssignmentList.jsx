@@ -19,27 +19,14 @@ const AssignmentList = (props) => {
     const insets = useSafeAreaInsets();
 
     const [filterText, setFilter] = useState('');
-    const [assignments, setAssignments] = useState(getAssignments());
-    const [groupedAssignments, setGroupedAssignments] = useState(groupedToSectionList(groupAssignmentsBy(getAssignments(), "dueDate")));
+    const [groupedAssignments, setGroupedAssignments] = useState(sortByDate(groupAssignmentsBy(getAssignments(""), "dueDate")));
 
-    data = [
-        {
-            title: "Main dishes",
-            data: ["Pizza", "Burger", "Risotto"]
-        }]
+    function updateAssignmentList(filter) {
+        setGroupedAssignments(sortByDate(groupAssignmentsBy(getAssignments(filter), "dueDate")));
+    }
 
     React.useEffect(() => {
-        const refreshList = props.navigation.addListener('focus', () => {
-            setAssignments(getAssignments(filterText))
-            setGroupedAssignments(
-                groupedToSectionList(
-                    groupAssignmentsBy(
-                        getAssignments(),
-                        "dueDate"
-                    )
-                )
-            );
-        });
+        const refreshList = props.navigation.addListener('focus', () => updateAssignmentList(""));
     }, [props.navigation]);
 
     return (
@@ -59,7 +46,7 @@ const AssignmentList = (props) => {
                         selectionColor={colors.primary}
                         onChangeText={text => {
                             setFilter(text);
-                            setAssignments(getAssignments(text));
+                            updateAssignmentList(text)
                         }}
                         style={[FONTS.h3, {
                             lineHeight: 20,
@@ -67,7 +54,7 @@ const AssignmentList = (props) => {
                             flex: 1
                         }]}
                     />
-                    <TouchableOpacity onPress={() => { setFilter(""); setAssignments(getAssignments()); }}>
+                    <TouchableOpacity onPress={() => { setFilter(""); updateAssignmentList(""); }}>
                         <MaterialIcons name="cancel" size={18} color={colors.gray} style={{ paddingRight: 4, paddingTop: 2 }} />
                     </TouchableOpacity>
                 </View>
@@ -78,11 +65,11 @@ const AssignmentList = (props) => {
             <View style={{ flex: 1 }}>
                 <SectionList
                     style={{ paddingHorizontal: 20 }}
-                    sections={sortByDate(groupedAssignments)}
+                    sections={groupedAssignments}
                     keyExtractor={(item, index) => item + index}
                     renderItem={({ item }) => <AssignmentCell assignment={item} navigation={props.navigation} />}
                     renderSectionHeader={({ section: { title } }) => (
-                        <ListSeperator icon={"calendar"} label={new Date(title).toLocaleDateString()} color={colors.primary} />
+                        <ListSeperator icon={"calendar"} label={new Date(title).toLocaleString('default', { month: 'long', day: "numeric" })} color={colors.primary} bgColor={colors.background} />
                     )}
                 />
             </View>
