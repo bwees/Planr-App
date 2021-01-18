@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, SectionList } from "react-native";
 import { TextInput, TouchableOpacity, ScrollView, FlatList } from "react-native-gesture-handler";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,7 +10,8 @@ import { useState } from "react";
 import { Keyboard } from 'react-native'
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
-import { getAssignments } from "../storage/StorageAPI";
+import { getAssignments, groupAssignmentsBy } from "../storage/StorageAPI";
+import { groupedToSectionList } from "../Helpers";
 
 const AssignmentList = (props) => {
 
@@ -19,10 +20,25 @@ const AssignmentList = (props) => {
 
     const [filterText, setFilter] = useState('');
     const [assignments, setAssignments] = useState(getAssignments());
+    const [groupedAssignments, setGroupedAssignments] = useState(groupedToSectionList(groupAssignmentsBy(getAssignments(), "dueDate")));
+
+    data = [
+        {
+            title: "Main dishes",
+            data: ["Pizza", "Burger", "Risotto"]
+        }]
 
     React.useEffect(() => {
         const refreshList = props.navigation.addListener('focus', () => {
             setAssignments(getAssignments(filterText))
+            setGroupedAssignments(
+                groupedToSectionList(
+                    groupAssignmentsBy(
+                        getAssignments(),
+                        "dueDate"
+                    )
+                )
+            );
         });
     }, [props.navigation]);
 
@@ -60,18 +76,14 @@ const AssignmentList = (props) => {
 
             </View>
             <View style={{ flex: 1 }}>
-                <FlatList
-                    style={{ flex: 1, paddingTop: 8 }}
-                    contentContainerStyle={{ paddingHorizontal: 20 }}
-                    onScroll={() => { Keyboard.dismiss() }}
-                    scrollEventThrottle={3}
-                    data={assignments}
-                    renderItem={({ item }) => {
-                        return (
-                            <AssignmentCell assignment={item} navigation={props.navigation} />
-                        )
-                    }}
-                    keyExtractor={item => item.id}
+                <SectionList
+                    style={{ paddingHorizontal: 20 }}
+                    sections={groupedAssignments}
+                    keyExtractor={(item, index) => item + index}
+                    renderItem={({ item }) => <AssignmentCell assignment={item} navigation={props.navigation} />}
+                    renderSectionHeader={({ section: { title } }) => (
+                        <ListSeperator icon={"calendar"} label={new Date(title).toLocaleDateString()} color={colors.primary} />
+                    )}
                 />
             </View>
         </View>

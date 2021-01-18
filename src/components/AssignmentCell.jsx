@@ -5,7 +5,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
 const AssignmentCell = (props) => {
     const { colors } = useTheme();
-
     return (
         <TouchableOpacity style={[SHADOW,
             {

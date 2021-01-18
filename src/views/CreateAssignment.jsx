@@ -12,6 +12,7 @@ import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { saveAssignment } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
+import { stripTime } from "../Helpers";
 
 const CreateAssignment = (props) => {
 
@@ -20,7 +21,7 @@ const CreateAssignment = (props) => {
     const [assignmentName, setAssignmentName] = useState("");
     const [classSelection, setClassSelection] = useState("Choose");
     const [typeSelection, setTypeSelection] = useState("Choose");
-    const [dueDate, setDueDate] = useState(Date('December 17, 1995 03:24:00'));
+    const [dueDate, setDueDate] = useState(stripTime(new Date()));
     const [timeLength, setTimeLength] = useState(15);
     const [notes, setNotes] = useState("");
     const [files, setFiles] = useState([]);

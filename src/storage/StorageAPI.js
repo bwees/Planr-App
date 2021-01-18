@@ -1,6 +1,8 @@
 import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
+import _, { assign } from "lodash"
+
 
 const realm = new Realm({ schema: schema });
 
@@ -55,4 +57,9 @@ export function updateStatus(id, newStatus) {
 
 export function getAssignmentByID(id) {
     return realm.objectForPrimaryKey('Assignment', id);
+}
+
+export function groupAssignmentsBy(key) {
+    return grouped = _.mapValues(_.groupBy(getAssignments(), 'dueDate'), clist => clist.map(assignment => _.omit(assignment, 'make')));
+
 }
