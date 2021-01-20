@@ -49,8 +49,8 @@ const CalendarView = (props) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={[SHADOW, { zIndex: 100 }]}>
-                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: insets.top }}>
+            <View style={[{ zIndex: 100 }]}>
+                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: insets.top, backgroundColor: colors.headerColor }}>
                     <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, marginHorizontal: 20, marginVertical: 8 }]}>Calendar</Text>
                     <TouchableOpacity
                         activeOpacity={0.5}
@@ -68,33 +68,36 @@ const CalendarView = (props) => {
                         <Ionicons name="ios-add" size={30} color={colors.primary} />
                     </TouchableOpacity>
                 </View>
+                <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder, }} />
             </View>
-
-            <Calendar
-                onDayPress={(day) => {
-                    const dateString = day.dateString
-                    setMarkedDates({ [dateString]: { selected: true } })
-                    setSelected(dateString)
-                }}
-                markedDates={markedDates}
-                theme={{
-                    calendarBackground: colors.background,
-                    monthTextColor: colors.primary,
-                    textMonthFontWeight: "bold",
-                    selectedDotColor: colors.primary,
-                    textDisabledColor: colors.gray,
-                    dayTextColor: colors.text
-                }}
-            />
-            <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder, marginTop: 10, }} />
+            <View style={{ height: 275 }}>
+                <CalendarList
+                    onDayPress={(day) => {
+                        const dateString = day.dateString
+                        setMarkedDates({ [dateString]: { selected: true } })
+                        setSelected(dateString)
+                    }}
+                    markedDates={markedDates}
+                    theme={{
+                        calendarBackground: colors.background,
+                        monthTextColor: colors.primary,
+                        textMonthFontWeight: "bold",
+                        selectedDotColor: colors.primary,
+                        textDisabledColor: colors.gray,
+                        dayTextColor: colors.text
+                    }}
+                />
+            </View>
+            <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
             <View style={{ flex: 1 }}>
                 <SectionList
                     style={{ paddingHorizontal: 20 }}
                     sections={groupedAssignments}
                     keyExtractor={(item, index) => item + index}
+                    stickySectionHeadersEnabled={false}
                     renderItem={({ item }) => <AssignmentCell assignment={item} navigation={props.navigation} />}
                     renderSectionHeader={({ section: { title } }) => (
-                        <ListSeperator icon={"calendar"} label={new Date(title).toLocaleString('default', { month: 'long', day: "numeric" })} color={colors.primary} bgColor={colors.background} />
+                        <ListSeperator icon={"calendar"} label={new Date(title).toLocaleString('default', { month: 'long', day: "numeric" })} color={colors.primary} bgColor={colors.listSeperator} />
                     )}
                 />
             </View>

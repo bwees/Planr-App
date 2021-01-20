@@ -67,7 +67,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                                         assignmentID: assignment.id
                                                     }
                                                 });
-                                            }} 
+                                            }}
                                         />
                                     </TouchableOpacity>
                                 </View>
@@ -133,6 +133,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                                     )
                                                 }}
                                                 keyExtractor={item => item.id}
+                                                style={{ overflow: "visible" }}
                                             />
                                         </View>
                                     }

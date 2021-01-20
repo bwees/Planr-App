@@ -35,7 +35,7 @@ const AssignmentList = (props) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={[SHADOW, { backgroundColor: colors.headerColor, zIndex: 100 }]}>
+            <View style={[{ backgroundColor: colors.headerColor, zIndex: 100 }]}>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: insets.top }}>
                     <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, marginHorizontal: 20, marginVertical: 8 }]}>Assignments</Text>
                     <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => props.navigation.navigate("CreateAssignmentStack")}>
@@ -73,6 +73,8 @@ const AssignmentList = (props) => {
                     style={{ paddingHorizontal: 20 }}
                     sections={groupedAssignments}
                     keyExtractor={(item, index) => item + index}
+                    stickySectionHeadersEnabled={false}
+
                     renderItem={({ item }) => <AssignmentCell assignment={item} navigation={props.navigation} />}
                     renderSectionHeader={({ section: { title } }) => (
                         <ListSeperator icon={"calendar"} label={new Date(title).toLocaleString('default', { month: 'long', day: "numeric" })} color={colors.primary} bgColor={colors.background} />

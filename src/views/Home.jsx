@@ -55,30 +55,12 @@ const Home = (props) => {
                             />
                         </View>
 
-                        <TouchableOpacity
-                            style={[SHADOW, {
-                                height: 40,
-                                marginHorizontal: 20,
-                                backgroundColor: colors.tabBarColor,
-                                borderRadius: 8,
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                marginVertical: 16
-                            }]}
-                            onPress={() => {
-                                props.navigation.navigate("TimeManagement")
-                            }}
-                        >
-                            <Ionicons name={"time"} size={22} color={colors.primary} />
-                            <Text style={[FONTS.bold, FONTS.h3, { paddingLeft: 8, color: colors.primary }]}>Time Management</Text>
-                        </TouchableOpacity>
-
                         {/* Info Card */}
                         <View
                             style={[SHADOW, {
                                 backgroundColor: colors.background,
                                 paddingTop: 16,
+                                marginTop: 16,
                                 borderTopLeftRadius: 24,
                                 borderTopRightRadius: 24,
                                 flexGrow: 1

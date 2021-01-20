@@ -24,7 +24,8 @@ export const LightMode = {
         assignmentCellText: "#888888",
         stepperOutline: "white",
         stepperDateFill: "#eaeaea",
-        searchBar: "#eaeaea"
+        searchBar: "#eaeaea",
+        listSeperator: null
     },
 };
 
@@ -50,6 +51,8 @@ export const DarkMode = {
         stepperOutline: "#3d3d3d",
         stepperDateFill: "#2d2d2d",
         searchBar: "#2d2d2d",
+        listSeperator: "#0f0f0f"
+
     },
 };
 
