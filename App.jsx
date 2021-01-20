@@ -39,7 +39,7 @@ function App() {
                     <MainStack.Screen name="Tabs" component={TabNavigator} />
                     <MainStack.Screen name="TimeManagement" component={TimeManagement} />
                     <MainStack.Screen name="AssignmentDetail" component={AssignmentDetail} />
-                    <MainStack.Screen name="CreateAssignment" component={CreateAssignmentStack} />
+                    <MainStack.Screen name="CreateAssignmentStack" component={CreateAssignmentStack} />
                     <MainStack.Screen name="EditAssignment" component={EditAssignmentStack} />
                 </MainStack.Navigator>
             </NavigationContainer>

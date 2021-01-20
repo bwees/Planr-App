@@ -14,17 +14,6 @@ const CalendarPicker = ({ navigation, route }) => {
 
     const [selectedDate, setSelected] = useState(selected)
 
-    const styles = StyleSheet.create({
-        textField: {
-            backgroundColor: colors.textField,
-            borderRadius: 8,
-            paddingHorizontal: 12,
-            paddingRight: 8,
-            alignItems: "center",
-            flexDirection: "row",
-        }
-    });
-
     const [markedDates, setMarkedDates] = useState(
         {
             [selected.toISOString().slice(0, 10)]: { selected: true },

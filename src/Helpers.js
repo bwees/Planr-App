@@ -37,3 +37,9 @@ export function sortByDate(array, reverse = true) {
     }
     return returnArray
 }
+
+export function stringToDateObject(dateStr) {
+    var from = dateStr.split("-")
+    var f = new Date(from[0], from[1] - 1, from[2])
+    return f
+}

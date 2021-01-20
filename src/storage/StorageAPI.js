@@ -2,7 +2,7 @@ import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
 import _, { assign } from "lodash"
-import { groupedToSectionList } from "../Helpers";
+import { groupedToSectionList, stringToDateObject, stripTime } from "../Helpers";
 
 
 const realm = new Realm({ schema: schema });
@@ -42,6 +42,19 @@ export function getAssignments(filter) {
     var objects = [];
     if (filter) {
         objects = realm.objects("Assignment").filtered("name CONTAINS[c] $0", filter);
+    } else {
+        objects = realm.objects("Assignment");
+    }
+    return objects
+}
+
+export function getAssignmentsByDate(filter) {
+    var objects = [];
+
+    const date = stringToDateObject(filter);
+
+    if (filter) {
+        objects = realm.objects("Assignment").filtered("dueDate == $0", date.toString());
     } else {
         objects = realm.objects("Assignment");
     }
