@@ -70,7 +70,7 @@ const CalendarView = (props) => {
                 </View>
                 <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder, }} />
             </View>
-            <View style={{ height: 275 }}>
+            <View style={{ height: 275, marginHorizontal: 12 }}>
                 <CalendarList
                     onDayPress={(day) => {
                         const dateString = day.dateString
