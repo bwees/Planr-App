@@ -78,6 +78,6 @@ export function deleteAssignmentWithID(id) {
 }
 
 export function groupAssignmentsBy(assignments, key) {
-    return groupedToSectionList(_.mapValues(_.groupBy(assignments, 'dueDate'), clist => clist.map(assignment => assignment)));
+    return groupedToSectionList(_.mapValues(_.groupBy(assignments, key), clist => clist.map(assignment => assignment)));
 }
 
