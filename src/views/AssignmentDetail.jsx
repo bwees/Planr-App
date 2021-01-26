@@ -139,7 +139,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                     }
 
                                     <TouchableOpacity
-                                        style={{ height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, marginBottom: 32, alignItems: "center", justifyContent: "center", flexDirection: "row" }}
+                                        style={[SHADOW, { height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, marginBottom: 32, alignItems: "center", justifyContent: "center", flexDirection: "row" }]}
                                         onPress={() => {
                                             Alert.alert(
                                                 "Delete Assignment?",
