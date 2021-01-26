@@ -38,12 +38,6 @@ const CalendarView = (props) => {
     }
 
     React.useEffect(() => {
-        const refreshList = props.navigation.addListener('focus', () => {
-            updateAssignmentList(selectedDate);
-        });
-    }, [props.navigation]);
-
-    React.useEffect(() => {
         updateAssignmentList(selectedDate)
     }, [selectedDate])
 
@@ -53,6 +47,7 @@ const CalendarView = (props) => {
         } else {
             setNumAssignments(0)
         }
+
     }, [groupedAssignments])
 
     const sheetRef = useRef();
