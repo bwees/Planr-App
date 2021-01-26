@@ -72,8 +72,8 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>to be able to attach photos to assignments.</string>
+	<string>Attach photos to assignments.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>to be able to attach photos from the camera to assignments.</string>
+	<string>Attach photos from the camera to assignments.</string>
 </dict>
 </plist>
