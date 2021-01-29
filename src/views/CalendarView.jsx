@@ -50,6 +50,10 @@ const CalendarView = (props) => {
 
     }, [groupedAssignments])
 
+    props.navigation.addListener('focus', () => {
+        updateAssignmentList(selectedDate)
+    })
+
     const sheetRef = useRef();
 
     return (
