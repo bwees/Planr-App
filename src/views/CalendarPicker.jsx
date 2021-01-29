@@ -37,6 +37,7 @@ const CalendarPicker = ({ navigation, route }) => {
                     const dateString = day.dateString
                     setMarkedDates({ [dateString]: { selected: true } })
                     setSelected(calDaytoDate(day))
+                    navigation.navigate(prevScreen, { selection: calDaytoDate(day), fieldName: "Calendar" });
                 }}
                 markedDates={markedDates}
                 theme={{
