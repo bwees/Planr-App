@@ -31,7 +31,7 @@ const HomeStack = (props) => {
                 options={{
                     headerTitle: null,
                     headerLeft: () => (
-                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} >
+                        <TouchableOpacity activeOpacity={0.5} style={{ marginHorizontal: 20 }} onPress={() => { props.navigation.navigate("Settings") }}>
                             <Ionicons name="ios-person" size={22} color={"white"} />
                         </TouchableOpacity>
                     ),

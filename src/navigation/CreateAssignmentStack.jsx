@@ -23,7 +23,7 @@ const CreateAssignmentStack = (props) => {
                 options={{
                     headerStyle: { height: 55, backgroundColor: colors.headerColor },
                     headerTitle: null,
-                    headerRight: null
+                    headerRight: null,
                 }}
             />
             <Stack.Screen

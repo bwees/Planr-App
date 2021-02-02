@@ -10,6 +10,7 @@ import TimeManagement from './src/views/TimeManagement';
 import CreateAssignmentStack from './src/navigation/CreateAssignmentStack';
 import EditAssignmentStack from './src/navigation/EditAssignmentStack';
 import { LogBox } from 'react-native';
+import SettingsStack from './src/navigation/SettingsStack';
 
 const MainStack = createStackNavigator();
 
@@ -41,6 +42,7 @@ function App() {
                     <MainStack.Screen name="AssignmentDetail" component={AssignmentDetail} />
                     <MainStack.Screen name="CreateAssignmentStack" component={CreateAssignmentStack} />
                     <MainStack.Screen name="EditAssignment" component={EditAssignmentStack} />
+                    <MainStack.Screen name="Settings" component={SettingsStack} />
                 </MainStack.Navigator>
             </NavigationContainer>
         </AppearanceProvider>
