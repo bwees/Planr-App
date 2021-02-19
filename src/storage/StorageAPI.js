@@ -63,7 +63,6 @@ export function getAssignmentsByDate(filter) {
 
 export function updateStatus(id, newStatus) {
     realm.write(() => {
-        // Update book with new price keyed off the id
         realm.create("Assignment", { id: id, status: newStatus }, "modified");
     });
 }

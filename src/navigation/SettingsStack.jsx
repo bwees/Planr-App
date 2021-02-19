@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
 import Settings from '../views/settings/Settings';
 import { FONTS } from '../Theme';
+import About from '../views/settings/About';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,10 @@ const SettingsStack = (props) => {
                     headerStyle: { height: 55, backgroundColor: colors.headerColor },
                     headerTitle: null,
                 }}
+            />
+            <Stack.Screen
+                name="About"
+                component={About}
             />
 
         </Stack.Navigator >

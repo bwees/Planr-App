@@ -19,7 +19,8 @@ function App() {
         "Warning: componentWillReceiveProps has been renamed",
         "VirtualizedLists",
         "Sending `onAnimatedValueUpdate` with no listeners registered.",
-        "Non-serializable values were found in the navigation state."
+        "Non-serializable values were found in the navigation state.",
+        "`-[RCTRootView cancelTouches]` is deprecated and will be deleted soon."
     ]);
     return (
         <AppearanceProvider>

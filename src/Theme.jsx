@@ -17,6 +17,7 @@ export const LightMode = {
         tabBarColor: "white",
         sheet: "white",
         lightGray: "#dfdfdf",
+        veryLightGray: "#eaeaea",
         cellColor: "white",
         chevron: "#c4c4c6",
         textField: "white",

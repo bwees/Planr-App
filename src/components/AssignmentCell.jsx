@@ -3,13 +3,24 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { SHADOW, FONTS } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
-import { getAssignmentByID } from "../storage/StorageAPI";
+import { getAssignmentByID, updateStatus } from "../storage/StorageAPI";
+import { useState } from "react/cjs/react.development";
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+
+
 const AssignmentCell = (props) => {
     const { colors } = useTheme();
 
-    //console.log(props.assignment.dueDate)
+    const [assignment, setAssignment] = useState(props.assignment)
+
+    const options = {
+        enableVibrateFallback: true,
+        ignoreAndroidSystemSettings: false
+    };
 
     return (
+
+
         <TouchableOpacity style={[SHADOW,
             {
                 width: "100%",
@@ -26,23 +37,36 @@ const AssignmentCell = (props) => {
 
             onPress={() => {
                 props.navigation.navigate('AssignmentDetail', {
-                    assignmentID: props.assignment.id
+                    assignmentID: assignment.id
                 });
             }}>
 
-            <View style={{ width: "90%" }}>
-                <Text numberOfLines={1} style={[FONTS.h3, FONTS.bold, { color: colors.primary }]}>{props.assignment.name}</Text>
+            <View style={{ flex: 1 }}>
+                <Text numberOfLines={1} style={[FONTS.h3, FONTS.bold, { color: colors.primary }]}>{assignment.name}</Text>
                 <View style={{ flexDirection: "row", marginTop: 2 }}>
                     <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 12 }}>
                         <Ionicons name={"time"} size={14} color={colors.assignmentCellText} />
-                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>{props.assignment.time + "-" + (props.assignment.time + 5) + " Minutes"}</Text>
+                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>{assignment.time + "-" + (assignment.time + 5) + " Minutes"}</Text>
                     </View>
                     <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 12 }}>
                         <Ionicons name={"calendar"} size={14} color={colors.assignmentCellText} />
-                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>Due {new Date(props.assignment.dueDate).toLocaleDateString()}</Text>
+                        <Text style={[FONTS.h4, { paddingLeft: 4, color: colors.assignmentCellText }]}>Due {new Date(assignment.dueDate).toLocaleDateString()}</Text>
                     </View>
                 </View>
             </View>
+            {assignment.status != 2 &&
+
+                <TouchableOpacity
+                    style={{ alignItems: "center", margin: 4, padding: 4, backgroundColor: colors.veryLightGray, borderRadius: 8 }}
+                    onPress={() => {
+                        updateStatus(props.assignment.id, 2)
+                        setAssignment(getAssignmentByID(assignment.id))
+                        ReactNativeHapticFeedback.trigger("impactLight", options);
+                    }}>
+                    <Ionicons name={"checkmark-circle"} size={30} color={colors.primary} style={{ paddingLeft: 2 }} />
+                    <Text style={{ fontSize: 8, color: colors.gray, marginTop: 4 }}>MARK DONE</Text>
+                </TouchableOpacity>
+            }
             <View>
                 <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingRight: 8 }} />
             </View>
