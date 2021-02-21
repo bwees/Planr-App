@@ -43,6 +43,7 @@
     "react-native-safe-area-view": "^1.1.1",
     "react-native-safe-area-view-with-get-inset": "^0.10.0",
     "react-native-screens": "^2.14.0",
+    "react-native-sound": "^0.11.0",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-svg": "^7.2.1",
     "react-native-ui-stepper": "^1.2.4",

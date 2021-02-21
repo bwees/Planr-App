@@ -61,6 +61,10 @@ export function getAssignmentsByDate(filter) {
     return objects
 }
 
+export function getTodayAssignments() {
+    return realm.objects("Assignment").filtered("dueDate == $0 && status != 2", stripTime(new Date()).toString());
+}
+
 export function updateStatus(id, newStatus) {
     realm.write(() => {
         realm.create("Assignment", { id: id, status: newStatus }, "modified");
