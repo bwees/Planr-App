@@ -1,3 +1,3 @@
 function generateHomeworkSchedule(assignments, workTimes) {
-    console.log(assignments)
+    console.log(assignments, workTimes)
 }
