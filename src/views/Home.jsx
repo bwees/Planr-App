@@ -21,6 +21,7 @@ import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getTodayAssignments } from "../storage/StorageAPI";
+import { generateHomeworkSchedule } from "../algorithm/HomeworkScheduleAlgo";
 
 const Home = (props) => {
   const { colors } = useTheme();
@@ -47,6 +48,8 @@ const Home = (props) => {
   };
 
   var [assignments, setAssignments] = useState(getTodayAssignments());
+
+  generateHomeworkSchedule(assignments, []);
 
   React.useEffect(() => {
     const refreshList = props.navigation.addListener("focus", () =>
