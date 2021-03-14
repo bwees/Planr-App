@@ -1,5 +1,5 @@
 import { useTheme } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet, Keyboard, KeyboardAvoidingView, FlatList } from "react-native";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -15,6 +15,7 @@ import uuid from 'react-native-uuid';
 import { addDate, stripTime } from "../Helpers";
 import RNFS from "react-native-fs";
 import mime from "mime";
+import { color, ColorSpace } from "react-native-redash";
 
 
 const CreateAssignment = (props) => {
@@ -30,15 +31,30 @@ const CreateAssignment = (props) => {
     const [files, setFiles] = useState([]);
 
     const [imageCount, setImageCount] = useState(1);
+    const [saveEnabled, setSaveEnabled] = useState(false);
+
+    const [nameValidation, setNameValidation] = useState(false)
+    const [classValidation, setClassValidation] = useState(false)
+    const [typeValidation, setTypeValidation] = useState(false)
+    
+    useEffect(() => {
+        if (nameValidation && classValidation && typeValidation)
+            setSaveEnabled(true)
+        else
+            setSaveEnabled(false)
+    }, [nameValidation, typeValidation, classValidation])
+
 
     // Handle returning with parameters
     props.navigation.addListener('focus', () => {
         if (props.route.params?.selection) {
             if (props.route.params?.fieldName === "Class") {
                 setClassSelection(props.route.params.selection)
+                setClassValidation(true)
             }
             else if (props.route.params?.fieldName === "Type") {
                 setTypeSelection(props.route.params.selection)
+                setTypeValidation(true)
             }
             else if (props.route.params?.fieldName === "Calendar") {
                 setDueDate(props.route.params.selection)
@@ -55,7 +71,11 @@ const CreateAssignment = (props) => {
             paddingRight: 4,
             alignItems: "center",
             flexDirection: "row",
+        },
+        enabledText: {
+            color: colors.primary
         }
+
     });
 
 
@@ -84,14 +104,15 @@ const CreateAssignment = (props) => {
             }
 
         } catch (err) {
-            //Handling any exception (If any)
             if (!DocumentPicker.isCancel(err)) {
                 throw err;
             }
         }
     };
 
-    attachPhotos = (res) => {
+
+
+    function attachPhotos(res) {
         const id = uuid();
 
         fileObj = {
@@ -116,7 +137,7 @@ const CreateAssignment = (props) => {
         setFiles([...files, fileObj]);
     }
 
-    deleteAttachments = () => {
+    function deleteAttachments() {
         for (const attachment of files) {
             RNFS.unlink(attachment.path)
                 .catch((err) => {
@@ -148,8 +169,10 @@ const CreateAssignment = (props) => {
                             files
                         );
                         props.navigation.goBack();
-                    }}>
-                    <Text style={{ color: colors.primary, fontSize: 18, fontWeight: "bold" }}>Done</Text>
+                    }}
+                    disabled={!saveEnabled}
+                >
+                    <Text style={[{ fontSize: 18, fontWeight: "bold" }, (saveEnabled ? { color: colors.primary } : { color: colors.lightGray })]}>Done</Text>
                 </TouchableOpacity>
             </View>
 
@@ -160,7 +183,17 @@ const CreateAssignment = (props) => {
 
                 {/* Assignement Name */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 24 }]}>
-                    <TextInput style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]} selectionColor={colors.primary} placeholder={"Assignment Name"} onChangeText={text => setAssignmentName(text)} />
+                    <TextInput
+                        style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]}
+                        selectionColor={colors.primary} placeholder={"Assignment Name"}
+                        onChangeText={text => {
+                            setAssignmentName(text)
+                            if (text.trim() === "")
+                                setNameValidation(false)
+                            else
+                                setNameValidation(true)
+                        }}
+                    />
                 </View>
 
 
