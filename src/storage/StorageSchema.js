@@ -32,8 +32,9 @@ const WorkTime = {
         name: "string",
         start: "string",
         end: "string",
-        minutes: "int"
+        minutes: "int",
+        id: "string"
     }
 }
 
-export const schema = [AssignmentSchema, FileSchema]
+export const schema = [AssignmentSchema, FileSchema, WorkTime]

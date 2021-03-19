@@ -4,9 +4,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useColorScheme } from "react-native-appearance";
 import HomeStack from "./HomeStack";
 import { DarkMode, LightMode } from "../Theme";
-import AssignmentListStack from "./AssignmentListStack";
 import CalendarView from "./CalendarViewStack";
-import ActivityList from "../views/ActivityList";
+import WorkTimeList from "../views/WorkTimeList";
+import AssignmentList from "../views/AssignmentList";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,8 +49,8 @@ function TabNavigator() {
                         case "Calendar":
                             iconName = focused ? "ios-calendar" : "ios-calendar-outline";
                             break;
-                        case "Activities":
-                            iconName = focused ? "ios-compass" : "ios-compass-outline";
+                        case "WorkTimes":
+                            iconName = focused ? "ios-time" : "ios-time-outline";
                             break;
                     }
 
@@ -62,9 +62,9 @@ function TabNavigator() {
         >
 
             <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="AssignmentList" component={AssignmentListStack} />
+            <Tab.Screen name="AssignmentList" component={AssignmentList} />
             <Tab.Screen name="Calendar" component={CalendarView} />
-            <Tab.Screen name="Activities" component={ActivityList} />
+            <Tab.Screen name="WorkTimes" component={WorkTimeList} />
 
 
         </Tab.Navigator>

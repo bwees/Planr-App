@@ -43,3 +43,25 @@ export function stringToDateObject(dateStr) {
     var f = new Date(from[0], from[1] - 1, from[2])
     return f
 }
+
+export function getTimeDiffMins(t1, t2) {
+    t1p = new Date(
+        t1.getFullYear(),
+        t1.getMonth(),
+        t1.getDate(),
+        0,0,0)
+    t2p = new Date(
+        t2.getFullYear(),
+        t2.getMonth(),
+        t2.getDate(),
+        0,0,0)
+
+    t1d = t1-t1p
+    t2d = t2-t2p
+    return Math.abs((t2d-t1d)/60000)
+}
+
+Date.prototype.addHours = function(h) {
+    this.setTime(this.getTime() + (h*60*60*1000));
+    return this;
+}

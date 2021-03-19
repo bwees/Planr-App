@@ -2,10 +2,9 @@ import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
 import _, { assign } from "lodash"
-import { groupedToSectionList, stringToDateObject, stripTime } from "../Helpers";
+import { getTimeDiffMins, groupedToSectionList, stringToDateObject, stripTime } from "../Helpers";
 
-
-const realm = new Realm({ schema: schema });
+var realm = new Realm({ schema: schema });
 
 export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
     realm.write(() => {
@@ -22,6 +21,7 @@ export function saveAssignment(name, type, className, dueDate, time, notes, atta
         });
     });
 }
+
 export function editAssignment(id, name, type, className, dueDate, time, notes, attachments, status) {
     realm.write(() => {
         const editedAssignment = realm.create("Assignment", {
@@ -74,6 +74,7 @@ export function updateStatus(id, newStatus) {
 export function getAssignmentByID(id) {
     return realm.objectForPrimaryKey('Assignment', id);
 }
+
 export function deleteAssignmentWithID(id) {
     realm.write(() => {
         realm.delete(realm.objectForPrimaryKey('Assignment', id));
@@ -84,3 +85,28 @@ export function groupAssignmentsBy(assignments, key) {
     return groupedToSectionList(_.mapValues(_.groupBy(assignments, key), clist => clist.map(assignment => assignment)));
 }
 
+export function saveWorkTime(name, start, end) {
+    realm.write(() => {
+        const newWT = realm.create("WorkTime", {
+            name: name,
+            start: start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            end: end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            minutes: getTimeDiffMins(start, end),
+            id: uuid()
+        });
+    });
+}
+
+export function deleteWorkTime(id) {
+    realm.write(() => {
+        realm.delete(realm.objectForPrimaryKey('WorkTime', id));
+    })
+}
+
+export function getWorkTimes() {
+    return realm.objects("WorkTime");
+}
+
+export function deleteRealm() {
+    Realm.deleteFile({schema: schema})
+}
