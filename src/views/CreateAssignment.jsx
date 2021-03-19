@@ -179,7 +179,7 @@ const CreateAssignment = (props) => {
             <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
 
             <KeyboardAwareScrollView style={{ paddingHorizontal: 20, paddingTop: 16, flex: 1 }} extraHeight={150}>
-                <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, paddingBottom: 16 }]}>New Assignment</Text>
+                <Text style={[FONTS.h1, FONTS.bold, { color: colors.primary, paddingBottom: 16 }]}>Create Assignment</Text>
 
                 {/* Assignement Name */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 24 }]}>
