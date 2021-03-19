@@ -109,7 +109,7 @@ const Home = (props) => {
                     Homework Schedule
                   </Text>
                   <Text style={[FONTS.h4, { color: colors.gray }]}>
-                    8 Assignments, 2 Activities
+                    {assignments.length} Assignments
                   </Text>
                 </View>
                 <View
