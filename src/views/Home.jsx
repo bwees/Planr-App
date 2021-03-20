@@ -25,6 +25,7 @@ const Home = (props) => {
     var [alertPresent, setPresent] = useState(false)
     
     function refreshList() {
+        console.log("yddddd")
         setSchedule(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
     }
 
@@ -42,7 +43,7 @@ const Home = (props) => {
                     [{
                         onPress: () => { 
                             setPresent(false); 
-                            props.navigation.navigate("WorkTimes");
+                            props.navigation.navigate("CreateWorkTime");
                         } 
                     }], { cancelable: false });
             }
@@ -73,7 +74,7 @@ const Home = (props) => {
                             <TimeChart
                                 progress={isNaN(schedule.percent) ? 0 : schedule.percent}
                                 title={"Homework Time"}
-                                time={schedule.usedTime + " Minutes"}
+                                time={schedule.usedTime + "m Remaining"}
                                 subtitle={"Light workload expected."}
                                 barColor={"white"}
                                 textColor={"white"}
@@ -123,16 +124,17 @@ const Home = (props) => {
                                     stickySectionHeadersEnabled={false}
                                     sections={schedule.sched}
                                     renderSectionHeader={({ section: { title } }) => (
-                                        <ListSeperator icon="ios-time" color={colors.primary} label={title} />
+                                        <ListSeperator icon={title.includes("Unfit Assignments") ? "ios-alert-circle" : "ios-time"} color={colors.primary} label={title} />
                                     )}
                                     renderItem={({ item }) => (
                                         <AssignmentCell
                                             assignment={item}
                                             navigation={props.navigation}
-                                            deleteAnimation={true}
-                                            onSetDone={() => refreshList()}
+                                            deleteAnimation={false}
+                                            onSetDone={()=>refreshList()}
                                         />
                                     )}
+                                    extraData={schedule}
                                     keyExtractor={(item, index) => item + index}
                                 />
                             </Animated.View>
