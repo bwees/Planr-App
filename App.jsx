@@ -3,7 +3,6 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import * as React from 'react';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { DarkMode, LightMode } from './src/Theme';
-
 import TabNavigator from './src/navigation/TabNavigator';
 import AssignmentDetail from './src/views/AssignmentDetail'
 import TimeManagement from './src/views/TimeManagement';
@@ -12,6 +11,8 @@ import CreateAssignmentStack from './src/navigation/CreateAssignmentStack';
 import EditAssignmentStack from './src/navigation/EditAssignmentStack';
 import { LogBox } from 'react-native';
 import SettingsStack from './src/navigation/SettingsStack';
+import SyncStorage from 'sync-storage';
+import { useState } from 'react';
 
 const MainStack = createStackNavigator();
 
@@ -23,9 +24,34 @@ function App() {
         "Non-serializable values were found in the navigation state.",
         "`-[RCTRootView cancelTouches]` is deprecated and will be deleted soon."
     ]);
+
+    var cs = useColorScheme();
+
+    const [theme, setTheme] = useState(useColorScheme())
+
+    async function getTheme() {
+        await SyncStorage.init()
+        var t = SyncStorage.get("theme")
+
+
+        if (t == undefined || t == 0) {
+            return cs
+        } else if (t == 1) {
+            return "light"
+        } else if (t == 2) {
+            return "dark"
+        }
+
+        return cs
+    }
+    
+    getTheme().then((t) => {
+        setTheme(t)
+    })
+
     return (
         <AppearanceProvider>
-            <NavigationContainer theme={useColorScheme() === "dark" ? DarkMode : LightMode}>
+            <NavigationContainer theme={theme === "dark" ? DarkMode : LightMode}>
                 <MainStack.Navigator
                     initialRouteName="Tabs"
                     screenOptions={({ route }) => {

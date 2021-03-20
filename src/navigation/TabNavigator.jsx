@@ -7,14 +7,14 @@ import { DarkMode, LightMode } from "../Theme";
 import CalendarView from "./CalendarViewStack";
 import WorkTimeList from "../views/WorkTimeList";
 import AssignmentList from "../views/AssignmentList";
+import { useTheme } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
 
-    const scheme = useColorScheme();
+    const { colors } = useTheme();
 
-    const { colors } = useColorScheme() === "dark" ? DarkMode : LightMode;
 
     const tabOptions = {
         showLabel: false,

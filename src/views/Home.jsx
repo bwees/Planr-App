@@ -26,7 +26,6 @@ const Home = (props) => {
     var [alertPresent, setPresent] = useState(false)
     
     function refreshList() {
-        console.log("yddddd")
         setSchedule(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
     }
 
@@ -75,7 +74,7 @@ const Home = (props) => {
                             <TimeChart
                                 progress={isNaN(schedule.percent) ? 0 : schedule.percent}
                                 title={"Homework Time"}
-                                time={minutesToTimeString(schedule.usedTime)}
+                                time={minutesToTimeString(schedule.usedTime) + " Remaining"}
                                 subtitle={"Light workload expected."}
                                 barColor={"white"}
                                 textColor={"white"}

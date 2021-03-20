@@ -11,7 +11,7 @@ import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
 import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../storage/StorageAPI";
 import RNFS from "react-native-fs"
-import { minutesToTimeString } from "../Helpers";
+import { getTheme, minutesToTimeString } from "../Helpers";
 
 
 const AssignmentDetail = ({ route, navigation }) => {
@@ -104,6 +104,7 @@ const AssignmentDetail = ({ route, navigation }) => {
                                                 setStatus(event.nativeEvent.selectedSegmentIndex);
                                                 updateStatus(assignment.id, event.nativeEvent.selectedSegmentIndex);
                                             }}
+                                            appearance={getTheme()}
                                         />
                                     </View>
 

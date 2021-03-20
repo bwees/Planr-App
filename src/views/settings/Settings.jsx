@@ -1,13 +1,14 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, Alert, InteractionManager } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { FONTS, SHADOW } from "../../Theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
 import SegmentedControl from "@react-native-community/segmented-control";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import SyncStorage from 'sync-storage';
 import { deleteRealm } from "../../storage/StorageAPI";
+import { getTheme } from "../../Helpers";
 
 const Settings = (props) => {
     const { colors } = useTheme();
@@ -118,23 +119,14 @@ const Settings = (props) => {
                             }}
                         >
                             Theme
-            </Text>
+                        </Text>
                         <SegmentedControl
                             values={["System Theme", "Light", "Dark"]}
-                            selectedIndex={0}
+                            selectedIndex={parseInt(SyncStorage.get("theme"))}
                             onChange={(event) => {
-                                const storeData = async () => {
-                                    try {
-                                        await AsyncStorage.setItem(
-                                            "theme",
-                                            event.nativeEvent.selectedSegmentIndex.toString()
-                                        );
-                                    } catch (e) {
-                                        console.log(e);
-                                    }
-                                };
-                                storeData();
+                                SyncStorage.set('theme', event.nativeEvent.selectedSegmentIndex.toString());
                             }}
+                            appearance={getTheme()}
                         />
                         <Text
                             style={{ color: colors.gray, fontSize: 12, paddingVertical: 4 }}

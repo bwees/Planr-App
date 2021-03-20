@@ -1,4 +1,5 @@
-
+import { useColorScheme } from 'react-native-appearance';
+import SyncStorage from 'sync-storage';
 
 export function stripTime(input) {
     return new Date(input.getFullYear(), input.getMonth(), input.getDate())
@@ -63,10 +64,25 @@ export function getTimeDiffMins(t1, t2) {
 
 export function minutesToTimeString(minutes) {
     if (minutes < 60) {
-        return minutes + " Minutes"
+        return minutes + "m"
     } else {
-        return Math.round((minutes/60) * 10) / 10 + " Hours"
+        return Math.floor(minutes/60) + "h " + minutes%60 + "m"
     }
+}
+
+export function getTheme() {
+    var t = SyncStorage.get("theme")
+    var cs = useColorScheme();
+
+    if (t == undefined || t == 0) {
+        return cs
+    } else if (t == 1) {
+        return "light"
+    } else if (t == 2) {
+        return "dark"
+    }
+
+    return cs
 }
 
 Date.prototype.addHours = function(h) {
