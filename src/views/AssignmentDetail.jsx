@@ -82,7 +82,7 @@ const AssignmentDetail = ({ route, navigation }) => {
 
                                     <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
                                         <Ionicons name="time" size={20} color={colors.text} />
-                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + "-" + (assignment.time + 5) + " Minutes"}</Text>
+                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + " Minutes"}</Text>
                                     </View>
 
                                     <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>

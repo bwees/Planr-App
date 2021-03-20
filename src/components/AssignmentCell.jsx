@@ -191,7 +191,7 @@ const AssignmentCell = (props) => {
                                             { paddingLeft: 4, color: colors.assignmentCellText },
                                         ]}
                                     >
-                                        {assignment.time + "-" + (assignment.time + 5) + " Minutes"}
+                                        {assignment.time + " Minutes"}
                                     </Text>
                                 </View>
                                 <View

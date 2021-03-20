@@ -74,7 +74,7 @@ const Home = (props) => {
                             <TimeChart
                                 progress={isNaN(schedule.percent) ? 0 : schedule.percent}
                                 title={"Homework Time"}
-                                time={schedule.usedTime + "m Remaining"}
+                                time={schedule.usedTime + " Minutes"}
                                 subtitle={"Light workload expected."}
                                 barColor={"white"}
                                 textColor={"white"}
