@@ -1,6 +1,7 @@
 import Item from "./packer/Item"
 import Bin from "./packer/Bin"
 import Packer from "./packer/Packer"
+import { minutesToTimeString } from "../Helpers"
 
 export function generateHomeworkSchedule(assignments, workTimes) {
 
@@ -26,15 +27,18 @@ export function generateHomeworkSchedule(assignments, workTimes) {
     packer.pack();
 
     // Pack unfit items into expandable work times
-    packer.unpacked.forEach(item => {
+    var toRemove = []
+    packer.unpacked.forEach((item, index) => {
         workBins.some((bin) => {
             if (bin.data.canExpand) {
+                toRemove.push(index)
                 bin.add(item)
-                console.log("Packed oversized " + item.data.name + " into " + bin.data.name)
                 return true
             }
         })
     })
+
+    toRemove.forEach(item => packer.unpacked.splice(item))
 
     // Pack unfit items into seperate section
     if (packer.unpacked.length > 0) {
@@ -54,7 +58,7 @@ export function generateHomeworkSchedule(assignments, workTimes) {
         b.title = item.data.name
         
         if (item.remaining < 0) {
-            b.title += " (" + Math.abs(item.remaining) + " Minutes Over)"
+            b.title += " (" + minutesToTimeString(Math.abs(item.remaining)) + " Over)"
         } 
 
         b.data = []
