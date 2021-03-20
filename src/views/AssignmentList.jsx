@@ -144,7 +144,6 @@ const AssignmentList = (props) => {
               assignment={item}
               navigation={props.navigation}
               swipeEnabled={false}
-              onDelete={() => updateAssignmentList(filterText)}
               deleteAnimation={false}
             />
           )}
