@@ -61,6 +61,14 @@ export function getTimeDiffMins(t1, t2) {
     return Math.abs((t2d-t1d)/60000)
 }
 
+export function minutesToTimeString(minutes) {
+    if (minutes < 60) {
+        return minutes + " Minutes"
+    } else {
+        return Math.round((minutes/60) * 10) / 10 + " Hours"
+    }
+}
+
 Date.prototype.addHours = function(h) {
     this.setTime(this.getTime() + (h*60*60*1000));
     return this;

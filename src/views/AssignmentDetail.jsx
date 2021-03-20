@@ -11,6 +11,7 @@ import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
 import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../storage/StorageAPI";
 import RNFS from "react-native-fs"
+import { minutesToTimeString } from "../Helpers";
 
 
 const AssignmentDetail = ({ route, navigation }) => {
@@ -82,7 +83,7 @@ const AssignmentDetail = ({ route, navigation }) => {
 
                                     <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>
                                         <Ionicons name="time" size={20} color={colors.text} />
-                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{assignment.time + " Minutes"}</Text>
+                                        <Text style={[FONTS.h3, { color: colors.text, paddingLeft: 8 }]}>{minutesToTimeString(assignment.time)}</Text>
                                     </View>
 
                                     <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 4 }}>

@@ -17,6 +17,7 @@ import AssignmentCell from "../components/AssignmentCell";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getTodayAssignments, getWorkTimes } from "../storage/StorageAPI";
 import { generateHomeworkSchedule } from "../algorithm/HomeworkScheduleAlgo";
+import { minutesToTimeString } from "../Helpers";
 
 const Home = (props) => {
     const { colors } = useTheme();
@@ -74,7 +75,7 @@ const Home = (props) => {
                             <TimeChart
                                 progress={isNaN(schedule.percent) ? 0 : schedule.percent}
                                 title={"Homework Time"}
-                                time={schedule.usedTime + " Minutes"}
+                                time={minutesToTimeString(schedule.usedTime)}
                                 subtitle={"Light workload expected."}
                                 barColor={"white"}
                                 textColor={"white"}

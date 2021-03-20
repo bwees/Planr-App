@@ -15,6 +15,7 @@ import Interactable from "react-native-interactable";
 import { useRef } from "react";
 import Sound from "react-native-sound";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import { minutesToTimeString } from "../Helpers";
 
 const AssignmentCell = (props) => {
     const { colors } = useTheme();
@@ -191,7 +192,7 @@ const AssignmentCell = (props) => {
                                             { paddingLeft: 4, color: colors.assignmentCellText },
                                         ]}
                                     >
-                                        {assignment.time + " Minutes"}
+                                        {minutesToTimeString(assignment.time)}
                                     </Text>
                                 </View>
                                 <View
