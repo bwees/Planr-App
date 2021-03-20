@@ -24,7 +24,7 @@ export const LightMode = {
         headerBorder: "#e3e3e3",
         assignmentCellText: "#888888",
         stepperOutline: "white",
-        stepperDateFill: "#eaeaea",
+        stepperDateFill: "#E9E9EB",
         searchBar: "#eaeaea",
         listSeperator: null
     },
@@ -50,7 +50,7 @@ export const DarkMode = {
         headerBorder: "#2a2a2a",
         textField: "#1c1c1c",
         stepperOutline: "#3d3d3d",
-        stepperDateFill: "#2d2d2d",
+        stepperDateFill: "#39393D",
         searchBar: "#2d2d2d",
         listSeperator: "#0f0f0f"
 

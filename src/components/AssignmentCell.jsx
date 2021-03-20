@@ -68,11 +68,12 @@ const AssignmentCell = (props) => {
               a.start(() => {
                 updateStatus(props.assignment.id, 2);
                 setAssignment(getAssignmentByID(assignment.id));
-                //props.onSetDone();
+                props.onSetDone();
               });
             } else {
               updateStatus(props.assignment.id, 2);
               setAssignment(getAssignmentByID(assignment.id));
+              props.onSetDone();
             }
             chime();
           }}
@@ -113,7 +114,6 @@ const AssignmentCell = (props) => {
         animatedValueY={_deltaY}
         ref={interactableRef}
         dragEnabled={assignment.status != 2}
-        onAlert={(e) => console.log(e.nativeEvent)}
         alertAreas={[{id: 'myArea', influenceArea: {right: -100}}]}
       >
         {/* Cell */}

@@ -220,7 +220,7 @@ const EditAssignment = ({ route, navigation }) => {
                             borderColor={colors.stepperOutline}
                             borderRadius={8}
                             minimumValue={5}
-                            initialValue={15}
+                            initialValue={timeLength}
                             steps={5}
                         />
                     </View>

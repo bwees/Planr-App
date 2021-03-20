@@ -1,22 +1,11 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet, Keyboard, KeyboardAvoidingView, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Switch } from "react-native";
 import { FONTS, SHADOW } from "../Theme";
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import UIStepper from 'react-native-ui-stepper';
 import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import FileCell from "../components/FileCell";
-import DocumentPicker from 'react-native-document-picker';
-import ActionSheet from 'react-native-actionsheet'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { saveAssignment, saveWorkTime } from "../storage/StorageAPI";
-import uuid from 'react-native-uuid';
-import { addDate, getTimeDiffMins, stripTime } from "../Helpers";
+import { saveWorkTime } from "../storage/StorageAPI";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
-
-
 
 const CreateAssignment = (props) => {
 
@@ -28,6 +17,9 @@ const CreateAssignment = (props) => {
     
     const [startVisible, setStartVisible] = useState(false)
     const [endVisible, setEndVisible] = useState(false)
+
+    const [canExpand, setCanExpand] = useState(false);
+
 
     const styles = StyleSheet.create({
         textField: {
@@ -57,7 +49,8 @@ const CreateAssignment = (props) => {
                         saveWorkTime(
                             workTimeName,
                             startTime,
-                            endTime
+                            endTime,
+                            canExpand
                         );
                         props.navigation.goBack();
                     }}>
@@ -115,6 +108,19 @@ const CreateAssignment = (props) => {
                     >
                         <Text style={[FONTS.h3, { color: colors.primary }]}>{endTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</Text>
                     </TouchableOpacity>
+                </View>
+
+                {/* Can Extend */}
+                <View height={44} style={[styles.textField, SHADOW, { marginBottom: 8, justifyContent: "space-between" }]}>
+                    <Text style={[FONTS.h3, { color: colors.gray }]}>Can Extend</Text>
+                    <Switch
+                        style={{
+                            marginRight: 8
+                        }}
+                        trackColor={{ false: colors.lightGray, true: colors.primary }}
+                        onValueChange={() => setCanExpand(!canExpand)}
+                        value={canExpand}
+                    />
                 </View>
             </KeyboardAwareScrollView>
             <DateTimePickerModal

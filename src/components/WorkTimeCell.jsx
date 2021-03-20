@@ -38,7 +38,7 @@ const AssignmentCell = (props) => {
                     props.onDelete()
                 }}
             >
-                <Ionicons name={"ios-trash"} size={27} color={colors.primary} />
+                <Ionicons name={"ios-trash"} size={24} color={colors.primary} />
             </TouchableOpacity>
 
         </View >

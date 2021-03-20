@@ -85,13 +85,14 @@ export function groupAssignmentsBy(assignments, key) {
     return groupedToSectionList(_.mapValues(_.groupBy(assignments, key), clist => clist.map(assignment => assignment)));
 }
 
-export function saveWorkTime(name, start, end) {
+export function saveWorkTime(name, start, end, canExpand) {
     realm.write(() => {
         const newWT = realm.create("WorkTime", {
             name: name,
             start: start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
             end: end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
             minutes: getTimeDiffMins(start, end),
+            canExpand: canExpand,
             id: uuid()
         });
     });

@@ -2,14 +2,9 @@ import React from "react";
 import {
     View,
     Text,
-    ScrollView,
-    TouchableOpacity,
-    Dimensions,
-    SafeAreaView,
-    StatusBar,
-    Button,
-    FlatList,
     Animated,
+    SectionList,
+    Alert,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { FONTS, SHADOW, SIZES } from "../Theme";
@@ -26,17 +21,33 @@ import { generateHomeworkSchedule } from "../algorithm/HomeworkScheduleAlgo";
 const Home = (props) => {
     const { colors } = useTheme();
 
+    var [schedule, setSchedule]= useState(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
+    var [alertPresent, setPresent] = useState(false)
     
-    var [assignments, setAssignments] = useState(getTodayAssignments());
-    
-    var {sched, usedTime, totalTime} = generateHomeworkSchedule(getTodayAssignments(), getWorkTimes());
-    var [progress, setProgress] = useState(usedTime/totalTime);
+    function refreshList() {
+        setSchedule(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
+    }
 
     React.useEffect(() => {
-        props.navigation.addListener("focus", () =>
-            setAssignments(getTodayAssignments())
-        );
+        props.navigation.addListener("focus", () => {
+            refreshList()
+        });
     }, [props.navigation]);
+
+    React.useEffect(() => {
+         if (!isFinite(schedule.percent)) {
+            if (!alertPresent) {
+                setPresent(true)
+                Alert.alert("Work Time", "Add a valid work time to continue.", 
+                    [{
+                        onPress: () => { 
+                            setPresent(false); 
+                            props.navigation.navigate("WorkTimes");
+                        } 
+                    }], { cancelable: false });
+            }
+         }
+    }, [schedule]);
 
     const insets = useSafeAreaInsets();
 
@@ -60,9 +71,9 @@ const Home = (props) => {
                             }}
                         >
                             <TimeChart
-                                progress={progress}
+                                progress={isNaN(schedule.percent) ? 0 : schedule.percent}
                                 title={"Homework Time"}
-                                time={usedTime + " Minutes"}
+                                time={schedule.usedTime + " Minutes"}
                                 subtitle={"Light workload expected."}
                                 barColor={"white"}
                                 textColor={"white"}
@@ -90,7 +101,7 @@ const Home = (props) => {
                                         Homework Schedule
                                     </Text>
                                     <Text style={[FONTS.h4, { color: colors.gray }]}>
-                                        {assignments.length} Assignments
+                                        {schedule.numAssignments} Assignments
                                     </Text>
                                 </View>
                                 <View
@@ -103,23 +114,26 @@ const Home = (props) => {
                                 />
                             </View>
                             <Animated.View style={{ flex: 1 }}>
-                                <Animated.FlatList
+                                <SectionList
                                     contentContainerStyle={{
                                         justifyContent: "space-between",
                                         marginHorizontal: 20,
-                                        paddingTop: 8,
                                         overflow: false,
                                     }}
-                                    data={assignments}
+                                    stickySectionHeadersEnabled={false}
+                                    sections={schedule.sched}
+                                    renderSectionHeader={({ section: { title } }) => (
+                                        <ListSeperator icon="ios-time" color={colors.primary} label={title} />
+                                    )}
                                     renderItem={({ item }) => (
                                         <AssignmentCell
                                             assignment={item}
                                             navigation={props.navigation}
                                             deleteAnimation={true}
-                                            onSetDone={() => setAssignments(getTodayAssignments())}
+                                            onSetDone={() => refreshList()}
                                         />
                                     )}
-                                    keyExtractor={(item) => item.id}
+                                    keyExtractor={(item, index) => item + index}
                                 />
                             </Animated.View>
                         </View>

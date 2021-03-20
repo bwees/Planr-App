@@ -1,26 +1,42 @@
-// import Box from "./packer/Box"
+import Item from "./packer/Item"
+import Bin from "./packer/Bin"
+import Packer from "./packer/Packer"
 
 export function generateHomeworkSchedule(assignments, workTimes) {
 
     assignmentBoxes = []
     workBins = []
+    var usedTime = 0
 
-    // assignments.forEach(function (item, index) {
-    //     assignmentBoxes.push([item, new Box(item.time, 1, true)])
-    // });
+    assignments.forEach(function (item) {
+        assignmentBoxes.push(new Item(item.time, item))
+        usedTime += item.time
+    });
+    assignmentBoxes.sort((a, b) => (a.width < b.width) ? 1 : -1) // sort by largest
 
-    // workTimes.forEach(function(item, index) {
-    //     workBins.push([item, new Bin(item.minutes, 1)])
-    // })
+    var totalTime = 0
+    workTimes.forEach(function(item) {
+        workBins.push(new Bin(item.minutes, item))
+        totalTime += item.minutes
+    })
 
-    // let packer = new Packer(workBins.map((item) => item[1]));
-    // packer.pack(assignmentBoxes.map((item) => item[1]));
+    let packer = new Packer(workBins, assignmentBoxes);
+    packer.pack();
 
-    // console.log(packer.unpackedBoxes)
+    
+    // create data structure for sectionList
+    schedule = []
 
-    // assignmentBoxes.forEach(function(item) {
-    //     console.log(item[1])
-    // })
+    workBins.forEach(function(item) {
+        var b = {}
+        b.title = item.data.name
+        b.data = []
+        item.packed.forEach((item) => {
+            b.data.push(item.data)
+        })
 
-    return {sched: [], usedTime: 12, totalTime: 40}    
+        schedule.push(b)
+    })
+
+    return {sched: schedule, usedTime: usedTime, percent: usedTime/totalTime, numAssignments: assignments.length}    
 }

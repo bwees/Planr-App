@@ -33,6 +33,7 @@ const WorkTime = {
         start: "string",
         end: "string",
         minutes: "int",
+        canExpand: "bool",
         id: "string"
     }
 }
