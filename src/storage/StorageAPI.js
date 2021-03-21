@@ -104,8 +104,26 @@ export function deleteWorkTime(id) {
     })
 }
 
+export function editWorkTime(id, name, start, end, canExpand) {
+    realm.write(() => {
+        const editedWorkTime = realm.create("WorkTime", {
+            name: name,
+            start: start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            end: end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            minutes: getTimeDiffMins(start, end),
+            canExpand: canExpand,
+            id: id
+        }, "modified");
+    });
+}
+
+
 export function getWorkTimes() {
     return realm.objects("WorkTime");
+}
+
+export function getWorkTimeByID(id) {
+    return realm.objectForPrimaryKey('WorkTime', id);
 }
 
 export function deleteRealm() {

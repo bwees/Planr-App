@@ -3,12 +3,13 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { SHADOW, FONTS } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
-import { deleteWorkTime, getAssignmentByID } from "../storage/StorageAPI";
-const AssignmentCell = (props) => {
+import { deleteWorkTime } from "../storage/StorageAPI";
+
+const WorkTimeCell = (props) => {
     const { colors } = useTheme();
 
     return (
-        <View style={[SHADOW,
+        <TouchableOpacity style={[SHADOW,
             {
                 width: "100%",
                 alignItems: "center",
@@ -21,6 +22,9 @@ const AssignmentCell = (props) => {
                 flexDirection: "row",
                 justifyContent: "space-between"
             }]}
+            onPress={() => props.navigation.navigate("EditWorkTime", {
+                workTimeID: props.workTime.id,
+            })}
         >
             <View style={{ flex: 1 }}>
                 <Text numberOfLines={1} style={[FONTS.h3, FONTS.bold, { color: colors.primary }]}>{props.workTime.name}</Text>
@@ -41,8 +45,8 @@ const AssignmentCell = (props) => {
                 <Ionicons name={"ios-trash"} size={24} color={colors.primary} />
             </TouchableOpacity>
 
-        </View >
+        </TouchableOpacity>
     );
 };
 
-export default AssignmentCell;
+export default WorkTimeCell;

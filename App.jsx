@@ -7,6 +7,7 @@ import TabNavigator from './src/navigation/TabNavigator';
 import AssignmentDetail from './src/views/AssignmentDetail'
 import TimeManagement from './src/views/TimeManagement';
 import CreateWorkTime from './src/views/CreateWorkTime';
+import EditWorkTime from './src/views/EditWorkTime';
 import CreateAssignmentStack from './src/navigation/CreateAssignmentStack';
 import EditAssignmentStack from './src/navigation/EditAssignmentStack';
 import { LogBox } from 'react-native';
@@ -71,6 +72,7 @@ function App() {
                     <MainStack.Screen name="CreateAssignmentStack" component={CreateAssignmentStack} />
                     <MainStack.Screen name="EditAssignment" component={EditAssignmentStack} />
                     <MainStack.Screen name="CreateWorkTime" component={CreateWorkTime} />
+                    <MainStack.Screen name="EditWorkTime" component={EditWorkTime} />
                     <MainStack.Screen name="Settings" component={SettingsStack} />
                 </MainStack.Navigator>
             </NavigationContainer>

@@ -4,15 +4,10 @@ import { View, Text, SectionList } from "react-native";
 import { TextInput, TouchableOpacity, ScrollView, FlatList } from "react-native-gesture-handler";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useState } from "react";
-import { Keyboard } from 'react-native'
-import ListSeperator from "../components/ListSeperator";
-import AssignmentCell from "../components/AssignmentCell";
-import { getAssignments, getWorkTimes, groupAssignmentsBy } from "../storage/StorageAPI";
-import { groupedToSectionList, sortByDate } from "../Helpers";
 import WorkTimeCell from "../components/WorkTimeCell";
+import { getWorkTimes } from "../storage/StorageAPI";
 
 const WorkTimeList = (props) => {
 
@@ -44,7 +39,8 @@ const WorkTimeList = (props) => {
                 <FlatList
                     style={{ paddingHorizontal: 20, paddingVertical: 16 }}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <WorkTimeCell workTime={item} 
+                    renderItem={({ item }) => <WorkTimeCell workTime={item}
+                        navigation={props.navigation}
                         onDelete={() => {
                             setWorkTimes(getWorkTimes())
                         }} />}
