@@ -20,6 +20,7 @@
 		446B6C4C9149FE084201DCAE /* libPods-Planr-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9FC79F2AC8CAA45482DF83 /* libPods-Planr-tvOSTests.a */; };
 		4DEBFDF9D8C8E58762080590 /* libPods-Planr-PlanrTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 354BEC32745478659490FBF0 /* libPods-Planr-PlanrTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C39242462606C8980092C096 /* planr_transparent.icns in Resources */ = {isa = PBXBuildFile; fileRef = C39242452606C8980092C096 /* planr_transparent.icns */; };
 		CA50B00825E198D400FA6BDD /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		CA84CF3A25E1F16800E97FA5 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = CA84CF3925E1F16800E97FA5 /* assets */; };
 /* End PBXBuildFile section */
@@ -38,13 +39,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "Planr-tvOS";
-		};
-		CADE0CD625E1F79C003591BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CADE0CD225E1F79C003591BF /* ReactNativeHaptic.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = ReactNativeHaptic;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -87,8 +81,8 @@
 		AA2651B688F34BBFBFDB19E2 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		B4B2732C2B6343BB8FC8241C /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		BAA335FB4B43410A9E093147 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		C39242452606C8980092C096 /* planr_transparent.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = planr_transparent.icns; path = ../resources/planr_transparent.icns; sourceTree = "<group>"; };
 		CA84CF3925E1F16800E97FA5 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../src/assets; sourceTree = "<group>"; };
-		CADE0CD225E1F79C003591BF /* ReactNativeHaptic.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeHaptic.xcodeproj; path = "../node_modules/react-native-haptic/ios/ReactNativeHaptic.xcodeproj"; sourceTree = "<group>"; };
 		CCD89CFFD009AAE3B10DF049 /* Pods-Planr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planr.release.xcconfig"; path = "Target Support Files/Pods-Planr/Pods-Planr.release.xcconfig"; sourceTree = "<group>"; };
 		D66CE0C89D774265BCA5657F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		E81CF61A0CE24DA2866189BF /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -201,7 +195,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				CADE0CD225E1F79C003591BF /* ReactNativeHaptic.xcodeproj */,
+				C39242452606C8980092C096 /* planr_transparent.icns */,
 				CA84CF3925E1F16800E97FA5 /* assets */,
 				13B07FAE1A68108700A75B9A /* Planr */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -223,14 +217,6 @@
 				00E356EE1AD99517003FC87E /* PlanrTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* Planr-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* Planr-tvOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CADE0CD325E1F79C003591BF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CADE0CD725E1F79C003591BF /* libReactNativeHaptic.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -382,12 +368,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = CADE0CD325E1F79C003591BF /* Products */;
-					ProjectRef = CADE0CD225E1F79C003591BF /* ReactNativeHaptic.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Planr */,
@@ -397,16 +377,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		CADE0CD725E1F79C003591BF /* libReactNativeHaptic.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativeHaptic.a;
-			remoteRef = CADE0CD625E1F79C003591BF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -420,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C39242462606C8980092C096 /* planr_transparent.icns in Resources */,
 				CA50B00825E198D400FA6BDD /* main.jsbundle in Resources */,
 				CA84CF3A25E1F16800E97FA5 /* assets in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
