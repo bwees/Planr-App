@@ -138,7 +138,6 @@ const CalendarView = (props) => {
                                 keyExtractor={(item, index) => item + index}
                                 stickySectionHeadersEnabled={false}
                                 renderItem={({ item }) => <AssignmentCell assignment={item} navigation={props.navigation} />}
-
                             />
                         </LinearGradient>
                     </View>

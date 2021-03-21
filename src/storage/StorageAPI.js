@@ -3,12 +3,13 @@ import { schema } from "./StorageSchema"
 import Realm from "realm"
 import _, { assign } from "lodash"
 import { getTimeDiffMins, groupedToSectionList, stringToDateObject, stripTime } from "../Helpers";
+import SyncStorage from 'sync-storage';
 
 var realm = new Realm({ schema: schema });
 
 export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
     realm.write(() => {
-        const newAssignment = realm.create("Assignment", {
+        realm.create("Assignment", {
             name: name,
             className: className,
             type: type,
@@ -24,7 +25,7 @@ export function saveAssignment(name, type, className, dueDate, time, notes, atta
 
 export function editAssignment(id, name, type, className, dueDate, time, notes, attachments, status) {
     realm.write(() => {
-        const editedAssignment = realm.create("Assignment", {
+        realm.create("Assignment", {
             id: id,
             name: name,
             className: className,
@@ -87,7 +88,7 @@ export function groupAssignmentsBy(assignments, key) {
 
 export function saveWorkTime(name, start, end, canExpand) {
     realm.write(() => {
-        const newWT = realm.create("WorkTime", {
+        realm.create("WorkTime", {
             name: name,
             start: start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
             end: end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
@@ -106,7 +107,7 @@ export function deleteWorkTime(id) {
 
 export function editWorkTime(id, name, start, end, canExpand) {
     realm.write(() => {
-        const editedWorkTime = realm.create("WorkTime", {
+        realm.create("WorkTime", {
             name: name,
             start: start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
             end: end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
@@ -128,4 +129,35 @@ export function getWorkTimeByID(id) {
 
 export function deleteRealm() {
     Realm.deleteFile({schema: schema})
+}
+
+
+export function addClass(n) {
+    realm.write(() => {
+        realm.create("Class", {
+            name: n,
+            id: uuid()
+        });
+    });
+}
+
+export function getClasses() {
+    return realm.objects("Class")
+}
+
+export function getClassesArray() {
+
+    var c = realm.objects("Class")
+    var f = []
+    c.forEach((item) => {
+        f.push(item.name)
+    })
+
+    return f
+}
+
+export function deleteClass(id) {
+    realm.write(() => {
+        realm.delete(realm.objectForPrimaryKey('Class', id));
+    })
 }

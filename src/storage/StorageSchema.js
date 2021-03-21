@@ -38,4 +38,14 @@ const WorkTime = {
     }
 }
 
-export const schema = [AssignmentSchema, FileSchema, WorkTime]
+const Class = {
+    name: "Class",
+    primaryKey: "id",
+    properties: {
+        name: "string",
+        id: "string"
+    }
+}
+
+
+export const schema = [AssignmentSchema, FileSchema, WorkTime, Class]

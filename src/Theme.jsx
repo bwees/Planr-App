@@ -26,7 +26,8 @@ export const LightMode = {
         stepperOutline: "white",
         stepperDateFill: "#E9E9EB",
         searchBar: "#eaeaea",
-        listSeperator: null
+        listSeperator: null,
+        tertiaryCell: "white"
     },
 };
 
@@ -52,8 +53,8 @@ export const DarkMode = {
         stepperOutline: "#3d3d3d",
         stepperDateFill: "#39393D",
         searchBar: "#2d2d2d",
-        listSeperator: "#0f0f0f"
-
+        listSeperator: "#0f0f0f",
+        tertiaryCell: "#2b2b2b"
     },
 };
 

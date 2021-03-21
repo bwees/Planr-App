@@ -17,12 +17,8 @@ const WorkTimeList = (props) => {
     const [workTimes, setWorkTimes] = useState(getWorkTimes())
 
     React.useEffect(() => {
-        props.navigation.addListener('focus', () => setWorkTimes(null));
+        props.navigation.addListener('focus', () => setWorkTimes(getWorkTimes()));
     }, [props.navigation])
-
-    props.navigation.addListener("focus", () =>
-      setWorkTimes(getWorkTimes())
-    );
 
     return (
         <View style={{ flex: 1 }}>
@@ -39,11 +35,14 @@ const WorkTimeList = (props) => {
                 <FlatList
                     style={{ paddingHorizontal: 20, paddingVertical: 16 }}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <WorkTimeCell workTime={item}
-                        navigation={props.navigation}
-                        onDelete={() => {
-                            setWorkTimes(getWorkTimes())
-                        }} />}
+                    renderItem={({ item }) =>
+                        <WorkTimeCell workTime={item}
+                            navigation={props.navigation}
+                            onDelete={() => {
+                                setWorkTimes(getWorkTimes())
+                            }}
+                        />
+                    }
                     data={getWorkTimes()}
                 />
             </View>

@@ -2,6 +2,7 @@ import { useTheme } from "@react-navigation/native";
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { FONTS } from "../../Theme";
 
 const About = (props) => {
 
@@ -16,6 +17,10 @@ const About = (props) => {
                 </TouchableOpacity>
             </View>
             <View height={1} style={{ borderRadius: 4, backgroundColor: colors.headerBorder }} />
+            <View style={{alignItems: "center"}}>
+                <Text style={[FONTS.h3, {color: colors.text}]}>© 2020 Brandon Wees</Text>
+                <Text style={[FONTS.h3, {color: colors.text}]}>Logo created by Layney Chapman</Text>
+            </View>
         </View>
     );
 };

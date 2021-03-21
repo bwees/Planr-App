@@ -10,7 +10,7 @@ import FileCell from "../components/FileCell";
 import DocumentPicker from 'react-native-document-picker';
 import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { editAssignment, getAssignmentByID } from "../storage/StorageAPI";
+import { editAssignment, getAssignmentByID, getClassesArray } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
 import RNFS from "react-native-fs";
 import mime from "mime"
@@ -165,6 +165,7 @@ const EditAssignment = ({ route, navigation }) => {
                         placeholder={"Assignment Name"}
                         onChangeText={text => setAssignmentName(text)}
                         value={assignmentName}
+                        placeholderTextColor={colors.gray}
                     />
                 </View>
 
@@ -172,7 +173,7 @@ const EditAssignment = ({ route, navigation }) => {
                 {/* Class Selector */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 8, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.gray }]}>Class</Text>
-                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { navigation.navigate("DropdownMenu", { options: ["English", "Math", "Science"], selected: classSelection, fieldName: "Class" }) }}>
+                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { navigation.navigate("DropdownMenu", { options: getClassesArray(), selected: classSelection, fieldName: "Class" }) }}>
                         <Text style={[FONTS.h3, classSelection === "Choose" ? { color: colors.gray } : { color: colors.text }]}>{classSelection}</Text>
                         <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingTop: 2 }} />
                     </TouchableOpacity>
