@@ -6,11 +6,11 @@ import { FONTS, SHADOW } from "../../Theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SegmentedControl from "@react-native-community/segmented-control";
 import SyncStorage from 'sync-storage';
-import { addClass, deleteRealm, getClasses } from "../../storage/StorageAPI";
+import { addClass, addType, deleteRealm, getClasses, getTypes } from "../../storage/StorageAPI";
 import { getTheme } from "../../Helpers";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ClassCell from "../../components/ClassCell";
+import ClassAndTypeCell from "../../components/ClassAndTypeCell";
 import { FlatList } from "react-native-gesture-handler";
 
 const Settings = (props) => {
@@ -28,8 +28,11 @@ const Settings = (props) => {
     });
 
     const [newClassName, setClassName] = useState("")
-    const [validation, setValidation] = useState(false)
+    const [newTypeName, setTypeName] = useState("")
+    const [classValidation, setClassValidation] = useState(false)
+    const [typeValidation, setTypeValidation] = useState(false)
     const [classes, setClasses] = useState(getClasses())
+    const [types, setTypes] = useState(getClasses())
 
     return (
         <View style={{ flex: 1 }}>
@@ -188,9 +191,9 @@ const Settings = (props) => {
                                     onChangeText={text => {
                                         setClassName(text)
                                         if (text.trim() === "")
-                                            setValidation(false)
+                                            setClassValidation(false)
                                         else
-                                            setValidation(true)
+                                        setClassValidation(true)
                                     }}
                                     value={newClassName}
                                 />
@@ -200,14 +203,14 @@ const Settings = (props) => {
                                     addClass(newClassName)
                                     setClasses(getClasses())
                                     setClassName("")
-                                    setValidation(false)
+                                    setClassValidation(false)
                                 }}
-                                disabled={!validation}
+                                disabled={!classValidation}
                             >
                                 <Ionicons
                                     name={"add-circle"}
                                     size={24}
-                                    color={validation ? colors.primary : colors.gray}
+                                    color={classValidation ? colors.primary : colors.gray}
                                     style={{ marginRight: 4 }}
                                 />
                             </TouchableOpacity>
@@ -220,8 +223,9 @@ const Settings = (props) => {
                             style={{ width: "100%", overflow: "visible" }}
                             renderItem={(item) => {
                                 return (
-                                    <ClassCell
-                                        classObj={item}
+                                    <ClassAndTypeCell
+                                        obj={item}
+                                        type={"class"}
                                         style={{ width: "100%" }}
                                         onDelete={() => {
                                             setClasses(getClasses())
@@ -232,6 +236,99 @@ const Settings = (props) => {
                         />
 
                     </View>
+
+                    <View
+                        style={[
+                            styles.textField,
+                            SHADOW,
+                            {
+                                marginBottom: 16,
+                                paddingTop: 16,
+                                paddingBottom: 8,
+                                marginHorizontal: 20,
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                                justifyContent: "flex-start"
+                            },
+                        ]}
+                    >
+                        <Text
+                            style={[
+                                FONTS.h3,
+                                { lineHeight: 18, color: colors.text },
+                                {
+                                    color: colors.primary,
+                                    fontSize: 18,
+                                    paddingBottom: 8,
+                                    fontWeight: "bold",
+                                }
+                            ]}
+                        >
+                            Assignment Types
+                        </Text>
+
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            <View height={36} style={[{
+                                backgroundColor: colors.textField,
+                                borderRadius: 12,
+                                paddingHorizontal: 12,
+                                paddingRight: 4,
+                                alignItems: "center",
+                                flexDirection: "row",
+                            }, { flex: 1, backgroundColor: colors.searchBar, marginRight: 8 }]}>
+                                <TextInput
+                                    style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]}
+                                    selectionColor={colors.primary} placeholder={"Type Name"}
+                                    placeholderTextColor={colors.gray}
+                                    onChangeText={text => {
+                                        setTypeName(text)
+                                        if (text.trim() === "")
+                                            setTypeValidation(false)
+                                        else
+                                            setTypeValidation(true)
+                                    }}
+                                    value={newTypeName}
+                                />
+                            </View>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    addType(newTypeName)
+                                    setTypes(getTypes())
+                                    setTypeName("")
+                                    setTypeValidation(false)
+                                }}
+                                disabled={!typeValidation}
+                            >
+                                <Ionicons
+                                    name={"add-circle"}
+                                    size={24}
+                                    color={typeValidation ? colors.primary : colors.gray}
+                                    style={{ marginRight: 4 }}
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View height={1} style={{ borderRadius: 4, marginVertical: 12, backgroundColor: colors.headerBorder, width: "100%" }} />
+
+                        <FlatList
+                            data={getTypes()}
+                            style={{ width: "100%", overflow: "visible" }}
+                            renderItem={(item) => {
+                                return (
+                                    <ClassAndTypeCell
+                                        obj={item}
+                                        type={"type"}
+                                        style={{ width: "100%" }}
+                                        onDelete={() => {
+                                            setTypes(getTypes())
+                                        }}
+                                    />)
+                            }}
+                            keyExtractor={item => item.id}
+                        />
+
+                    </View>
+
                     <TouchableOpacity
                         style={[
                             styles.textField,

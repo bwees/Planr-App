@@ -1,11 +1,18 @@
 import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
-import _, { assign } from "lodash"
+import _ from "lodash"
 import { getTimeDiffMins, groupedToSectionList, stringToDateObject, stripTime } from "../Helpers";
-import SyncStorage from 'sync-storage';
 
-var realm = new Realm({ schema: schema });
+
+var SCHEMA_VERSION = 1
+
+
+var realm = new Realm({ 
+    schema: schema,
+    schemaVersion: SCHEMA_VERSION,
+
+})
 
 export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
     realm.write(() => {
@@ -159,5 +166,35 @@ export function getClassesArray() {
 export function deleteClass(id) {
     realm.write(() => {
         realm.delete(realm.objectForPrimaryKey('Class', id));
+    })
+}
+
+export function addType(n) {
+    realm.write(() => {
+        realm.create("Type", {
+            name: n,
+            id: uuid()
+        });
+    });
+}
+
+export function getTypes() {
+    return realm.objects("Type")
+}
+
+export function getTypesArray() {
+
+    var c = realm.objects("Type")
+    var f = []
+    c.forEach((item) => {
+        f.push(item.name)
+    })
+
+    return f
+}
+
+export function deleteType(id) {
+    realm.write(() => {
+        realm.delete(realm.objectForPrimaryKey('Type', id));
     })
 }

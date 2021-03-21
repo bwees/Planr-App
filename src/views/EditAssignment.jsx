@@ -10,7 +10,7 @@ import FileCell from "../components/FileCell";
 import DocumentPicker from 'react-native-document-picker';
 import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { editAssignment, getAssignmentByID, getClassesArray } from "../storage/StorageAPI";
+import { editAssignment, getAssignmentByID, getClassesArray, getTypesArray } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
 import RNFS from "react-native-fs";
 import mime from "mime"
@@ -183,7 +183,7 @@ const EditAssignment = ({ route, navigation }) => {
                 {/* Type Selector */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 8, justifyContent: "space-between" }]}>
                     <Text style={[FONTS.h3, { color: colors.gray }]}>Assignment Type</Text>
-                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { navigation.navigate("DropdownMenu", { options: ["Homework", "Test", "Other"], selected: typeSelection, fieldName: "Type" }) }}>
+                    <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => { navigation.navigate("DropdownMenu", { options: getTypesArray(), selected: typeSelection, fieldName: "Type" }) }}>
                         <Text style={[FONTS.h3, typeSelection === "Choose" ? { color: colors.gray } : { color: colors.text }]}>{typeSelection}</Text>
                         <Ionicons name={"ios-chevron-forward"} size={27} color={colors.chevron} style={{ paddingTop: 2 }} />
                     </TouchableOpacity>

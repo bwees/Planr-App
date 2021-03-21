@@ -4,9 +4,9 @@ import { View, Text, StyleSheet } from "react-native";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { deleteClass } from "../storage/StorageAPI";
+import { deleteClass, deleteType } from "../storage/StorageAPI";
 
-const ClassCell = (props) => {
+const ClassAndTypeCell = (props) => {
     const { colors } = useTheme();
 
     const styles = StyleSheet.create({
@@ -20,7 +20,6 @@ const ClassCell = (props) => {
         },
     });
 
-
     return (
         <View
             style={[styles.textField,
@@ -29,11 +28,16 @@ const ClassCell = (props) => {
                 marginBottom: 8,
                 flexDirection: "row",
                 justifyContent: "space-between"
-            }]
-            }>
-            <Text style={[FONTS.h3, {color: colors.text}]}>{props.classObj.item.name}</Text>
+            }]}
+        >
+            <Text style={[FONTS.h3, { color: colors.text }]}>{props.obj.item.name}</Text>
             <TouchableOpacity onPress={() => {
-                deleteClass(props.classObj.item.id)
+                if (props.type == "class") {
+                    deleteClass(props.obj.item.id)
+                }
+                if (props.type == "type") {
+                    deleteType(props.obj.item.id)
+                }
                 props.onDelete()
             }}>
                 <Ionicons
@@ -47,4 +51,4 @@ const ClassCell = (props) => {
     );
 };
 
-export default ClassCell;
+export default ClassAndTypeCell;

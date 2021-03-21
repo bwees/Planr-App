@@ -47,5 +47,14 @@ const Class = {
     }
 }
 
+const Type = {
+    name: "Type",
+    primaryKey: "id",
+    properties: {
+        name: "string",
+        id: "string"
+    }
+}
 
-export const schema = [AssignmentSchema, FileSchema, WorkTime, Class]
+
+export const schema = [AssignmentSchema, FileSchema, WorkTime, Class, Type]
