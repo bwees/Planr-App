@@ -91,8 +91,8 @@ const CalendarView = (props) => {
                         calendarBackground: colors.background,
                         monthTextColor: colors.primary,
                         textMonthFontWeight: "bold",
-                        selectedDotColor: colors.primary,
                         textDisabledColor: colors.gray,
+                        selectedDayBackgroundColor: colors.primary,
                         dayTextColor: colors.text
                     }}
                 />
