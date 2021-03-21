@@ -133,7 +133,7 @@ const CalendarView = (props) => {
                             <View height={1} style={{ borderRadius: 4, marginTop: 4, backgroundColor: "white" }} />
 
                             <SectionList
-                                style={{ paddingHorizontal: 20, marginTop: 16, flex: 1 }}
+                                style={{ paddingHorizontal: 20, paddingTop: 16, flex: 1 }}
                                 sections={groupedAssignments}
                                 keyExtractor={(item, index) => item + index}
                                 stickySectionHeadersEnabled={false}
