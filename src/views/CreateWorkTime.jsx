@@ -6,6 +6,7 @@ import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { saveWorkTime } from "../storage/StorageAPI";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { useEffect } from "react";
 
 const CreateAssignment = (props) => {
 
@@ -19,6 +20,15 @@ const CreateAssignment = (props) => {
     const [endVisible, setEndVisible] = useState(false)
 
     const [canExpand, setCanExpand] = useState(false);
+    const [saveEnabled, setSaveEnabled] = useState(false);
+
+    useEffect(() => {
+        if (workTimeName.trim() === "") {
+            setSaveEnabled(false)
+        } else {
+            setSaveEnabled(true)
+        }
+    }, [workTimeName])
 
 
     const styles = StyleSheet.create({
@@ -53,8 +63,10 @@ const CreateAssignment = (props) => {
                             canExpand
                         );
                         props.navigation.goBack();
-                    }}>
-                    <Text style={{ color: colors.primary, fontSize: 18, fontWeight: "bold" }}>Done</Text>
+                    }}
+                    disabled={!saveEnabled}
+                >
+                    <Text style={[{ color: colors.primary, fontSize: 18, fontWeight: "bold" }, (saveEnabled ? { color: colors.primary } : { color: colors.lightGray })]}>Done</Text>
                 </TouchableOpacity>
             </View>
 
