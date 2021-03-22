@@ -44,7 +44,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Attach photos from the camera to assignments.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Attach photos to assignments.</string>
 	<key>UIAppFonts</key>
