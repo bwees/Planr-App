@@ -1,9 +1,10 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { Text, View, StyleSheet, Alert, TextInput, ScrollView } from "react-native";
+import { Text, View, StyleSheet, Alert, TextInput, ScrollView, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { FONTS, SHADOW } from "../../Theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import SegmentedControl from "@react-native-community/segmented-control";
 import SyncStorage from 'sync-storage';
 import { addClass, addType, deleteRealm, getClasses, getTypes } from "../../storage/StorageAPI";
@@ -107,6 +108,47 @@ const Settings = (props) => {
                             color={colors.chevron}
                         />
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[
+                            styles.textField,
+                            SHADOW,
+                            {
+                                height: 44,
+                                marginBottom: 16,
+                                marginHorizontal: 20,
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                            },
+                        ]}
+                        onPress={() => {
+                            props.navigation.navigate("GoogleClassroom")
+                        }}
+                    >
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "flex-start",
+                                flex: 1
+                            }}
+                        >
+                            <Text
+                                style={[
+                                    FONTS.h3,
+                                    { lineHeight: 18, paddingRight: 8, color: colors.text },
+                                ]}
+                            >
+                                Google Classroom
+                            </Text>
+                        </View>
+
+                        <Image
+                            source={require('../../../resources/gc-icon.png')}
+                            style={{ width: 30, marginRight: 4 }}
+                            resizeMode={"contain"}
+                        />
+
+                    </TouchableOpacity>
 
                     <View
                         style={[
@@ -193,7 +235,7 @@ const Settings = (props) => {
                                         if (text.trim() === "")
                                             setClassValidation(false)
                                         else
-                                        setClassValidation(true)
+                                            setClassValidation(true)
                                     }}
                                     value={newClassName}
                                 />
@@ -328,7 +370,6 @@ const Settings = (props) => {
                         />
 
                     </View>
-
                     <TouchableOpacity
                         style={[
                             styles.textField,

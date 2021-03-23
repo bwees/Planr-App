@@ -14,6 +14,7 @@ import { LogBox } from 'react-native';
 import SettingsStack from './src/navigation/SettingsStack';
 import SyncStorage from 'sync-storage';
 import { useState } from 'react';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const MainStack = createStackNavigator();
 
@@ -49,6 +50,28 @@ function App() {
     getTheme().then((t) => {
         setTheme(t)
     })
+
+    // GOOGLE SIGN IN ON LAUNCH
+
+    GoogleSignin.configure({
+        iosClientId: "761072932730-4q3fe1bbsf5gd5msubqt3i8ofnd3jbhb.apps.googleusercontent.com",
+        scopes: ["https://www.googleapis.com/auth/classroom.courses.readonly",
+                 "https://www.googleapis.com/auth/classroom.student-submissions.me.readonly"]
+    });
+
+    (async function() {
+        try {
+            const userInfo = await GoogleSignin.signInSilently();
+            console.log("Successful Google Login!")
+        } catch (error) {
+            if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+                console.log("no user")
+            } else {
+                console.log(error)
+            }
+        }
+    })();
+
 
     return (
         <AppearanceProvider>
