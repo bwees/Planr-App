@@ -12,7 +12,7 @@ import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { getClassesArray, getTypesArray, saveAssignment } from "../storage/StorageAPI";
 import uuid from 'react-native-uuid';
-import { addDate, stripTime } from "../Helpers";
+import { addDate } from "../Helpers";
 import RNFS from "react-native-fs";
 import mime from "mime";
 
@@ -24,7 +24,7 @@ const CreateAssignment = (props) => {
     const [assignmentName, setAssignmentName] = useState("");
     const [classSelection, setClassSelection] = useState("Choose");
     const [typeSelection, setTypeSelection] = useState("Choose");
-    const [dueDate, setDueDate] = useState(stripTime(addDate(new Date(), 1)));
+    const [dueDate, setDueDate] = useState(new Date().addDays(1).stripTime());
     const [timeLength, setTimeLength] = useState(15);
     const [notes, setNotes] = useState("");
     const [files, setFiles] = useState([]);

@@ -2,7 +2,7 @@ import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
 import _ from "lodash"
-import { getTimeDiffMins, groupedToSectionList, stringToDateObject, stripTime } from "../Helpers";
+import { getTimeDiffMins, groupedToSectionList, stringToDateObject } from "../Helpers";
 
 
 var SCHEMA_VERSION = 1
@@ -70,7 +70,7 @@ export function getAssignmentsByDate(filter) {
 }
 
 export function getTodayAssignments() {
-    return realm.objects("Assignment").filtered("dueDate == $0", stripTime(new Date().addDays(1)).toString());
+    return realm.objects("Assignment").filtered("dueDate == $0", (new Date().addDays(1)).stripTime().toString());
 }
 
 export function updateStatus(id, newStatus) {

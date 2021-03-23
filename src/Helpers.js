@@ -1,10 +1,6 @@
 import { useColorScheme } from 'react-native-appearance';
 import SyncStorage from 'sync-storage';
 
-export function stripTime(input) {
-    return new Date(input.getFullYear(), input.getMonth(), input.getDate())
-}
-
 
 export function groupedToSectionList(input) {
     var returnList = [];
@@ -94,3 +90,7 @@ Date.prototype.addDays = function(days) {
     this.setDate(this.getDate() + parseInt(days));
     return this;
 };
+
+Date.prototype.stripTime = function() {
+    return new Date(this.getFullYear(), this.getMonth(), this.getDate())
+}
