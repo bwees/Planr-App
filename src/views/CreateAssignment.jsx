@@ -10,7 +10,7 @@ import FileCell from "../components/FileCell";
 import DocumentPicker from 'react-native-document-picker';
 import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { getClassesArray, getTypesArray, saveAssignment } from "../storage/StorageAPI";
+import { getClassesArray, getTypesArray, saveAssignment } from "../apis/storage/StorageAPI";
 import uuid from 'react-native-uuid';
 import { addDate } from "../Helpers";
 import RNFS from "react-native-fs";
@@ -35,7 +35,7 @@ const CreateAssignment = (props) => {
     const [nameValidation, setNameValidation] = useState(false)
     const [classValidation, setClassValidation] = useState(false)
     const [typeValidation, setTypeValidation] = useState(false)
-    
+
     useEffect(() => {
         if (nameValidation && classValidation && typeValidation)
             setSaveEnabled(true)

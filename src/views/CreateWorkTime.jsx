@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Switch } from "rea
 import { FONTS, SHADOW } from "../Theme";
 import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { saveWorkTime } from "../storage/StorageAPI";
+import { saveWorkTime } from "../apis/storage/StorageAPI";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useEffect } from "react";
 
@@ -15,7 +15,7 @@ const CreateAssignment = (props) => {
     const [workTimeName, setWorkTimeName] = useState("");
     const [startTime, setStartTime] = useState(new Date())
     const [endTime, setEndTime] = useState(new Date().addHours(1))
-    
+
     const [startVisible, setStartVisible] = useState(false)
     const [endVisible, setEndVisible] = useState(false)
 
@@ -77,11 +77,11 @@ const CreateAssignment = (props) => {
 
                 {/* Assignement Name */}
                 <View height={44} style={[styles.textField, SHADOW, { marginBottom: 24 }]}>
-                    <TextInput 
-                    style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]} 
-                    selectionColor={colors.primary} 
-                    placeholder={"Work Time Name"} 
-                    onChangeText={text => setWorkTimeName(text)} />
+                    <TextInput
+                        style={[FONTS.h3, { flex: 1, lineHeight: 18, color: colors.text }]}
+                        selectionColor={colors.primary}
+                        placeholder={"Work Time Name"}
+                        onChangeText={text => setWorkTimeName(text)} />
                 </View>
 
                 {/* Start */}
@@ -99,7 +99,7 @@ const CreateAssignment = (props) => {
                         }}
                         onPress={() => setStartVisible(true)}
                     >
-                        <Text style={[FONTS.h3, { color: colors.primary }]}>{startTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</Text>
+                        <Text style={[FONTS.h3, { color: colors.primary }]}>{startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -118,7 +118,7 @@ const CreateAssignment = (props) => {
                         }}
                         onPress={() => setEndVisible(true)}
                     >
-                        <Text style={[FONTS.h3, { color: colors.primary }]}>{endTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</Text>
+                        <Text style={[FONTS.h3, { color: colors.primary }]}>{endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
                     </TouchableOpacity>
                 </View>
 

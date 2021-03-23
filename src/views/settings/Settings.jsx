@@ -7,7 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import SegmentedControl from "@react-native-community/segmented-control";
 import SyncStorage from 'sync-storage';
-import { addClass, addType, deleteRealm, getClasses, getTypes } from "../../storage/StorageAPI";
+import { addClass, addType, deleteRealm, getClasses, getTypes } from "../../apis/storage/StorageAPI";
 import { getTheme } from "../../Helpers";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";

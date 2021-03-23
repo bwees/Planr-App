@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { deleteClass, deleteType } from "../storage/StorageAPI";
+import { deleteClass, deleteType } from "../apis/storage/StorageAPI";
 
 const ClassAndTypeCell = (props) => {
     const { colors } = useTheme();

@@ -9,7 +9,7 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
 import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
-import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../storage/StorageAPI";
+import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../apis/storage/StorageAPI";
 import RNFS from "react-native-fs"
 import { getTheme, minutesToTimeString } from "../Helpers";
 

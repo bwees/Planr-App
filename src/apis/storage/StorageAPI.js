@@ -2,7 +2,7 @@ import uuid from "react-native-uuid";
 import { schema } from "./StorageSchema"
 import Realm from "realm"
 import _ from "lodash"
-import { getTimeDiffMins, groupedToSectionList, stringToDateObject } from "../Helpers";
+import { getTimeDiffMins, groupedToSectionList, stringToDateObject } from "../../Helpers";
 
 
 var SCHEMA_VERSION = 1

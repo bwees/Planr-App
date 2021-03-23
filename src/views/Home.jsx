@@ -15,16 +15,16 @@ import LinearGradient from "react-native-linear-gradient";
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { getTodayAssignments, getWorkTimes } from "../storage/StorageAPI";
+import { getTodayAssignments, getWorkTimes } from "../apis/storage/StorageAPI";
 import { generateHomeworkSchedule } from "../algorithm/HomeworkScheduleAlgo";
 import { minutesToTimeString } from "../Helpers";
 
 const Home = (props) => {
     const { colors } = useTheme();
 
-    var [schedule, setSchedule]= useState(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
+    var [schedule, setSchedule] = useState(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
     var [alertPresent, setPresent] = useState(false)
-    
+
     function refreshList() {
         setSchedule(generateHomeworkSchedule(getTodayAssignments(), getWorkTimes()))
     }
@@ -36,18 +36,18 @@ const Home = (props) => {
     }, [props.navigation]);
 
     React.useEffect(() => {
-         if (!isFinite(schedule.percent)) {
+        if (!isFinite(schedule.percent)) {
             if (!alertPresent) {
                 setPresent(true)
-                Alert.alert("Work Time", "Add a valid work time to continue.", 
+                Alert.alert("Work Time", "Add a valid work time to continue.",
                     [{
-                        onPress: () => { 
-                            setPresent(false); 
+                        onPress: () => {
+                            setPresent(false);
                             props.navigation.navigate("CreateWorkTime");
-                        } 
+                        }
                     }], { cancelable: false });
             }
-         }
+        }
     }, [schedule]);
 
     const insets = useSafeAreaInsets();
@@ -131,7 +131,7 @@ const Home = (props) => {
                                             assignment={item}
                                             navigation={props.navigation}
                                             deleteAnimation={false}
-                                            onSetDone={()=>refreshList()}
+                                            onSetDone={() => refreshList()}
                                         />
                                     )}
                                     extraData={schedule}

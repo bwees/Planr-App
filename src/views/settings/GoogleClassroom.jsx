@@ -11,13 +11,17 @@ import {
 import { useState } from "react";
 import { set } from "react-native-reanimated";
 import { color } from "react-native-redash";
+import { getCourses, getCourseWork, getSubmissionForWork, getWorkForCourse } from "../../apis/googleclassroom/GoogleClassroom";
 
 const GoogleClassroom = (props) => {
 
     const { colors } = useTheme();
 
     const [userData, setUserData] = useState(null)
-    GoogleSignin.getCurrentUser().then((user) => setUserData(user))
+
+    props.navigation.addListener("focus", () => {
+        GoogleSignin.getCurrentUser().then((user) => setUserData(user))
+    })
 
     async function gSignIn() {
         try {
@@ -49,7 +53,7 @@ const GoogleClassroom = (props) => {
             <View style={{ paddingHorizontal: 20, paddingVertical: 4, alignItems: "center" }}>
                 <Image
                     source={require('../../../resources/gc-icon.png')}
-                    style={{ width: 50 }}
+                    style={{ width: 50, height: 50 }}
                     resizeMode={"contain"}
                 />
                 <Text style={[FONTS.h1, { color: colors.text, fontWeight: "bold", color: colors.primary }]}>Google Classroom</Text>
@@ -69,13 +73,14 @@ const GoogleClassroom = (props) => {
 
 
                 {userData != null &&
-                    <View style={[SHADOW, 
-                        {marginTop: 16, 
-                        padding: 8, 
-                        borderRadius: 16, 
-                        backgroundColor: colors.cellColor,
-                        width: "75%"
-                    }]}>
+                    <View style={[SHADOW,
+                        {
+                            marginTop: 16,
+                            padding: 8,
+                            borderRadius: 16,
+                            backgroundColor: colors.cellColor,
+                            width: "75%"
+                        }]}>
                         <Text
                             style={[FONTS.h3,
                             {
@@ -113,7 +118,6 @@ const GoogleClassroom = (props) => {
                         />
                     </View>
                 }
-
             </View>
         </View>
     );

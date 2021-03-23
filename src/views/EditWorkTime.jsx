@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Switch } from "rea
 import { FONTS, SHADOW } from "../Theme";
 import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { editWorkTime, getWorkTimeByID } from "../storage/StorageAPI";
+import { editWorkTime, getWorkTimeByID } from "../apis/storage/StorageAPI";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useEffect } from "react";
 
@@ -24,7 +24,7 @@ const EditWorkTime = ({ route, navigation }) => {
         var startSplit = workTime.start.split("PM")
         var sOffset = 12
     }
-    var sTimeObj = new Date("27 July 2016 " + startSplit[0].trim()+ ":00")
+    var sTimeObj = new Date("27 July 2016 " + startSplit[0].trim() + ":00")
     sTimeObj.addHours(sOffset)
 
 
@@ -36,7 +36,7 @@ const EditWorkTime = ({ route, navigation }) => {
         var eOffset = 12
     }
 
-    var eTimeObj = new Date("27 July 2016 " + endSplit[0].trim()+ ":00")
+    var eTimeObj = new Date("27 July 2016 " + endSplit[0].trim() + ":00")
     eTimeObj.addHours(eOffset)
 
     const [startTime, setStartTime] = useState(sTimeObj)
