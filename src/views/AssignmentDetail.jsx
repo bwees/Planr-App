@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, Alert, Linking } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Alert, Linking, Image } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -186,8 +186,12 @@ const AssignmentDetail = ({ route, navigation }) => {
                                                 })
                                             }}
                                         >
-                                            <Ionicons name="ios-trash" size={20} color={colors.primary} />
-                                            <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Open in Google Classroom</Text>
+                                            <Image
+                                                source={require('../../resources/gc-icon.png')}
+                                                style={{ width: 32, height: 32, marginRight: 4 }}
+                                                resizeMode={"contain"}
+                                            />
+                                            <Text style={[FONTS.h3, FONTS.bold, { color: colors.text, paddingLeft: 4 }]}>Open in Google Classroom</Text>
                                         </TouchableOpacity>
                                     }
                                 </ScrollView>
