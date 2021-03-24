@@ -15,7 +15,7 @@ import LinearGradient from "react-native-linear-gradient";
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { getTodayAssignments, getWorkTimes } from "../apis/storage/StorageAPI";
+import { getTodayAssignments, getWorkTimes } from "../apis/storage/Storage";
 import { generateHomeworkSchedule } from "../algorithm/HomeworkScheduleAlgo";
 import { minutesToTimeString } from "../Helpers";
 

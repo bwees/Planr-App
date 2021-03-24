@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Keyboard } from 'react-native'
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
-import { getAssignmentsByDate, groupAssignmentsBy } from "../apis/storage/StorageAPI";
+import { getAssignmentsByDate, groupAssignmentsBy } from "../apis/storage/Storage";
 import { stringToDateObject } from "../Helpers";
 import { CalendarList } from "react-native-calendars";
 import BottomSheet from 'reanimated-bottom-sheet';

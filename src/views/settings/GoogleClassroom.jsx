@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { set } from "react-native-reanimated";
 import { color } from "react-native-redash";
-import { getCourses, getCourseWork, getSubmissionForWork, getWorkForCourse } from "../../apis/googleclassroom/GoogleClassroom";
+import { getCourses, getCourseWork, getSubmissionForWork, getWorkForCourse, syncAssignments } from "../../apis/googleclassroom/GoogleClassroom";
 
 const GoogleClassroom = (props) => {
 
@@ -118,6 +118,11 @@ const GoogleClassroom = (props) => {
                         />
                     </View>
                 }
+                <Button title={"Test"}
+                    onPress={() => {
+                        syncAssignments()
+                    }}
+                />
             </View>
         </View>
     );

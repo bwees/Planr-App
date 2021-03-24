@@ -10,7 +10,7 @@ import FileCell from "../components/FileCell";
 import DocumentPicker from 'react-native-document-picker';
 import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { getClassesArray, getTypesArray, saveAssignment } from "../apis/storage/StorageAPI";
+import { getClassesArray, getTypesArray, saveAssignment } from "../apis/storage/Storage";
 import uuid from 'react-native-uuid';
 import { addDate } from "../Helpers";
 import RNFS from "react-native-fs";

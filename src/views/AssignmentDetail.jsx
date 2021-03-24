@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Alert, Linking } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { FONTS, SHADOW } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,9 +9,10 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import { useState } from "react";
 import FileCell from "../components/FileCell";
 import { FlatList } from "react-native-gesture-handler";
-import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../apis/storage/StorageAPI";
+import { deleteAssignmentWithID, getAssignmentByID, updateStatus } from "../apis/storage/Storage";
 import RNFS from "react-native-fs"
 import { getTheme, minutesToTimeString } from "../Helpers";
+import { getGCLinkingURL } from "../apis/googleclassroom/GoogleClassroom";
 
 
 const AssignmentDetail = ({ route, navigation }) => {
@@ -22,7 +23,6 @@ const AssignmentDetail = ({ route, navigation }) => {
 
     navigation.addListener('focus', () => {
         setAssignment(getAssignmentByID(assignmentID));
-        setStatus(getAssignmentByID(assignmentID).status)
     });
 
     const { colors } = useTheme();
@@ -140,40 +140,56 @@ const AssignmentDetail = ({ route, navigation }) => {
                                         </View>
                                     }
 
-                                    <TouchableOpacity
-                                        style={[SHADOW, { height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, marginBottom: 32, alignItems: "center", justifyContent: "center", flexDirection: "row" }]}
-                                        onPress={() => {
-                                            Alert.alert(
-                                                "Delete Assignment?",
-                                                "Are you sure you want to delete the assignment?",
-                                                [
-                                                    {
-                                                        text: "Cancel",
-                                                        style: "cancel"
-                                                    },
-                                                    {
-                                                        text: "Delete",
-                                                        onPress: () => {
-                                                            for (const attachment of assignment.attachments) {
-                                                                RNFS.unlink(attachment.path)
-                                                                    .catch((err) => {
-                                                                        console.log(err.message, err.code);
-                                                                    });
-                                                            }
-                                                            deleteAssignmentWithID(assignmentID)
-                                                            navigation.goBack();
+                                    { assignment.gcURL === "" &&
+                                        <TouchableOpacity
+                                            style={[SHADOW, { height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, marginBottom: 32, alignItems: "center", justifyContent: "center", flexDirection: "row" }]}
+                                            onPress={() => {
+                                                Alert.alert(
+                                                    "Delete Assignment?",
+                                                    "Are you sure you want to delete the assignment?",
+                                                    [
+                                                        {
+                                                            text: "Cancel",
+                                                            style: "cancel"
                                                         },
-                                                        style: "destructive"
-                                                    }
-                                                ],
-                                                { cancelable: false }
-                                            );
-                                        }}
-                                    >
-                                        <Ionicons name="ios-trash" size={20} color={colors.primary} />
-                                        <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Delete Assignment</Text>
-                                    </TouchableOpacity>
-
+                                                        {
+                                                            text: "Delete",
+                                                            onPress: () => {
+                                                                for (const attachment of assignment.attachments) {
+                                                                    RNFS.unlink(attachment.path)
+                                                                        .catch((err) => {
+                                                                            console.log(err.message, err.code);
+                                                                        });
+                                                                }
+                                                                deleteAssignmentWithID(assignmentID)
+                                                                navigation.goBack();
+                                                            },
+                                                            style: "destructive"
+                                                        }
+                                                    ],
+                                                    { cancelable: false }
+                                                );
+                                            }}
+                                        >
+                                            <Ionicons name="ios-trash" size={20} color={colors.primary} />
+                                            <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Delete Assignment</Text>
+                                        </TouchableOpacity>
+                                    }
+                                    { assignment.gcURL !== "" &&
+                                        <TouchableOpacity
+                                            style={[SHADOW, { height: 42, backgroundColor: colors.cellColor, borderRadius: 16, marginTop: 16, marginBottom: 32, alignItems: "center", justifyContent: "center", flexDirection: "row" }]}
+                                            onPress={async () => {
+                                                var gcLink = getGCLinkingURL(assignment.gcURL)
+                                                
+                                                Linking.openURL(gcLink).catch((err) => {
+                                                    Alert.alert("Unable To Open", "Verify that the Google Classroom app is installed on your phone to continue.")
+                                                })
+                                            }}
+                                        >
+                                            <Ionicons name="ios-trash" size={20} color={colors.primary} />
+                                            <Text style={[FONTS.h3, FONTS.bold, { color: colors.primary, paddingLeft: 4 }]}>Open in Google Classroom</Text>
+                                        </TouchableOpacity>
+                                    }
                                 </ScrollView>
 
                             </View>

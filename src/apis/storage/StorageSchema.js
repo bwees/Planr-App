@@ -1,4 +1,4 @@
-const AssignmentSchema = {
+const Assignment = {
     name: "Assignment",
     primaryKey: "id",
     properties: {
@@ -9,12 +9,17 @@ const AssignmentSchema = {
         time: { type: "int", default: 15 },
         status: { type: "int", default: 0 },
         notes: "string",
+        isGC: { type: "bool", default: false },
+        gcURL: { type: "string", default: "" },
+        cID: { type: "string", default: "" },
+        wID: { type: "string", default: "" },
         attachments: "File[]",
         id: "string"
     }
 };
 
-const FileSchema = {
+
+const File = {
     name: "File",
     primaryKey: "id",
     properties: {
@@ -57,4 +62,4 @@ const Type = {
 }
 
 
-export const schema = [AssignmentSchema, FileSchema, WorkTime, Class, Type]
+export const schema = [Assignment, File, WorkTime, Class, Type]

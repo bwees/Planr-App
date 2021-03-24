@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { SHADOW, FONTS } from "../Theme";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
-import { deleteWorkTime } from "../apis/storage/StorageAPI";
+import { deleteWorkTime } from "../apis/storage/Storage";
 
 const WorkTimeCell = (props) => {
     const { colors } = useTheme();

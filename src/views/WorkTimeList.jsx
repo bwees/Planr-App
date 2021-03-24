@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useState } from "react";
 import WorkTimeCell from "../components/WorkTimeCell";
-import { getWorkTimes } from "../apis/storage/StorageAPI";
+import { getWorkTimes } from "../apis/storage/Storage";
 
 const WorkTimeList = (props) => {
 

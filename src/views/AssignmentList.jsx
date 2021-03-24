@@ -15,7 +15,7 @@ import { useState } from "react";
 import { Keyboard } from "react-native";
 import ListSeperator from "../components/ListSeperator";
 import AssignmentCell from "../components/AssignmentCell";
-import { getAssignments, groupAssignmentsBy } from "../apis/storage/StorageAPI";
+import { getAssignments, groupAssignmentsBy } from "../apis/storage/Storage";
 import { groupedToSectionList, sortByDate } from "../Helpers";
 
 const AssignmentList = (props) => {

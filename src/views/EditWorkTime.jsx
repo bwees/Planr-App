@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Switch } from "rea
 import { FONTS, SHADOW } from "../Theme";
 import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { editWorkTime, getWorkTimeByID } from "../apis/storage/StorageAPI";
+import { editWorkTime, getWorkTimeByID } from "../apis/storage/Storage";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useEffect } from "react";
 

@@ -15,6 +15,7 @@ import SettingsStack from './src/navigation/SettingsStack';
 import SyncStorage from 'sync-storage';
 import { useState } from 'react';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { getRealmPath } from './src/apis/storage/Storage';
 
 const MainStack = createStackNavigator();
 
@@ -72,6 +73,7 @@ function App() {
         }
     })();
 
+    console.log(getRealmPath())
 
     return (
         <AppearanceProvider>

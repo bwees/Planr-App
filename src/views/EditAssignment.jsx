@@ -10,7 +10,7 @@ import FileCell from "../components/FileCell";
 import DocumentPicker from 'react-native-document-picker';
 import ActionSheet from 'react-native-actionsheet'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { editAssignment, getAssignmentByID, getClassesArray, getTypesArray } from "../apis/storage/StorageAPI";
+import { editAssignment, getAssignmentByID, getClassesArray, getTypesArray } from "../apis/storage/Storage";
 import uuid from 'react-native-uuid';
 import RNFS from "react-native-fs";
 import mime from "mime"

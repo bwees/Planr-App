@@ -11,8 +11,11 @@ var SCHEMA_VERSION = 1
 var realm = new Realm({ 
     schema: schema,
     schemaVersion: SCHEMA_VERSION,
-
 })
+
+export function getRealmPath() {
+    return realm.path
+}
 
 export function saveAssignment(name, type, className, dueDate, time, notes, attachments) {
     realm.write(() => {
@@ -197,4 +200,38 @@ export function deleteType(id) {
     realm.write(() => {
         realm.delete(realm.objectForPrimaryKey('Type', id));
     })
+}
+
+export function getStoredGCAssignment(cID, wID) {
+    return realm.objects("Assignment").filtered("wID == $0 && cID == $1", wID, cID);
+}
+
+export function saveGCAssignment(name, type, className, dueDate, notes, gcURL, wID, cID, gStatus) {
+    realm.write(() => {
+        realm.create("Assignment", {
+            name: name,
+            className: className,
+            type: type,
+            dueDate: dueDate,
+            status: gStatus,
+            notes: notes,
+            attachments: [],
+
+            // GC Stuff
+            isGC: true,
+            gcURL: gcURL,
+            cID: cID,
+            wID: wID,
+            id: uuid()
+        });
+    });
+}
+
+export function editGCAssignment(id, status) {
+    realm.write(() => {
+        realm.create("Assignment", {
+            id: id,
+            status: status
+        }, "modified");
+    });
 }

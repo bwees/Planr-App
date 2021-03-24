@@ -7,7 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import SegmentedControl from "@react-native-community/segmented-control";
 import SyncStorage from 'sync-storage';
-import { addClass, addType, deleteRealm, getClasses, getTypes } from "../../apis/storage/StorageAPI";
+import { addClass, addType, deleteRealm, getClasses, getTypes } from "../../apis/storage/Storage";
 import { getTheme } from "../../Helpers";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -140,14 +140,17 @@ const Settings = (props) => {
                             >
                                 Google Classroom
                             </Text>
+                            <Image
+                                source={require('../../../resources/gc-icon.png')}
+                                style={{ width: 30, marginRight: 4 }}
+                                resizeMode={"contain"}
+                            />
                         </View>
-
-                        <Image
-                            source={require('../../../resources/gc-icon.png')}
-                            style={{ width: 30, marginRight: 4 }}
-                            resizeMode={"contain"}
+                        <Ionicons
+                            name={"ios-chevron-forward"}
+                            size={28}
+                            color={colors.chevron}
                         />
-
                     </TouchableOpacity>
 
                     <View

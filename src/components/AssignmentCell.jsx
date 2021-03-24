@@ -9,7 +9,7 @@ import {
 import { SHADOW, FONTS } from "../Theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useTheme } from "@react-navigation/native";
-import { getAssignmentByID, updateStatus } from "../apis/storage/StorageAPI";
+import { getAssignmentByID, updateStatus } from "../apis/storage/Storage";
 import { useState } from "react";
 import Interactable from "react-native-interactable";
 import { useRef } from "react";
