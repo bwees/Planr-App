@@ -38,7 +38,7 @@ const AssignmentCell = (props) => {
 
     function chime() {
         chimeSound.play();
-        ReactNativeHapticFeedback.trigger("impactLight", options);
+        ReactNativeHapticFeedback.trigger("notificationWarning", options);
     }
 
     return (
