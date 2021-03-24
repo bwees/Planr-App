@@ -62,6 +62,9 @@ export async function syncAssignments() {
                             if (dueDate.getTime() >= (new Date()).stripTime().addDays(-1).getTime())
                             {
                                 work.courseTitle = course.name
+                                // if (work.materials) {
+                                //     console.log(work.materials[0])
+                                // }
                                 checkAssignmentSync(work)
                             }
                         }
@@ -73,12 +76,11 @@ export async function syncAssignments() {
     }
 }
 
-function parseStatus(status, cStatus=0) {
-    console.log(cStatus)
+function parseStatus(status, currentStatus=0) {
     if (status === "RETURNED" || status === "TURNED_IN") {
         return 2
     }
-    if (cStatus == 1) {
+    if (currentStatus == 1) {
         console.log("holding")
         return 1
     }

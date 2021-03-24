@@ -156,7 +156,7 @@ const AssignmentCell = (props) => {
                             },
                         ]}
                     >
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1, paddingRight: 8 }}>
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
                                 <Text
                                     numberOfLines={1}
@@ -164,14 +164,6 @@ const AssignmentCell = (props) => {
                                 >
                                     {assignment.name}
                                 </Text>
-                                {assignment.status == 2 && (
-                                    <Ionicons
-                                        name={"checkmark-circle"}
-                                        size={18}
-                                        color={colors.primary}
-                                        style={{ marginLeft: 4 }}
-                                    />
-                                )}
                             </View>
                             <View style={{ flexDirection: "row", marginTop: 2 }}>
                                 <View
@@ -218,7 +210,15 @@ const AssignmentCell = (props) => {
                                 </View>
                             </View>
                         </View>
-                        <View>
+                        <View style={{flexDirection: "row", alignItems: "center"}}>
+                            {assignment.status == 2 && (
+                                <Ionicons
+                                    name={"checkmark-circle"}
+                                    size={24}
+                                    color={colors.primary}
+                                    style={{ marginRight: 1 }}
+                                />
+                            )}
                             <Ionicons
                                 name={"ios-chevron-forward"}
                                 size={27}
