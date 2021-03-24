@@ -16,7 +16,7 @@ import SyncStorage from 'sync-storage';
 import { useState } from 'react';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { getRealmPath } from './src/apis/storage/Storage';
-import { Text } from "react-native"
+import { Text, TextInput } from "react-native"
 
 const MainStack = createStackNavigator();
 
@@ -66,17 +66,18 @@ function App() {
             const userInfo = await GoogleSignin.signInSilently();
             console.log("Successful Google Login!")
         } catch (error) {
-            if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-                console.log("no user")
-            } else {
+            if (error.code === statusCodes.SIGN_IN_REQUIRED) {}
+            else {
                 console.log(error)
             }
         }
     })();
 
-    console.log(getRealmPath())
     Text.defaultProps = Text.defaultProps || {};
     Text.defaultProps.allowFontScaling = false;
+    TextInput.defaultProps = TextInput.defaultProps || {};
+    TextInput.defaultProps.allowFontScaling = false;
+
     return (
         <AppearanceProvider>
             <NavigationContainer theme={theme === "dark" ? DarkMode : LightMode}>
