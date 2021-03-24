@@ -16,6 +16,7 @@ import SyncStorage from 'sync-storage';
 import { useState } from 'react';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { getRealmPath } from './src/apis/storage/Storage';
+import { Text } from "react-native"
 
 const MainStack = createStackNavigator();
 
@@ -74,7 +75,8 @@ function App() {
     })();
 
     console.log(getRealmPath())
-
+    Text.defaultProps = Text.defaultProps || {};
+    Text.defaultProps.allowFontScaling = false;
     return (
         <AppearanceProvider>
             <NavigationContainer theme={theme === "dark" ? DarkMode : LightMode}>
