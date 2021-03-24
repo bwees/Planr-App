@@ -13,6 +13,7 @@ import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ClassAndTypeCell from "../../components/ClassAndTypeCell";
 import { FlatList } from "react-native-gesture-handler";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Settings = (props) => {
     const { colors } = useTheme();
@@ -75,8 +76,7 @@ const Settings = (props) => {
             />
 
             {/* Settings List */}
-            <View style={{ flex: 1 }}>
-                <ScrollView>
+                <KeyboardAwareScrollView extraHeight={150}>
                     <TouchableOpacity
                         style={[
                             styles.textField,
@@ -424,8 +424,7 @@ const Settings = (props) => {
                         />
                     </TouchableOpacity>
                     <View style={{ height: 40 }} />
-                </ScrollView>
-            </View>
+                </KeyboardAwareScrollView>
         </View>
     );
 };
